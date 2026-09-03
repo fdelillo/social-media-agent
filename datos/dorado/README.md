@@ -25,16 +25,18 @@ prompt bueno de uno malo.
     "objetivo": "Nike",
     "texto": "el texto completo de la mención, tal como vino",
     "sentimiento": "negativo",
-    "nota": "ironía: elogia la espera de 45 minutos"
+    "comentario": "ironía: elogia la espera de 45 minutos"
   }
 ]
 ```
 
-`sentimiento` es uno de `positivo`, `neutro`, `negativo`.
+`sentimiento` es una de tres palabras: `positivo`, `neutro` o `negativo`. **No hay puntaje ni
+escala numérica** — el `score` de −1.0 a 1.0 lo produce el clasificador, pero el set dorado no
+lo necesita: se mide solo la categoría.
 
-`nota` es opcional, pero conviene completarla en los casos límite: es lo que después explica
-por qué el modelo se equivocó, y de dónde salen los ejemplos de calibración que se agregan al
-prompt.
+`comentario` es texto libre y opcional. Conviene completarlo en los casos límite, porque es lo
+que después explica por qué el modelo se equivocó y de dónde salen los ejemplos de calibración
+que se agregan al prompt. En los casos obvios se deja vacío.
 
 ## Cómo se usa
 
