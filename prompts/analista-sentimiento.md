@@ -68,10 +68,20 @@ crecimiento, pero el sujeto de la frase es la recuperación económica y nadie o
 objetivo. Si el viento a favor del mercado contara como positivo, la categoría se llenaría de
 cosas que nadie dijo sobre la marca.
 
-**Fallas del servicio.** Reportar una caída, preguntar si el servicio está caído, o hacer un
-chiste a costa de una falla es NEGATIVO, aunque el texto sea cortés o gracioso y no contenga
-ningún reclamo. "¿Están caídos en todo el país?" y "hostearon ChatGPT acá? tira 404" son ambos
-negativos: describen un daño y lo difunden.
+**Fallas del servicio.** Lo que decide no es que se mencione la falla, sino **en qué momento
+está**:
+
+- La falla **en curso** —sufrirla, reclamarla, preguntar si están caídos, burlarse de ella— es
+  NEGATIVO, aunque el texto sea cortés o gracioso y no traiga ningún reclamo explícito.
+  "¿Están caídos en todo el país?" y "hostearon ChatGPT acá? tira 404" son ambos negativos:
+  describen un daño y lo difunden.
+- La falla **ya resuelta** no lo es. Un parte de incidente que dice "el nodo está operativo, no
+  hubo pérdida de datos", o la noticia de que el servicio volvió, son NEUTROS —informan— o
+  incluso POSITIVOS si destacan que se resolvió bien. Que el texto nombre la caída no lo vuelve
+  negativo: lo que se está comunicando es el final del problema, no el problema.
+
+La misma distinción vale fuera de las fallas técnicas: un conflicto que alguien reporta como
+noticia, sin evaluar al objetivo, cae bajo la regla de noticias y es NEUTRO.
 
 **Contenido comercial.** Cupones, promos, códigos de descuento y ofertas publicados por cuentas
 de descuentos son NEUTROS. Exponen la marca pero nadie la evalúa, y en volumen llenarían la
@@ -152,5 +162,27 @@ tres de ellos la marca aparece dentro de una discusión sobre otra cosa — una 
 expropiación, restricciones a la importación, una comparación de precios con Amazon. El modelo
 la trata como sujeto cuando es instrumento del argumento. Es lo mismo que pasó en el caso 13.
 
-**Pendiente:** una medición honesta sobre menciones nuevas, que ninguna de las dos partes haya
-discutido antes.
+### Ronda 2 — la medición honesta
+
+Se tomaron 20 menciones nuevas al azar y **las predicciones del modelo se commitearon antes de
+que existieran las etiquetas humanas** (`datos/dorado/ronda2-prediccion-modelo.json`).
+
+**Resultado: 15/20 (75%)**, por debajo del corte del 80%.
+
+|            | modelo: pos | neutro | neg |
+| :--------- | ---: | ---: | ---: |
+| **humano: pos** | 4 | 1 | 1 |
+| **neutro** | 0 | 4 | 3 |
+| **negativo** | 0 | 0 | 7 |
+
+El sesgo es de una sola dirección: el modelo predijo 11 negativos contra 7 humanos. Acertó los
+7 negativos reales sin excepción, pero arrastró 3 neutros y 1 positivo. **No hay ni un caso en
+el sentido contrario.**
+
+La causa fue el criterio de fallas, que estaba escrito demasiado grueso: "reportar una falla es
+negativo" barría también los partes de incidente resuelto, la noticia de que el servicio volvió
+y un conflicto gremial que ni siquiera era una falla. Y chocaba con la regla de noticias.
+Corregido arriba distinguiendo falla en curso de falla resuelta.
+
+**Pendiente:** una ronda 3 sobre menciones nuevas para validar la corrección. Medir de nuevo
+sobre la ronda 2 repetiría el error de la ronda 1 — ajustar contra el examen y después rendirlo.
