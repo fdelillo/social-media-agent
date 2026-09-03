@@ -69,18 +69,19 @@ reportes/      informes generados (se versionan solo los ejemplos)
 
 ## Costos
 
-Los dos únicos costos son Apify y el LLM, y **el que aprieta es Apify**:
+Los dos únicos costos son Apify y el LLM:
 
 | | Costo aproximado |
 | :--- | :--- |
-| Apify | ~$5/mes de crédito en el plan gratuito · los actores de X rondan $0.15–$0.40 por 1.000 tweets, más un *start fee* por corrida |
+| Apify (`scrape.badger~twitter-tweets-scraper`, plan gratuito) | $0.15 por 1.000 menciones, sin *start fee* → ~33.000 menciones/mes con los $5 de crédito |
 | LLM (Fase 1, por corrida de 100 menciones) | ~$0.35 |
 
-> ⚠️ **El crédito gratuito puede no alcanzar para usar este proyecto.** Varios de los actores
-> de X más populares restringen a los usuarios del plan gratuito, y al menos uno les prohíbe el
-> acceso por API — que es justamente por donde entran el MCP y el CLI. Cuáles funcionan en
-> gratuito es una pregunta abierta que se responde probando; el estado del relevamiento está en
-> [`docs/apify-actor-x.md`](docs/apify-actor-x.md).
+Con esos números el presupuesto que aprieta no es Apify sino el LLM, al revés de lo que
+parecía. Aun así la regla de guardar el crudo se mantiene: reanalizar desde disco es gratis y
+además no devuelve algo distinto, porque el feed no se movió.
 
-De ahí sale una regla de diseño: **cada corrida guarda su JSON crudo en `datos/crudo/`**, y
-nada se vuelve a scrapear para reprocesarlo. Reanalizar es gratis; volver a scrapear no.
+> ⚠️ **Al elegir un actor de Apify, el precio de su página no es el que vas a pagar.** Apify
+> permite tarifas por escalón de plan, y algunos actores cobran al plan gratuito mucho más que
+> lo que anuncian — uno de los candidatos descartados cobraba 20× su precio publicado. El
+> precio real se consulta por API; cómo hacerlo está en
+> [`docs/apify-actor-x.md`](docs/apify-actor-x.md).

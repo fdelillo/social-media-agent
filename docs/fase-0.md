@@ -18,16 +18,21 @@ reescribir el prompt cuesta una tarde y no un refactor.
 2. **Settings → Integrations →** copiar el API token.
 3. `cp .env.example .env` y completar `APIFY_TOKEN`.
 
-## Paso 2 — Elegir el actor de X
+## Paso 2 — Elegir el actor de X ✅
 
-Ver [`apify-actor-x.md`](apify-actor-x.md) para los candidatos y el criterio. Anotar ahí el que
-se elija, junto con la forma de su input y su costo por corrida — la Fase 1 lee ese archivo
-para saber qué mandar.
+**Hecho el 2026-09-03.** El elegido es `scrape.badger~twitter-tweets-scraper`: $0.15 por 1.000
+menciones en plan gratuito, sin start fee, y verificado que corre por API. Su input, su salida y
+los dos candidatos descartados están documentados en [`apify-actor-x.md`](apify-actor-x.md).
 
-## Paso 3 — Conectar el MCP
+## Paso 3 — Conectar el MCP *(opcional)*
 
-Seguir [`../mcp/README.md`](../mcp/README.md). Verificación: pedirle al modelo que liste las
-herramientas disponibles; tiene que aparecer el actor elegido y **solo** ese.
+El MCP es una comodidad, no un requisito: sirve para pedirle corridas al modelo en lenguaje
+natural. Su guía está en [`../mcp/README.md`](../mcp/README.md).
+
+**No está en el camino crítico, y conviene que no lo esté.** El CLI de la Fase 1 va a usar la
+API REST, así que probar por `curl` verifica exactamente lo que la Fase 1 va a hacer; el MCP es
+otra vía de acceso y podría comportarse distinto. Todo lo que sigue usa `curl` directo, y con
+eso alcanza para terminar la fase.
 
 ## Paso 4 — Tres corridas de perfil distinto
 
@@ -39,11 +44,25 @@ Correr el actor sobre tres objetivos deliberadamente diferentes, ~100 menciones 
 | Marca chica | Poco volumen: prueba qué pasa cuando hay 8 menciones y no 100 | un negocio local o un producto de nicho |
 | Persona | El lenguaje sobre personas es más ambiguo que sobre productos | una figura pública |
 
-Guardar el JSON crudo de cada corrida en `datos/crudo/` con el nombre
-`<objetivo>-<fecha>.json`. **No editarlo.**
+La llamada, con el actor ya elegido:
 
-Al terminar, revisar a ojo: ¿el texto viene completo o truncado? ¿las fechas son recientes?
-¿hay retweets y spam inflando el conteo? Anotar lo que aparezca en `apify-actor-x.md`.
+```bash
+set -a; . ./.env; set +a
+curl -s -X POST "https://api.apify.com/v2/acts/scrape.badger~twitter-tweets-scraper/run-sync-get-dataset-items?maxTotalChargeUsd=0.10" \
+  -H "Authorization: Bearer $APIFY_TOKEN" -H "Content-Type: application/json" \
+  -d '{"mode":"Advanced Search","query":"<MARCA> -is:retweet lang:es min_faves:5","query_type":"Top","max_results":100}' \
+  -o "datos/crudo/<marca>-$(date +%F).json"
+```
+
+Los cuatro parámetros del input no son negociables y cada uno tiene su motivo, explicado en
+[`apify-actor-x.md`](apify-actor-x.md): `mode` es obligatorio y su default no sirve;
+`query_type: "Top"` en vez de `"Latest"` es la diferencia entre datos usables y spam;
+`-is:retweet` evita que un mismo mensaje pese diez veces; `min_faves:5` filtra cuentas nuevas
+de spam; y `maxTotalChargeUsd` es el único freno real si algo sale mal.
+
+**No editar el JSON crudo.** Al terminar, revisar a ojo: ¿el texto de `full_text` viene
+completo? ¿las fechas son recientes? ¿cuántos resultados son ruido? Anotar lo que aparezca en
+`apify-actor-x.md`.
 
 ## Paso 5 — El set dorado
 

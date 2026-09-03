@@ -1,10 +1,9 @@
 # El actor de X
 
 Notas sobre el Actor de Apify que provee las menciones. La Fase 1 lee este archivo para saber
-qué `actorId` invocar y qué forma tiene su input.
+qué `actorId` invocar, qué forma tiene su input y cómo mapear su salida a `Mencion`.
 
-> **Pendiente de completar en la Fase 0, paso 2.** Los candidatos están abajo; la sección
-> "Actor elegido" se llena después de probarlos.
+**Probado el 2026-09-03** contra la cuenta `fdelillo` (plan FREE).
 
 ---
 
@@ -12,117 +11,149 @@ qué `actorId` invocar y qué forma tiene su input.
 
 | | |
 | :--- | :--- |
-| **`actorId`** | _(pendiente)_ |
-| **Costo por 1.000 resultados** | _(pendiente)_ |
-| **Start fee por corrida** | _(pendiente)_ |
-| **Requiere plan pago** | _(pendiente)_ |
-| **Probado el** | _(pendiente)_ |
+| **`actorId`** | `scrape.badger~twitter-tweets-scraper` |
+| **Costo en plan FREE** | $0.00015 por tweet = **$0.15 / 1.000** |
+| **Start fee** | ninguno |
+| **Funciona por API en gratuito** | ✅ sí, verificado |
+| **Presupuesto que implica** | ~33.000 menciones/mes con los $5 de crédito |
 
-### Forma del input
+### El precio depende del plan, y eso decidió la elección
 
-```json
-{ }
+Es el hallazgo que no estaba en ninguna página de actor: Apify permite **precios por escalón de
+plan**, y algunos actores castigan al plan gratuito. Comparando los dos finalistas en el campo
+`eventTieredPricingUsd` de la API:
+
+| Actor | FREE | GOLD | Anunciado en su página |
+| :--- | :--- | :--- | :--- |
+| `xtdata/twitter-x-scraper` | **$5.00 / 1.000** | $0.25 / 1.000 | "$0.25" — que es la tarifa GOLD |
+| `scrape.badger/twitter-tweets-scraper` | **$0.15 / 1.000** | $0.12 / 1.000 | "$0.15" |
+
+`xtdata` cobra en gratuito **20 veces** su precio anunciado, más un start fee y un mínimo de $3
+por corrida: mil tweets se comerían el presupuesto mensual entero. `scrape.badger` cobra en
+gratuito casi lo mismo que en GOLD.
+
+La lección para elegir cualquier actor de acá en adelante: **el precio de la página es el del
+escalón más alto**. El real está en la API:
+
+```bash
+curl -s -H "Authorization: Bearer $APIFY_TOKEN" \
+  "https://api.apify.com/v2/acts/<actorId>" \
+  | python3 -c "import json,sys; print(json.dumps(json.load(sys.stdin)['data']['pricingInfos'][-1], indent=2))"
 ```
-
-### Forma de la salida
-
-Qué campo trae el texto, cuál el id, cuál la fecha, cuál el autor y qué métricas expone. Esto
-es lo que `fuentes/x.py` va a mapear a `Mencion` en la Fase 1.
-
-| Campo en la salida | Campo en `Mencion` |
-| :--- | :--- |
-| _(pendiente)_ | `id_externo` |
-| _(pendiente)_ | `texto` |
-| _(pendiente)_ | `autor` |
-| _(pendiente)_ | `url` |
-| _(pendiente)_ | `publicado_en` |
-| _(pendiente)_ | `metricas` |
-
-### Observaciones de la prueba
-
-- ¿El texto viene completo o truncado?
-- ¿Las fechas son recientes?
-- ¿Cuántos de los resultados son retweets o spam?
-- ¿Qué pasa con un objetivo de bajo volumen — devuelve pocos, o falla?
 
 ---
 
-## Candidatos (relevados el 2026-09-03)
+## Input
 
-**Hallazgo que condiciona todo lo demás: los actores de X más populares restringen el plan
-gratuito**, y el precio por 1.000 tweets resultó ser el criterio menos importante. Lo que
-decide es si el actor corre por API en gratuito.
+`mode` es **obligatorio** y su default es `"Get Tweet by ID"`, que no es lo que queremos. Sin
+pasarlo explícitamente la corrida falla con un error de validación.
 
-| Actor | Precio / 1.000 | Plan gratuito | Input de búsqueda |
-| :--- | :--- | :--- | :--- |
-| [`apidojo/tweet-scraper`](https://apify.com/apidojo/tweet-scraper) | $0.40, sin start fee | ❌ **Descartado** | `searchTerms` |
-| [`kaitoeasyapi/twitter-x-data-tweet-scraper-pay-per-result-cheapest`](https://apify.com/kaitoeasyapi/twitter-x-data-tweet-scraper-pay-per-result-cheapest) | $0.18 o $0.25 (su propia página se contradice) | ⚠️ Restringido, recomienda plan pago | `twitterContent`, `searchTerms` |
-| [`xtdata/twitter-x-scraper`](https://apify.com/xtdata/twitter-x-scraper) | $0.25 | ❓ No documentado | `searchTerms` |
-| [`scrape.badger/twitter-tweets-scraper`](https://apify.com/scrape.badger/twitter-tweets-scraper) | $0.15 en planes pagos, + start fee | ❓ No documentado | `query` (sintaxis avanzada de X), `query_type`, `max_results` |
+```json
+{
+  "mode": "Advanced Search",
+  "query": "Netflix -is:retweet lang:es min_faves:5",
+  "query_type": "Top",
+  "max_results": 100
+}
+```
 
-**`apidojo/tweet-scraper` queda descartado** y conviene registrar por qué, para no volver sobre
-él: en plan gratuito permite 5 corridas mensuales de 10 ítems cada una **y prohíbe el acceso por
-API**. No es que rinda poco — es que ni el MCP ni el CLI pueden invocarlo, porque ambos entran
-por la API.
+| Campo | Valor | Nota |
+| :--- | :--- | :--- |
+| `mode` | `"Advanced Search"` | Obligatorio. Los otros modos son por ID, retweeters, replies, etc. |
+| `query` | keyword + operadores | Acepta la sintaxis de búsqueda avanzada de X |
+| `query_type` | `"Top"` | `Top`, `Latest` o `Media`. **Usar `Top`** (ver abajo) |
+| `max_results` | entero | Default 1000 — **siempre pasarlo**, o la corrida sale carísima |
 
-Los dos últimos no documentan su política para el plan gratuito. Eso no es una confirmación de
-que funcionen: es una pregunta abierta que solo se responde probando (ver "Cómo probar" abajo).
+### `Top` y no `Latest`: la diferencia es la calidad de los datos
 
-**Criterio de elección, en orden:**
+Con `query_type: "Latest"` los resultados son los más nuevos, y en una marca grande eso es
+mayormente spam. En la prueba con `Netflix`, de 5 resultados: uno vendiendo cuentas premium,
+uno de spam de hashtags, y **los cinco con 0 likes, 0 respuestas y 0 retweets**, en cinco
+idiomas distintos. Inservible para medir reputación.
 
-1. **Que corra por API en el plan gratuito.** Es eliminatorio y no siempre está documentado.
-2. **Que devuelva el texto completo.** Un actor que trunca el copy vuelve inútil el análisis de
-   sentimiento, por barato que sea.
-3. **Que acepte búsqueda por keyword**, no solo por handle o por URL de perfil. El caso de uso
-   es "quién habla de esta marca", no "qué publicó esta cuenta".
-4. Recién después, el precio.
+Con `query_type: "Top"` y operadores, los 8 resultados fueron cuentas reales con engagement
+real y mezcla natural de sentimiento: elogio al marketing de la marca, bronca por series
+canceladas, noticias neutras, y hasta un caso de la marca mencionada solo como recurso retórico.
 
-### Cómo probar
+Operadores que valen la pena en `query`:
 
-Con el MCP conectado, correr cada candidato con el límite más chico que acepte (5–10 ítems) y
-una keyword de volumen alto. Lo que se busca no es la data: es si **la corrida arranca**. Un
-error de autorización o de cuota responde la pregunta 1 al instante y sin gastar casi nada.
+| Operador | Para qué |
+| :--- | :--- |
+| `-is:retweet` | Sin retweets. Un retweet no es una opinión nueva y desbalancea el conteo |
+| `lang:es` | Un idioma por corrida. Mezclar idiomas ensucia el análisis de narrativa |
+| `min_faves:5` | Piso de engagement: filtra la mayor parte del spam de cuentas nuevas |
+| `since:` / `until:` | Acotar la ventana temporal |
 
-Cuidado con `scrape.badger`: su documentación aclara que **las corridas que devuelven cero
-resultados se cobran igual**, porque la request al upstream se hace de todos modos. Usar una
-keyword que con seguridad tenga menciones.
+## Salida
 
-### Si ninguno funciona en gratuito
+**El campo con el texto completo es `full_text`, no `text`.** `text` trunca a 150 caracteres:
+en la prueba, un tweet tenía `text` de 150 y `full_text` de 297. Usar `text` mutilaría el
+análisis justo en los posteos largos, que suelen ser los más cargados de opinión.
 
-Es un desenlace posible y hay que decidirlo, no descubrirlo a mitad de la Fase 1. Las opciones,
-de menor a mayor compromiso:
+| Campo en la salida | Campo en `Mencion` |
+| :--- | :--- |
+| `id` | `id_externo` |
+| **`full_text`** | `texto` |
+| `username` | `autor` |
+| _(construir: `https://x.com/{username}/status/{id}`)_ | `url` |
+| `created_at` | `publicado_en` |
+| `favorite_count`, `retweet_count`, `reply_count`, `quote_count`, `bookmark_count` | `metricas` |
 
-1. Buscar en la [store de Apify](https://apify.com/store?search=twitter) otro actor de X, con el
-   filtro puesto en el plan gratuito.
-2. Correr la Fase 0 con las corridas mínimas que el plan gratuito permita, aunque den 10 ítems:
-   alcanzan para verificar la **forma** de los datos, aunque no para el set dorado de 30.
-3. Pagar un mes del plan Starter de Apify para atravesar la Fase 0, y volver a gratuito después.
-4. Cambiar de fuente. La API oficial de X tiene su propio costo y sus propios límites, pero es
-   una alternativa real si el scraping de X resulta impracticable en gratuito.
+El actor no devuelve un campo `url`: hay que armarlo con `username` e `id`.
+
+`created_at` viene en formato Twitter (`Thu Sep 03 18:00:43 +0000 2026`), no ISO 8601. Hay que
+parsearlo con `%a %b %d %H:%M:%S %z %Y`.
+
+Otros campos disponibles que pueden servir después: `lang`, `is_retweet`, `is_quote_status`,
+`user_followers_count`, `user_is_blue_verified`, `media`, `hashtags`, `user_mentions`.
+
+---
+
+## Muestras
+
+En `datos/crudo/` (no versionadas):
+
+| Archivo | Qué es |
+| :--- | :--- |
+| `netflix-latest-2026-09-03.json` | 5 ítems con `Latest`, sin operadores — el caso malo |
+| `netflix-top-2026-09-03.json` | 8 ítems con `Top` + operadores — el caso bueno |
+
+Sirven como fixtures de los tests de parseo de la Fase 1, y el primero además documenta cómo se
+ve un resultado inservible.
 
 ---
 
 ## El endpoint
 
-Para el CLI de la Fase 1, la llamada correcta es la síncrona, que ejecuta y devuelve los ítems
-en una sola request:
-
 ```
-POST https://api.apify.com/v2/acts/{actorId}/run-sync-get-dataset-items
+POST https://api.apify.com/v2/acts/{actorId}/run-sync-get-dataset-items?maxTotalChargeUsd=<tope>
 Authorization: Bearer $APIFY_TOKEN
 Content-Type: application/json
-
-{ ...el input del actor... }
 ```
 
-En el `actorId`, el separador entre usuario y nombre es `~`, no `/`:
-`apidojo~tweet-scraper`.
+Ejecuta y devuelve los ítems en la misma respuesta. En el `actorId`, el separador entre usuario
+y nombre es `~`, no `/`: `scrape.badger~twitter-tweets-scraper`.
 
-> El documento de visión original propone `POST /actor-tasks/{taskId}/runs`. Ese endpoint
-> arranca la corrida y devuelve un objeto *run*: hay que hacer polling del dataset después. Para
-> un cliente de una sola llamada, `run-sync-get-dataset-items` es el correcto. El documento
-> también apunta a `https://apify.com` como servidor; la API vive en `https://api.apify.com/v2`.
+**Pasar siempre `maxTotalChargeUsd`.** Es un tope duro de gasto por corrida y es la única
+protección real contra un `max_results` mal puesto o un actor que se dispara.
 
-Ojo con el timeout: una corrida de 100 menciones puede tardar bastante, y el endpoint síncrono
-corta a los 300 segundos. Si se llega a ese límite, hay que bajar el `--limite` o pasar al
-esquema asíncrono con polling.
+Si la corrida falla, el cuerpo trae un `run ID` y el log explica la causa:
+
+```bash
+curl -s -H "Authorization: Bearer $APIFY_TOKEN" \
+  "https://api.apify.com/v2/actor-runs/<runId>/log"
+```
+
+Ojo con el timeout: el endpoint síncrono corta a los 300 segundos. Si una corrida de 100
+menciones se acerca a ese límite, hay que bajar el `max_results` o pasar al esquema asíncrono
+con polling.
+
+---
+
+## Descartados
+
+| Actor | Motivo |
+| :--- | :--- |
+| [`apidojo/tweet-scraper`](https://apify.com/apidojo/tweet-scraper) | En plan gratuito permite 5 corridas mensuales de 10 ítems **y prohíbe el acceso por API**. Ni el MCP ni el CLI pueden invocarlo. |
+| [`xtdata/twitter-x-scraper`](https://apify.com/xtdata/twitter-x-scraper) | $5.00 / 1.000 en plan gratuito: 20× su precio anunciado, más start fee y un mínimo de $3 por corrida. |
+| [`kaitoeasyapi/...cheapest`](https://apify.com/kaitoeasyapi/twitter-x-data-tweet-scraper-pay-per-result-cheapest) | No se llegó a probar: `scrape.badger` ya cumplía. Su página se contradice sobre el precio ($0.18 vs $0.25). |
