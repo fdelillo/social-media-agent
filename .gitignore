@@ -1,0 +1,25 @@
+# Secretos
+.env
+
+# Datos crudos de Apify: pesados, y se pueden volver a scrapear (pagando).
+# Lo que sí se versiona es datos/dorado/ — el set etiquetado a mano.
+datos/crudo/*
+!datos/crudo/.gitkeep
+
+# Informes generados. Se versionan solo los ejemplos de referencia.
+reportes/*
+!reportes/.gitkeep
+!reportes/ejemplo-*.md
+
+# Python (Fase 1)
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+
+# macOS
+.DS_Store

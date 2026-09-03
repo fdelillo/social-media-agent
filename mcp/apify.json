@@ -1,0 +1,17 @@
+{
+  "_comentario": "Plantilla. Reemplazar <ACTOR-DE-X> por el actorId elegido en docs/apify-actor-x.md (ej. apidojo/tweet-scraper) y <TU-APIFY-TOKEN> por el token real. NO commitear este archivo con el token adentro.",
+  "mcpServers": {
+    "apify": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@apify/actors-mcp-server",
+        "--tools",
+        "<ACTOR-DE-X>"
+      ],
+      "env": {
+        "APIFY_TOKEN": "<TU-APIFY-TOKEN>"
+      }
+    }
+  }
+}
