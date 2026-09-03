@@ -1,0 +1,11 @@
+{
+  "_nota": "Predicciones del clasificador, escritas y commiteadas ANTES de que existieran las etiquetas humanas. Es lo que hace honesta la medicion de la ronda 2.",
+  "fecha": "2026-09-03",
+  "prompt": "prompts/analista-sentimiento.md tras fijar los tres criterios",
+  "predicciones": {
+    "1":"negativo","2":"negativo","3":"negativo","4":"negativo","5":"neutro",
+    "6":"negativo","7":"neutro","8":"negativo","9":"neutro","10":"positivo",
+    "11":"positivo","12":"neutro","13":"negativo","14":"positivo","15":"neutro",
+    "16":"positivo","17":"negativo","18":"negativo","19":"negativo","20":"negativo"
+  }
+}
