@@ -61,6 +61,22 @@ score bajo (0.2–0.4), no neutro.
 **Preguntas.** Una pregunta genuina ("¿alguien sabe si abren los domingos?") es neutra. Una
 pregunta retórica ("¿en serio cobran eso?") es negativa.
 
+**Noticias en contexto favorable.** Solo es positivo lo que alguien efectivamente dice a favor
+del objetivo. Si nadie lo está evaluando, es NEUTRO por más favorable que sea el contexto:
+"cada vez más gente carga combustible por [objetivo] gracias a la recuperación" reporta
+crecimiento, pero el sujeto de la frase es la recuperación económica y nadie opina sobre el
+objetivo. Si el viento a favor del mercado contara como positivo, la categoría se llenaría de
+cosas que nadie dijo sobre la marca.
+
+**Fallas del servicio.** Reportar una caída, preguntar si el servicio está caído, o hacer un
+chiste a costa de una falla es NEGATIVO, aunque el texto sea cortés o gracioso y no contenga
+ningún reclamo. "¿Están caídos en todo el país?" y "hostearon ChatGPT acá? tira 404" son ambos
+negativos: describen un daño y lo difunden.
+
+**Contenido comercial.** Cupones, promos, códigos de descuento y ofertas publicados por cuentas
+de descuentos son NEUTROS. Exponen la marca pero nadie la evalúa, y en volumen llenarían la
+categoría positiva de spam de afiliados que no dice nada sobre la reputación.
+
 **Idioma.** Clasificá en cualquier idioma sin traducir. La justificación va siempre en
 español.
 
@@ -122,4 +138,19 @@ volver sobre un cambio que ya se probó y empeoró las cosas.
 
 | Fecha | Cambio | Aciertos sobre el set dorado |
 | :--- | :--- | :--- |
-| _(pendiente)_ | versión inicial | _/30_ |
+| 2026-09-03 | versión inicial | 20/30 (67%) |
+| 2026-09-03 | criterios de fallas, promos y noticias favorables | 26/30 (87%) — **no independiente**, ver abajo |
+
+**El 87% no es una medición limpia.** Los 10 desacuerdos de la primera corrida resultaron ser
+diferencias de criterio, no errores de lectura: el set dorado original mezclaba dos definiciones
+de "positivo" (el caso 13, una noticia favorable, iba neutro; el caso 19, un cupón, iba
+positivo). Al fijar los criterios, 6 menciones se reetiquetaron — todas hacia lo que el modelo
+ya había predicho. El modelo no cambió: cambió la vara.
+
+**Debilidad real detectada.** Los 4 desacuerdos que sobreviven son todos de MercadoLibre, y en
+tres de ellos la marca aparece dentro de una discusión sobre otra cosa — una propuesta de
+expropiación, restricciones a la importación, una comparación de precios con Amazon. El modelo
+la trata como sujeto cuando es instrumento del argumento. Es lo mismo que pasó en el caso 13.
+
+**Pendiente:** una medición honesta sobre menciones nuevas, que ninguna de las dos partes haya
+discutido antes.
