@@ -1,0 +1,11 @@
+{
+  "_nota": "Predicciones commiteadas ANTES del etiquetado humano. Valida la correccion del criterio de fallas hecha tras la ronda 2.",
+  "fecha": "2026-09-03",
+  "prompt": "prompts/analista-sentimiento.md con falla en curso vs falla resuelta ya distinguidas",
+  "predicciones": {
+    "1":"negativo","2":"negativo","3":"neutro","4":"negativo","5":"neutro",
+    "6":"negativo","7":"negativo","8":"negativo","9":"positivo","10":"positivo",
+    "11":"negativo","12":"neutro","13":"neutro","14":"negativo","15":"negativo",
+    "16":"negativo","17":"negativo","18":"negativo","19":"positivo","20":"negativo"
+  }
+}
