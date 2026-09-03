@@ -73,8 +73,14 @@ Los dos únicos costos son Apify y el LLM, y **el que aprieta es Apify**:
 
 | | Costo aproximado |
 | :--- | :--- |
-| Apify (plan gratuito) | ~$5/mes de crédito · un actor de X usable ronda $0.40–$0.50 por 1.000 tweets, más un *start fee* por corrida → ~10.000 menciones/mes |
+| Apify | ~$5/mes de crédito en el plan gratuito · los actores de X rondan $0.15–$0.40 por 1.000 tweets, más un *start fee* por corrida |
 | LLM (Fase 1, por corrida de 100 menciones) | ~$0.35 |
+
+> ⚠️ **El crédito gratuito puede no alcanzar para usar este proyecto.** Varios de los actores
+> de X más populares restringen a los usuarios del plan gratuito, y al menos uno les prohíbe el
+> acceso por API — que es justamente por donde entran el MCP y el CLI. Cuáles funcionan en
+> gratuito es una pregunta abierta que se responde probando; el estado del relevamiento está en
+> [`docs/apify-actor-x.md`](docs/apify-actor-x.md).
 
 De ahí sale una regla de diseño: **cada corrida guarda su JSON crudo en `datos/crudo/`**, y
 nada se vuelve a scrapear para reprocesarlo. Reanalizar es gratis; volver a scrapear no.
