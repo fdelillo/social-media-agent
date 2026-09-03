@@ -1,0 +1,28 @@
+{
+  "_nota": "Predicciones commiteadas ANTES del etiquetado humano. Primera medicion del esquema de dos dimensiones.",
+  "fecha": "2026-09-03",
+  "prompt": "prompts/analista-sentimiento.md, esquema tipo + valencia",
+  "expectativa_declarada": "valencia deberia andar bien (el modelo no se perdio un desfavorable en tres rondas); tipo es la dimension nueva y la frontera opinion/hecho es donde espero fallar",
+  "predicciones": {
+    "1":  {"tipo":"hecho",   "valencia":"desfavorable"},
+    "2":  {"tipo":"hecho",   "valencia":"desfavorable"},
+    "3":  {"tipo":"hecho",   "valencia":"desfavorable"},
+    "4":  {"tipo":"opinion", "valencia":"desfavorable"},
+    "5":  {"tipo":"opinion", "valencia":"desfavorable"},
+    "6":  {"tipo":"opinion", "valencia":"desfavorable"},
+    "7":  {"tipo":"opinion", "valencia":"desfavorable"},
+    "8":  {"tipo":"hecho",   "valencia":"desfavorable"},
+    "9":  {"tipo":"opinion", "valencia":"desfavorable"},
+    "10": {"tipo":"hecho",   "valencia":"favorable"},
+    "11": {"tipo":"opinion", "valencia":"desfavorable"},
+    "12": {"tipo":"hecho",   "valencia":"ninguna"},
+    "13": {"tipo":"hecho",   "valencia":"favorable"},
+    "14": {"tipo":"opinion", "valencia":"desfavorable"},
+    "15": {"tipo":"opinion", "valencia":"desfavorable"},
+    "16": {"tipo":"hecho",   "valencia":"desfavorable"},
+    "17": {"tipo":"opinion", "valencia":"favorable"},
+    "18": {"tipo":"hecho",   "valencia":"desfavorable"},
+    "19": {"tipo":"opinion", "valencia":"desfavorable"},
+    "20": {"tipo":"hecho",   "valencia":"desfavorable"}
+  }
+}
