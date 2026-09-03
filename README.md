@@ -59,7 +59,8 @@ sma analizar "Nike" --limite 100
 ## Estructura
 
 ```
-docs/          decisiones de diseño, guía de la Fase 0, notas del actor de Apify
+docs/          decisiones de diseño, criterios de clasificación, guía de la Fase 0,
+               notas del actor de Apify
 prompts/       los dos prompts: uno clasifica, otro redacta
 mcp/           configuración del servidor MCP de Apify
 datos/crudo/   JSON tal cual sale de Apify (no versionado)

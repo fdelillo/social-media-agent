@@ -3,6 +3,11 @@
 Registro corto de las decisiones que dan forma al proyecto, con el motivo de cada una. Si
 alguna se revierte, corresponde editar acá y decir por qué.
 
+> Este documento cubre las decisiones **de arquitectura**. Los criterios para clasificar una
+> mención —qué cuenta como opinión, qué como hecho desfavorable, qué hacer con la ironía— viven
+> en [`criterios-de-clasificacion.md`](criterios-de-clasificacion.md), con el caso real que
+> forzó cada uno.
+
 ---
 
 ## 1. Sin infraestructura

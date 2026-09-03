@@ -1,5 +1,8 @@
 # Set dorado
 
+> Los criterios para decidir cada etiqueta están en
+> [`../../docs/criterios-de-clasificacion.md`](../../docs/criterios-de-clasificacion.md).
+
 Menciones etiquetadas **a mano**, sin mirar lo que dice el modelo. Es la única vara contra la
 cual se puede afirmar que el prompt clasifica bien; sin esto, lo único que se puede decir es
 que el informe se ve bien, y eso no alcanza.
