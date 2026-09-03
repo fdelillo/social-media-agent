@@ -26,7 +26,7 @@ En todo lo demás: ¿esto deja bien, mal o indiferente al objetivo ante quien lo
 > Hace 6 días que @DonWebOficial se olvidó de hacer un tramite en nic.br y tenemos todos los dominios caídos y encima no dejan transferirlos. 0 Respuestas. No registren por nada del mundo en Donweb! @GuilleTornatore
 
 ```
-SENTIMIENTO: 
+SENTIMIENTO: negativo
 COMENTARIO: 
 ```
 
@@ -35,7 +35,7 @@ COMENTARIO:
 > Crisis en DonWeb: la caída de uno de los mayores proveedores de hosting en Argentina afecta a cientos de PYMEs https://t.co/RG8ZffpkxE
 
 ```
-SENTIMIENTO: 
+SENTIMIENTO: negativo
 COMENTARIO: 
 ```
 
@@ -44,7 +44,7 @@ COMENTARIO:
 > Empiezan a llegar mas precisiones de lo ocurrido en donweb @DonWebOficial
 
 ```
-SENTIMIENTO: 
+SENTIMIENTO: neutro
 COMENTARIO: 
 ```
 
@@ -53,7 +53,7 @@ COMENTARIO:
 > La Cooperativa de Servicios Eléctricos explicó que la interrupción se debe a una caída a nivel nacional de los servidores de DonWeb. Algunos trámites y gestiones online permanecen momentáneamente in... https://t.co/fsZ0bUasqv
 
 ```
-SENTIMIENTO: 
+SENTIMIENTO: neutro
 COMENTARIO: 
 ```
 
@@ -62,7 +62,7 @@ COMENTARIO:
 > ¿Ya lo vieron? - Es 4K HQ - Está completo y es gratis - Durá 7 Horas 21 minutos - Con explicaciones super trabajadas - Chequeado por Hostinger, Donweb, ARC, etc... - La producción está 10 de 10 (cine) ¿Estas esperando algo? ¡Miratelo ahora! ↓ Enlace: https://t.co/whzDLOWtLq https://t.co/gOqc13t6da
 
 ```
-SENTIMIENTO: 
+SENTIMIENTO: neutro
 COMENTARIO: 
 ```
 
@@ -71,7 +71,7 @@ COMENTARIO:
 > DonWeb, la compañía rosarina de hosting web y registro de dominios más grande de Argentina, está dowtime en su nodo Nova desde hace más de 30 hs, sin tiempo de recuperación. Ese nodo operan empresas, sistemas de facturación, bases de datos complejas y tiendas de e-commerce. https://t.co/2N1p0Rc8YQ
 
 ```
-SENTIMIENTO: 
+SENTIMIENTO: neutro
 COMENTARIO: 
 ```
 
@@ -80,7 +80,7 @@ COMENTARIO:
 > @mis2centavos de la caida del nodo NOVA de Donweb sabes algo?
 
 ```
-SENTIMIENTO: 
+SENTIMIENTO: neutro
 COMENTARIO: 
 ```
 
@@ -91,7 +91,7 @@ COMENTARIO:
 > ¿Cuánto pesó Mercado Libre en el récord de incobrables? Mucho, sino no hubiera compartido este análisis y destacado que las deudas son de poca guita. Que por montos tan bajo haya tanta gente en mora es una muestra de que son impagables para quien los toma. https://t.co/LkVgNZg59r
 
 ```
-SENTIMIENTO: 
+SENTIMIENTO: negativo
 COMENTARIO: 
 ```
 
@@ -100,7 +100,7 @@ COMENTARIO:
 > El viernes a la mañana, en el campo, hizo "¡PLOP!", la fuente o cargador de mi notebook. Desde la ruta, el sábado, iba buscando cargadores de 19.5 v y 6.15A. No es una medida muy común. Nunca voy a entender a quienes detestan Mercado Libre. Llegaron 3 cosas hoy sin moverme de la oficina donde trabajaba con celular. Me hubiera llevado un día o más encontrar el local con el cargador correcto. ¿Cambia el modo de consumo? Si, hay que pensar nuevos procesos, es eso.
 
 ```
-SENTIMIENTO: 
+SENTIMIENTO: positivo
 COMENTARIO: 
 ```
 
@@ -109,7 +109,7 @@ COMENTARIO:
 > 🚨🇦🇷 | "Argentina es el país con menos crédito al sector privado de toda Latinoamérica": Marcos Galperín, fundador de Mercado Libre, expuso cómo el sindicalismo destruye al empresariado al mostrar a un par de delegadas "apretando" a un empleado por no adherir a una movilización. https://t.co/X2vwTEEU9s
 
 ```
-SENTIMIENTO: 
+SENTIMIENTO: neutro
 COMENTARIO: 
 ```
 
@@ -118,7 +118,7 @@ COMENTARIO:
 > En Sephora USA, $103.000 final con taxes del 10%. En MercadoLibre oficial Kiehl’s, $215.990, por 28 gramos, en 6 cómodas cuotas. https://t.co/pM3xNIPWCB
 
 ```
-SENTIMIENTO: 
+SENTIMIENTO: neutro
 COMENTARIO: 
 ```
 
@@ -127,7 +127,7 @@ COMENTARIO:
 > Me pareció tan confuso todo el debate sobre la mora en la Argentina, que no me quedó otra que bajarme la totalidad de la base de deudores del Banco Central y me pasé 48hs tratando de entender. Acá lo que encontré: https://t.co/rBLe0uz1zZ
 
 ```
-SENTIMIENTO: 
+SENTIMIENTO: neutro
 COMENTARIO: 
 ```
 
@@ -136,7 +136,7 @@ COMENTARIO:
 > Mercado Libre anuncia que triplicará su capacidad logística en Chile hacia fines de 2027, sumando otros 2.500 empleos https://t.co/K0ZRSEdZji
 
 ```
-SENTIMIENTO: 
+SENTIMIENTO: positivo
 COMENTARIO: 
 ```
 
@@ -145,7 +145,7 @@ COMENTARIO:
 > La puerta de entrada al laberinto de deudas. El editorial de @aleberco sobre la investigación junto al MATE, que revela cómo la caída de los ingresos, el fin de los ahorros y las tasas usurarias de Mercado Libre empujaron a millones de argentinos a caer en mora. https://t.co/1hsLTjnvjh
 
 ```
-SENTIMIENTO: 
+SENTIMIENTO: negativo
 COMENTARIO: 
 ```
 
@@ -156,7 +156,7 @@ COMENTARIO:
 > 🔥🚨BIEN DE HIJO DE PUTA🚨🔥 JORGE MACRI EL BOICOTEADOR DE EMPRENDIMIENTOS DURANTE LA CRISIS Los comerciantes de Flores están que trinan porque el Macri Negro de alma, les clausura los negocios por no sacar la basura de 7 a 9 de la noche, cuando cierran a las 5 de la tarde! https://t.co/jMf9uv7aAx
 
 ```
-SENTIMIENTO: 
+SENTIMIENTO: negativo
 COMENTARIO: 
 ```
 
@@ -165,7 +165,7 @@ COMENTARIO:
 > 🚨🇦🇷 | #URGENTE El jefe de Gobierno porteño Jorge Macri habilitó a los kirchneristas a instalar un escenario en Plaza de Mayo para llamar a un Golpe de Estado en la violenta marcha anunciada para hoy. https://t.co/MF5vG2E7QX
 
 ```
-SENTIMIENTO: 
+SENTIMIENTO: negativo
 COMENTARIO: 
 ```
 
@@ -174,7 +174,7 @@ COMENTARIO:
 > AHORA: Jorge Macri le está pegando a los vecinos de Parque Patricios que sufrieron el derrumbe de parte del edificio donde viven. Jorge Macri es un sorete. https://t.co/6AjqkV8lez
 
 ```
-SENTIMIENTO: 
+SENTIMIENTO: negativo
 COMENTARIO: 
 ```
 
@@ -183,7 +183,7 @@ COMENTARIO:
 > Una rata interrumpió una rueda de prensa de Jorge Macri y se la comieron dos perros. https://t.co/jHnCdNVOMr
 
 ```
-SENTIMIENTO: 
+SENTIMIENTO: neutro
 COMENTARIO: 
 ```
 
@@ -192,7 +192,7 @@ COMENTARIO:
 > Tensión por el acuerdo electoral en la Ciudad: LLA insiste con tener un candidato propio y el PRO ratifica a Jorge Macri https://t.co/zz4G6b3Y7C Hay que defender a Jorge Macri de esta gente de Karina junto a Pilar Ramírez que son trampa . Pintan el fondo de sus fotos de amarillo!
 
 ```
-SENTIMIENTO: 
+SENTIMIENTO: neutro
 COMENTARIO: 
 ```
 
@@ -201,6 +201,6 @@ COMENTARIO:
 > Jorge Macri intenta tapar su desastre en la ciudad hablando de espacio público y no le tiembla la mano para mandar a la policía a reprimir y robarle las bolsas de mercadería a vendedores ambulantes. Es un cobarde que sigue el ajuste de Milei y se la agarra con los que pelean el día a día. Dejen de perseguir a los laburantes!
 
 ```
-SENTIMIENTO: 
+SENTIMIENTO: negativo
 COMENTARIO: 
 ```

@@ -1,105 +1,110 @@
-# Prompt: analista de sentimiento
+# Prompt: analista de menciones
 
-Clasifica menciones. **No redacta el informe** — de eso se ocupa
-[`redactor-informe.md`](redactor-informe.md).
+Clasifica menciones en **dos dimensiones independientes**. No redacta el informe — de eso se
+ocupa [`redactor-informe.md`](redactor-informe.md).
 
 En la Fase 0 se corre a mano sobre el set dorado. En la Fase 1 el bloque de abajo se empaqueta
-tal cual como *system prompt*, con salida estructurada. Por eso el contrato de entrada y salida
-está fijado: cambiarlo rompe el código que lo consume.
+tal cual como *system prompt*, con salida estructurada. El contrato de entrada y salida está
+fijado: cambiarlo rompe el código que lo consume.
+
+> **Por qué dos dimensiones y no una escala de sentimiento.** Ver el registro al pie: tres
+> rondas de medición con una sola etiqueta (positivo/neutro/negativo) dieron 67%, 75% y 60%.
+> Los desacuerdos no eran errores de lectura sino colisiones entre dos preguntas distintas que
+> la etiqueta única obligaba a responder juntas: *¿alguien está opinando?* y *¿esto le conviene
+> al objetivo?* Un nodo caído 30 horas es un hecho desfavorable sin que nadie opine; una queja
+> es una opinión desfavorable. Forzados a una sola casilla competían por ella, y cada regla que
+> arreglaba un caso rompía otro.
 
 ---
 
 ## El prompt
 
 ```text
-Sos un analista de reputación digital. Clasificás el sentimiento de menciones en redes
-sociales hacia una marca o persona determinada.
+Sos un analista de reputación digital. Clasificás menciones en redes sociales sobre una
+marca o persona.
 
-Recibís un lote de menciones y el nombre del OBJETIVO del análisis. Devolvés una
-clasificación por cada mención recibida, sin excepción y en el mismo orden.
+Recibís un lote de menciones y el nombre del OBJETIVO. Devolvés una clasificación por cada
+mención recibida, sin excepción y en el mismo orden.
 
-## Qué estás midiendo
+Cada mención se clasifica en DOS dimensiones independientes. Son preguntas separadas:
+respondé cada una sin dejar que la otra la contamine.
 
-El sentimiento **hacia el objetivo**, no el tono general del texto. Esta distinción decide
-la mayoría de los casos difíciles:
+## Dimensión 1 — TIPO: ¿alguien está opinando?
 
-- Un posteo furioso contra un competidor, que menciona al objetivo de pasada y bien, es
-  POSITIVO.
-- Un posteo alegre que usa al objetivo como ejemplo de algo malo es NEGATIVO.
-- Un posteo donde el objetivo aparece solo como referencia circunstancial —una foto sacada
-  en un local, una marca que aparece en el fondo— es NEUTRO, por más carga emotiva que
-  tenga el resto del texto.
+**opinion** — el autor expresa un juicio, una valoración, una emoción o una recomendación
+sobre el objetivo. "Son de cuarta", "no lo contraten", "la gestión es admirable", "qué
+impresentables". También la burla, la ironía y la chicana: quien se burla, opina.
 
-## Las tres categorías
+**hecho** — el autor informa, describe, pregunta o reporta, sin juzgar al objetivo. Una
+noticia, un parte de incidente, un dato, una pregunta genuina, una promo, la cobertura de
+un conflicto. **Que el hecho sea grave no lo convierte en opinión**: "el nodo lleva 30
+horas caído y afecta a miles de empresas" es un hecho, por más daño que describa.
 
-**positivo** — elogio, recomendación, gratitud, entusiasmo, defensa del objetivo frente a
-críticas.
+La prueba: si sacás al autor de la oración, ¿queda algo verificable? Si sí, es hecho. Si lo
+único que queda es lo que a alguien le parece, es opinión.
 
-**neutro** — información sin carga evaluativa: noticias, anuncios, preguntas genuinas,
-menciones de paso. También el objetivo usado como mera referencia temporal o geográfica.
+## Dimensión 2 — VALENCIA: ¿esto le conviene al objetivo?
 
-**negativo** — queja, reclamo, burla, decepción, denuncia, ironía a costa del objetivo.
-**Un reclamo factual y sin carga emotiva es NEGATIVO, no neutro.** "Hace tres días que
-espera el pedido y nadie responde" no tiene insultos ni signos de exclamación, y es
-exactamente lo que un informe de reputación necesita ver marcado en rojo.
+**favorable** — deja mejor parado al objetivo: elogio, defensa, recomendación, o un hecho
+que lo beneficia (una expansión, contrataciones, un servicio restablecido, un premio).
+
+**desfavorable** — deja peor parado al objetivo: crítica, queja, burla, acusación, o un
+hecho que lo perjudica (una caída, un juicio, un bloqueo, una comparación donde pierde).
+
+**ninguna** — el objetivo aparece pero nada en el texto lo mejora ni lo empeora: una
+mención de paso, una referencia circunstancial, el objetivo usado como unidad de medida o
+como ejemplo en un argumento sobre otra cosa, una promo de un tercero que solo publica un
+código de descuento.
+
+Esta dimensión sí mira el efecto, no la intención. Un hecho puede ser desfavorable aunque
+quien lo publica no tenga nada contra el objetivo.
+
+## Las cuatro combinaciones
+
+|                        | favorable | desfavorable |
+| :--------------------- | :-------- | :----------- |
+| **opinion**            | elogio, defensa | crítica, queja, burla |
+| **hecho**              | buena noticia | problema, riesgo |
+
+`valencia: ninguna` puede darse con cualquiera de los dos tipos.
 
 ## Calibración
 
-**Ironía y sarcasmo.** Es el error más frecuente y siempre en la misma dirección: leer
-literalmente un elogio que era una burla. Señales: elogio desproporcionado a un hecho
-trivial ("gracias por los 45 minutos de espera, un lujo"), contradicción entre el elogio y
-el hecho narrado, emojis que no acompañan al texto (🙃 💀 👏 en contexto de queja),
-comillas de distancia, "sí, claro", "obvio". Ante una contradicción entre lo que la frase
-dice y lo que el hecho narrado implica, **gana el hecho narrado**.
+**Ironía y sarcasmo.** Quien ironiza, opina: `tipo: opinion`. La ironía invierte la
+valencia — "gracias por los 45 minutos de espera, un lujo" es `opinion` +
+`desfavorable`. Señales: elogio desproporcionado a un hecho trivial, contradicción entre
+el elogio y el hecho narrado, emojis que no acompañan (🙃 💀 👏 en contexto de queja),
+"sí, claro", "obvio", #not. Ante una contradicción entre lo que la frase dice y lo que el
+hecho narrado implica, gana el hecho narrado.
 
-**Elogio tibio.** "Está bien", "cumple", "no está mal" es positivo débil: `positivo` con
-score bajo (0.2–0.4), no neutro.
+**Preguntas.** Preguntar es informar, no opinar: `tipo: hecho`. "¿Están caídos en todo el
+país?" es `hecho` + `desfavorable` (describe una caída). Una pregunta retórica que en
+realidad afirma algo —"¿en serio cobran eso?"— es `opinion` + `desfavorable`.
 
-**Comparaciones.** "Mejor que X" es positivo hacia el objetivo. "Peor que X" es negativo.
-"X e Y son iguales de malos" es negativo para ambos.
+**Noticias.** Casi siempre `hecho`. La valencia sale de lo que la noticia reporta, no del
+tono del titular: una expansión con contrataciones es favorable; un bloqueo gremial o una
+caída de servicio son desfavorables; un ranking donde el objetivo aparece nombrado entre
+otros, sin que le vaya bien ni mal, es `ninguna`.
 
-**Preguntas.** Una pregunta genuina ("¿alguien sabe si abren los domingos?") es neutra. Una
-pregunta retórica ("¿en serio cobran eso?") es negativa.
+**Fallas de servicio.** El momento define la valencia. La falla en curso es
+`desfavorable`; el parte que informa que el servicio volvió y no hubo pérdida de datos es
+`favorable`. En ambos casos `tipo: hecho`, salvo que el autor además juzgue.
 
-**Noticias en contexto favorable.** Solo es positivo lo que alguien efectivamente dice a favor
-del objetivo. Si nadie lo está evaluando, es NEUTRO por más favorable que sea el contexto:
-"cada vez más gente carga combustible por [objetivo] gracias a la recuperación" reporta
-crecimiento, pero el sujeto de la frase es la recuperación económica y nadie opina sobre el
-objetivo. Si el viento a favor del mercado contara como positivo, la categoría se llenaría de
-cosas que nadie dijo sobre la marca.
+**Comparaciones.** "Mejor que X" es favorable, "peor que X" desfavorable. Si es una
+comparación de precios o datos verificables, `tipo: hecho`; si es una valoración, `opinion`.
 
-**Fallas del servicio.** Lo que decide no es que se mencione la falla, sino **en qué momento
-está**:
+**Contenido comercial.** Cupones, promos y códigos de descuento publicados por cuentas de
+descuentos: `hecho` + `ninguna`. Exponen la marca pero no dicen nada sobre ella.
 
-- La falla **en curso** —sufrirla, reclamarla, preguntar si están caídos, burlarse de ella— es
-  NEGATIVO, aunque el texto sea cortés o gracioso y no traiga ningún reclamo explícito.
-  "¿Están caídos en todo el país?" y "hostearon ChatGPT acá? tira 404" son ambos negativos:
-  describen un daño y lo difunden.
-- La falla **ya resuelta** no lo es. Un parte de incidente que dice "el nodo está operativo, no
-  hubo pérdida de datos", o la noticia de que el servicio volvió, son NEUTROS —informan— o
-  incluso POSITIVOS si destacan que se resolvió bien. Que el texto nombre la caída no lo vuelve
-  negativo: lo que se está comunicando es el final del problema, no el problema.
+**El objetivo dentro de una discusión sobre otra cosa.** Cuando el objetivo se usa como
+ejemplo, unidad de medida o munición en un argumento cuyo sujeto es otro —una política
+económica, un rival, un debate público—, la valencia suele ser `ninguna`. Preguntate:
+¿alguien queda mejor o peor por lo que dice este texto, y esa persona es el objetivo?
 
-La misma distinción vale fuera de las fallas técnicas: un conflicto que alguien reporta como
-noticia, sin evaluar al objetivo, cae bajo la regla de noticias y es NEUTRO.
+**Idioma.** Clasificá en cualquier idioma sin traducir. La justificación va en español.
 
-**Contenido comercial.** Cupones, promos, códigos de descuento y ofertas publicados por cuentas
-de descuentos son NEUTROS. Exponen la marca pero nadie la evalúa, y en volumen llenarían la
-categoría positiva de spam de afiliados que no dice nada sobre la reputación.
-
-**Idioma.** Clasificá en cualquier idioma sin traducir. La justificación va siempre en
-español.
-
-**Cuando no alcanza.** Si el texto es demasiado corto, ambiguo o carece de contexto para
-decidir, usá `neutro` con score 0.0 y decilo en la justificación. No inventes una lectura.
-
-## Score
-
-Un número de -1.0 a 1.0 que gradúa la intensidad, coherente con la categoría:
-
-- `negativo` → de -1.0 (indignación, llamado a boicot) a -0.1 (molestia menor)
-- `neutro` → 0.0
-- `positivo` → de 0.1 (aprobación tibia) a 1.0 (entusiasmo, recomendación explícita)
+**Cuando no alcanza.** Si el texto es demasiado corto o ambiguo, usá `hecho` + `ninguna` y
+decilo en la justificación. No inventes una lectura.
 
 ## Salida
 
@@ -109,15 +114,19 @@ Un objeto por cada mención recibida, en el mismo orden:
 [
   {
     "id": "el id exacto que vino en la entrada",
-    "sentimiento": "positivo" | "neutro" | "negativo",
-    "score": -1.0 a 1.0,
-    "justificacion": "una oración, en español, diciendo qué elemento del texto decidió la
-                      clasificación"
+    "tipo": "opinion" | "hecho",
+    "valencia": "favorable" | "desfavorable" | "ninguna",
+    "intensidad": 0.0 a 1.0,
+    "justificacion": "una oración, en español, diciendo qué elemento del texto decidió cada
+                      dimensión"
   }
 ]
 
-La justificación tiene que señalar **la evidencia concreta** —la palabra, el hecho narrado,
-el emoji— no repetir la categoría. Sirve como "irónico: elogia la espera de 45 minutos".
+`intensidad` gradúa qué tan marcada es la valencia: 0.0 cuando la valencia es `ninguna`,
+0.2 para algo apenas perceptible, 1.0 para una indignación o un elogio rotundo.
+
+La justificación tiene que señalar la evidencia concreta —la palabra, el hecho narrado, el
+emoji—, no repetir la categoría. Sirve como "ironía: elogia la espera de 45 minutos".
 No sirve como "el tono es negativo".
 
 Si el lote trae 25 menciones, devolvés 25 objetos. Nunca omitas una porque sea difícil.
@@ -143,46 +152,33 @@ prompt del sistema por N sin ganar precisión.
 
 ## Registro de iteraciones
 
-Cada vez que se ajusta el prompt contra el set dorado, anotar acá el resultado. Sirve para no
-volver sobre un cambio que ya se probó y empeoró las cosas.
+| Fecha | Esquema | Cambio | Resultado |
+| :--- | :--- | :--- | :--- |
+| 2026-09-03 | etiqueta única | versión inicial | 20/30 (67%) |
+| 2026-09-03 | etiqueta única | criterios de fallas, promos y noticias | 26/30 (87%) — **inválido** |
+| 2026-09-03 | etiqueta única | ronda 2, predicciones selladas | 15/20 (75%) |
+| 2026-09-03 | etiqueta única | criterio de fallas afinado; ronda 3 sellada | 12/20 (60%) |
+| 2026-09-03 | **dos dimensiones** | rediseño | _(pendiente de medir)_ |
 
-| Fecha | Cambio | Aciertos sobre el set dorado |
-| :--- | :--- | :--- |
-| 2026-09-03 | versión inicial | 20/30 (67%) |
-| 2026-09-03 | criterios de fallas, promos y noticias favorables | 26/30 (87%) — **no independiente**, ver abajo |
+### Por qué se abandonó la etiqueta única
 
-**El 87% no es una medición limpia.** Los 10 desacuerdos de la primera corrida resultaron ser
-diferencias de criterio, no errores de lectura: el set dorado original mezclaba dos definiciones
-de "positivo" (el caso 13, una noticia favorable, iba neutro; el caso 19, un cupón, iba
-positivo). Al fijar los criterios, 6 menciones se reetiquetaron — todas hacia lo que el modelo
-ya había predicho. El modelo no cambió: cambió la vara.
+La medición del 87% fue inválida y conviene dejar dicho por qué, porque es un error fácil de
+repetir: los criterios se fijaron **después** de ver los desacuerdos, y las 6 menciones
+reetiquetadas se movieron todas hacia lo que el modelo ya había predicho. La vara se acomodó al
+examen.
 
-**Debilidad real detectada.** Los 4 desacuerdos que sobreviven son todos de MercadoLibre, y en
-tres de ellos la marca aparece dentro de una discusión sobre otra cosa — una propuesta de
-expropiación, restricciones a la importación, una comparación de precios con Amazon. El modelo
-la trata como sujeto cuando es instrumento del argumento. Es lo mismo que pasó en el caso 13.
+Peor: en la ronda 1 la persona había etiquetado `neutro` los cinco casos de la caída de DonWeb.
+El modelo recomendó el criterio contrario, se aceptó, y **se reetiquetaron esas cinco respuestas
+correctas para que coincidieran con el criterio equivocado**. En la ronda 3, sin intervención,
+la persona volvió a marcar `neutro` exactamente lo mismo. Su criterio nunca se movió; el que
+estaba mal era el del modelo.
 
-### Ronda 2 — la medición honesta
+Las rondas 2 y 3 —con predicciones commiteadas antes del etiquetado— dieron 75% y 60%. La
+precisión **bajaba** a medida que se agregaban reglas, que es la señal de que el problema no
+estaba en las reglas sino en el esquema. Los desacuerdos se concentraban en una sola casilla:
+en la ronda 3, 7 de 8 errores involucraban `neutro`, la categoría donde caían tanto los hechos
+graves como las menciones irrelevantes.
 
-Se tomaron 20 menciones nuevas al azar y **las predicciones del modelo se commitearon antes de
-que existieran las etiquetas humanas** (`datos/dorado/ronda2-prediccion-modelo.json`).
-
-**Resultado: 15/20 (75%)**, por debajo del corte del 80%.
-
-|            | modelo: pos | neutro | neg |
-| :--------- | ---: | ---: | ---: |
-| **humano: pos** | 4 | 1 | 1 |
-| **neutro** | 0 | 4 | 3 |
-| **negativo** | 0 | 0 | 7 |
-
-El sesgo es de una sola dirección: el modelo predijo 11 negativos contra 7 humanos. Acertó los
-7 negativos reales sin excepción, pero arrastró 3 neutros y 1 positivo. **No hay ni un caso en
-el sentido contrario.**
-
-La causa fue el criterio de fallas, que estaba escrito demasiado grueso: "reportar una falla es
-negativo" barría también los partes de incidente resuelto, la noticia de que el servicio volvió
-y un conflicto gremial que ni siquiera era una falla. Y chocaba con la regla de noticias.
-Corregido arriba distinguiendo falla en curso de falla resuelta.
-
-**Pendiente:** una ronda 3 sobre menciones nuevas para validar la corrección. Medir de nuevo
-sobre la ronda 2 repetiría el error de la ronda 1 — ajustar contra el examen y después rendirlo.
+Dato que sobrevive al cambio de esquema: en las tres rondas el modelo acertó **todos** los
+negativos humanos, sin excepción. El problema nunca fue perderse una crítica, sino ver críticas
+donde había información.

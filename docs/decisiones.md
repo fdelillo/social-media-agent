@@ -110,3 +110,37 @@ puede cargar allá sin traducción, y viceversa.
 
 **Consecuencia:** las métricas van en un diccionario libre y no en columnas fijas, porque cada
 red expone campos distintos y no vale la pena migrar el esquema cada vez que cambia una fuente.
+
+---
+
+## 8. Dos dimensiones en vez de una escala de sentimiento
+
+**Decisión:** el clasificador devuelve `tipo` (opinion / hecho) y `valencia` (favorable /
+desfavorable / ninguna) como campos independientes, en lugar de una sola etiqueta
+positivo/neutro/negativo.
+
+**Por qué:** tres rondas de medición con la etiqueta única dieron 67%, 75% y 60%. La precisión
+**bajaba** a medida que se agregaban reglas para resolver los desacuerdos, que es la señal de
+que el problema no estaba en las reglas.
+
+Los desacuerdos no eran errores de lectura: en ninguno el modelo entendió mal el texto. Eran
+colisiones entre dos preguntas distintas que la etiqueta única obligaba a responder juntas.
+Un nodo caído 30 horas que afecta a miles de empresas es un hecho grave sin que nadie opine;
+una queja de un cliente es una opinión. Ambos competían por la casilla `negativo`, y `neutro`
+terminaba conteniendo tanto los hechos graves como las menciones irrelevantes. En la ronda 3,
+7 de los 8 errores involucraban `neutro`.
+
+**Cómo se llegó acá, porque el error es fácil de repetir:** en la ronda 1 la persona etiquetó
+`neutro` los cinco casos de la caída de DonWeb. El modelo recomendó el criterio contrario, se
+aceptó, y se reetiquetaron esas cinco respuestas para que coincidieran. La medición saltó a 87%
+—y era falsa: la vara se había movido hacia las predicciones. En la ronda 3, sin intervención,
+la persona volvió a etiquetar `neutro` lo mismo. Su criterio nunca se movió.
+
+**Consecuencia:** el informe mejora, porque la distinción es la que un responsable necesita.
+"Qué opina la gente" y "qué le está pasando a la marca" se responden con acciones distintas:
+una crítica se contesta, un problema se resuelve. El formato del informe pasa a tener esas dos
+secciones en vez de una distribución de sentimiento.
+
+**Costo:** hay que reetiquetar. El set dorado y las rondas 2 y 3 están en el esquema viejo y no
+se pueden traducir automáticamente —`neutro` es ambiguo entre "hecho desfavorable" y "sin
+valencia", que es justamente el problema que motivó el cambio.
