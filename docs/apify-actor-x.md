@@ -83,6 +83,27 @@ Operadores que valen la pena en `query`:
 | `lang:es` | Un idioma por corrida. Mezclar idiomas ensucia el análisis de narrativa |
 | `min_faves:5` | Piso de engagement: filtra la mayor parte del spam de cuentas nuevas |
 | `since:` / `until:` | Acotar la ventana temporal |
+| `-from:<handle>` | **Excluir al propio objetivo.** Ver abajo |
+
+### Excluir las cuentas del propio objetivo
+
+En las corridas del 2026-09-03, **el 11% del corpus de MercadoLibre eran posteos de
+`@marcos_galperin`** (su fundador) y **el 10% del de Jorge Macri eran de `@jorgemacri`**. No son
+menciones *sobre* el objetivo: son el objetivo hablando de sí mismo.
+
+Para un informe de reputación eso distorsiona, y siempre en la misma dirección: nadie publica
+mal de sí mismo, así que esos posteos empujan la distribución hacia positivo y neutro. Peor aún,
+el prompt clasificador los lee como elogios genuinos de terceros.
+
+Se excluyen en la query, sumando un `-from:` por cada cuenta oficial o vocero:
+
+```
+(MercadoLibre OR "Mercado Libre") -is:retweet lang:es min_faves:5 -from:marcos_galperin -from:mercadolibre
+```
+
+Identificar esas cuentas es trabajo manual por objetivo, y hay que hacerlo antes de la corrida.
+La señal para detectarlas después del hecho es un autor que aparece muchas veces: en las tres
+corridas, el autor más repetido de cada corpus fue justamente la cuenta propia.
 
 ## Salida
 
