@@ -41,7 +41,6 @@ de valencia de la ronda 4.
 
 ### Pendientes que quedan anotados, en orden de prioridad
 
-0. **Probar el kit de ChatGPT de punta a punta** ← lo único sin verificar. Ver abajo.
 1. **Pulir el informe.** Incluye decidir si se regenera con el formato de la decisión 9.
 2. **Una sola medición de ~100 menciones**, después del informe. Es el único tamaño que puede
    distinguir 70% de 80%; cinco rondas de 20 no llegan.
@@ -88,17 +87,24 @@ registro al pie de `prompts/analista-sentimiento.md`.
 4. Ante un desacuerdo, **la etiqueta humana es la referencia**. Si un criterio del modelo la
    contradice sistemáticamente, el que está mal es el criterio.
 
-## Lo único del kit de ChatGPT que está sin probar
+## El kit de ChatGPT, probado contra el Actor real
 
-`chatgpt/` está escrito y es coherente con el actor elegido, pero **nunca se ejecutó una Action
-real**. Dos cosas pueden fallar en el primer contacto y las dos se verifican con una corrida de
-25 ítems, que cuesta menos de medio centavo:
+Nueve corridas el 2026-09-04, ~$0.06 de crédito. Lo que se aprendió:
 
-1. **El timeout.** `run-sync-get-dataset-items` ejecuta el Actor y espera. Si tarda más de lo
-   que una Action de ChatGPT admite, corta. Por eso `max_results` recomienda 50 como techo y 25
-   para probar — pero el número real no está medido.
-2. **El parámetro `fields`.** Debería recortar la respuesta de ~40 campos por posteo a 9. Si el
-   endpoint del Actor no lo respeta, la respuesta vuelve entera y el GPT se ahoga.
+| | |
+| :--- | :--- |
+| 100 posteos, con `fields` | **21–22 s**, 45 KB, 9 campos por posteo |
+| 25 posteos, sin `fields` | 30 s, 55 KB, **41 campos** por posteo |
+| Rango total observado | 6 s a 31 s |
 
-Medir cuánto tarda una corrida de 25 y de 50, y confirmar que `fields` recorta, es lo que
-convierte al kit de "escrito" en "probado".
+- **El techo de `max_results` era más alto de lo asumido.** Se había recomendado 50 por miedo al
+  timeout; 100 tarda 21 segundos. El kit pasó a 100.
+- **El tiempo no depende de la cantidad.** Lo domina el arranque del Actor: una corrida de 25
+  tardó 30 s y una de 100 tardó 21 s. Pedir menos no acelera nada.
+- **`fields` no es una optimización, es lo que hace que funcione.** Sin él, 100 posteos serían
+  ~200 KB de JSON crudo.
+- **`-from:` funciona.** Estaba documentado en `apify-actor-x.md` pero nunca se había ejecutado.
+- **El Actor falla en silencio.** Una de las nueve corridas devolvió `[{}]` —un objeto vacío,
+  HTTP 201, en 6 segundos— en vez de un error. No es una mención: es una corrida fallida. El
+  reintento salió bien. Las instrucciones del GPT ahora descartan toda entrada sin `id` y
+  reintentan una vez, porque un consumidor ingenuo lo leería como "una mención".

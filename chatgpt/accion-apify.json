@@ -6,7 +6,9 @@
     "version": "2.0.0"
   },
   "servers": [
-    { "url": "https://api.apify.com/v2" }
+    {
+      "url": "https://api.apify.com/v2"
+    }
   ],
   "paths": {
     "/acts/scrape.badger~twitter-tweets-scraper/run-sync-get-dataset-items": {
@@ -19,7 +21,7 @@
             "name": "fields",
             "in": "query",
             "required": true,
-            "description": "Campos a devolver. Enviar SIEMPRE exactamente este valor: la respuesta completa del Actor trae unos 40 campos por posteo y no entra en una respuesta de Action.",
+            "description": "Campos a devolver. Enviar SIEMPRE exactamente este valor. Medido: sin este parametro cada posteo trae 41 campos y pesa ~2,2 KB; con el, 9 campos y ~0,45 KB. Es la diferencia entre una respuesta que el GPT puede leer y una que lo ahoga.",
             "schema": {
               "type": "string",
               "default": "id,full_text,username,created_at,favorite_count,retweet_count,reply_count,user_mentions,user_followers_count"
@@ -29,8 +31,11 @@
             "name": "maxTotalChargeUsd",
             "in": "query",
             "required": true,
-            "description": "Tope duro de gasto para esta corrida, en dolares. Es el unico freno real si algo sale mal. Usar 0.02 para pruebas y 0.05 para un informe completo.",
-            "schema": { "type": "number", "default": 0.05 }
+            "description": "Tope duro de gasto para esta corrida, en dolares. Es el unico freno real si algo sale mal. Una corrida de 100 posteos cuesta ~0,015, asi que 0,05 deja margen sin dejar de ser un tope.",
+            "schema": {
+              "type": "number",
+              "default": 0.05
+            }
           }
         ],
         "requestBody": {
@@ -39,7 +44,12 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["mode", "query", "query_type", "max_results"],
+                "required": [
+                  "mode",
+                  "query",
+                  "query_type",
+                  "max_results"
+                ],
                 "properties": {
                   "mode": {
                     "type": "string",
@@ -54,12 +64,16 @@
                     "type": "string",
                     "description": "Enviar siempre 'Top'. Con 'Latest' los resultados son mayormente spam de cuentas sin engagement y no sirven para medir reputacion.",
                     "default": "Top",
-                    "enum": ["Top", "Latest", "Media"]
+                    "enum": [
+                      "Top",
+                      "Latest",
+                      "Media"
+                    ]
                   },
                   "max_results": {
                     "type": "integer",
-                    "description": "Cuantos posteos traer. Cada resultado consume credito. Usar 25 para una prueba y 50 para un informe. Por encima de 50 la corrida puede tardar mas de lo que esta Action espera y fallar por timeout.",
-                    "default": 50
+                    "description": "Cuantos posteos traer. Cada resultado consume credito. Usar 25 para una prueba y 100 para un informe completo. Medido sobre este actor: 100 posteos tardan 21-22 s, dentro de lo que la Action tolera. El tiempo lo domina el arranque del Actor y no la cantidad, asi que pedir menos no garantiza que tarde menos.",
+                    "default": 100
                   }
                 }
               }
@@ -71,7 +85,12 @@
             "description": "Los posteos encontrados.",
             "content": {
               "application/json": {
-                "schema": { "type": "array", "items": { "type": "object" } }
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
               }
             }
           }

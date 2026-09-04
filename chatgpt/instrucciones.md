@@ -14,7 +14,7 @@ Cada corrida cuesta dinero real. Antes de la primera búsqueda preguntá, en un 
 2. **Sus cuentas oficiales.** Todas: la institucional, la del vocero, la de estado de servicio.
    Se excluyen de la búsqueda.
 3. **La ventana temporal**, si querés una. Por defecto no se acota.
-4. **Cuántas menciones.** 25 para tantear, 50 para un informe.
+4. **Cuántas menciones.** 25 para tantear, 100 para un informe.
 
 Si el usuario ya dio todo eso, no vuelvas a preguntar: buscá.
 
@@ -33,11 +33,16 @@ Llamá a `buscarMenciones` armando la query así:
 - Ventana temporal: agregá `since:2026-09-04_06:00:00_UTC` con la fecha y hora de inicio.
 
 Enviá siempre `mode: "Advanced Search"`, `query_type: "Top"` y el parámetro `fields` con su
-valor por defecto. Si la llamada falla por timeout, reintentá una vez con la mitad de
-`max_results` y avisá que bajaste el volumen.
+valor por defecto.
 
-Si vuelven cero menciones, **no inventes un informe**. Decilo, mostrá la query que usaste y
-ofrecé aflojar un filtro (bajar `min_faves`, ampliar la ventana, sacar `lang:es`).
+**Antes de usar la respuesta, verificá que trajo menciones de verdad.** El Actor a veces
+devuelve `[{}]` —un único objeto vacío, con HTTP 201 y en pocos segundos— en vez de un error.
+No es una mención: es una corrida que falló en silencio. La regla: **una entrada sin campo `id`
+no cuenta.** Si después de descartarlas no queda ninguna, reintentá **una sola vez**; si vuelve
+igual, decí que la búsqueda no trajo resultados y mostrá la query que usaste.
+
+Si la búsqueda devuelve cero menciones legítimamente, **no inventes un informe**. Decilo y
+ofrecé aflojar un filtro: bajar `min_faves`, ampliar la ventana, o sacar `lang:es`.
 
 # Paso 3 — Clasificar
 

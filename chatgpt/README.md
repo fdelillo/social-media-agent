@@ -63,7 +63,7 @@ Empezá barato, con 25 menciones:
 
 > Analizá las menciones de **Nike**. Su cuenta oficial es @Nike. Traé 25.
 
-Si eso anda, subí a 50 para un informe de verdad.
+Si eso anda, subí a 100 para un informe de verdad.
 
 ---
 
@@ -72,10 +72,27 @@ Si eso anda, subí a 50 para un informe de verdad.
 | Síntoma | Qué pasa |
 | :--- | :--- |
 | Error de validación al llamar a la Action | Falta `mode: "Advanced Search"`. Es obligatorio y su default no sirve. |
-| La Action tarda y corta | La corrida sincrónica no llegó a terminar. Bajá `max_results` a 25. Es el motivo por el que 50 es el techo recomendado. |
-| Vuelve mucho texto y el GPT se pierde | Falta el parámetro `fields`. La respuesta cruda trae ~40 campos por posteo. |
+| Vuelve **una sola mención vacía** | El Actor falló en silencio y devolvió `[{}]` con HTTP 201. Pedile que reintente; suele salir bien a la segunda. |
+| Vuelve mucho texto y el GPT se pierde | Falta el parámetro `fields`. Sin él cada posteo trae 41 campos en vez de 9. |
+| La Action tarda y corta | Poco probable con 100, pero puede pasar: el tiempo lo domina el arranque del Actor, no la cantidad. Reintentar suele alcanzar. |
 | Vuelven cero menciones | Los filtros son estrictos a propósito. Bajá `min_faves`, ampliá la ventana o sacá `lang:es`. |
 | Los resultados son spam sin engagement | Se coló `query_type: "Latest"`. Tiene que ser `"Top"`. |
+
+### Lo que está medido
+
+Nueve corridas reales contra el Actor, el 4 de septiembre de 2026:
+
+| | |
+| :--- | :--- |
+| 100 posteos, con `fields` | **21–22 s**, 45 KB |
+| 25 posteos, con `fields` | 8–29 s, 8,5 KB |
+| 25 posteos, sin `fields` | 30 s, **55 KB** |
+| Rango total observado | 6 s a 31 s |
+
+Dos conclusiones que cambian cómo se usa: **el tiempo no depende de cuántos posteos pidas** —lo
+domina el arranque del Actor, y una corrida de 25 tardó más que una de 100—, así que pedir menos
+no hace que sea más rápido; y **`fields` no es una optimización, es lo que hace que funcione**:
+sin él, 100 posteos serían ~200 KB de JSON.
 
 ## Qué esperar, y qué no
 
