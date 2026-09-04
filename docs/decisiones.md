@@ -195,3 +195,69 @@ Tampoco resuelve el delta entre corridas, que es lo que una cadencia de seis hor
 pide. Eso exige recordar la corrida anterior, deduplicar y guardar histórico, que es
 exactamente lo que vive en el proyecto hermano (ver decisión 2). Este proyecto da la foto; la
 película se arma allá, cargando el JSON clasificado que acá se produce.
+
+---
+
+## 10. Las respuestas a los posteos propios, con `Get Replies`
+
+**Decisión:** el agente hace dos llamadas más por corrida para traer los comentarios que cuelgan
+de los posteos del propio objetivo, y los cuenta en un bloque aparte del informe.
+
+**Por qué:** esas menciones eran invisibles, y son las más accionables. La búsqueda avanzada
+devuelve publicaciones con engagement propio y ordena por `Top`; las respuestas dentro de un hilo
+casi no tienen likes. Medido sobre un hilo real de 109 respuestas: **la mediana fue de 4 likes y
+solo 40 de 83 superaban el `min_faves:5`** de la query. No era un filtro mal puesto — aunque se
+quitara, `Top` nunca las rankearía. Lo que aparece ahí son clientes reclamando debajo del
+comunicado de la propia marca: pedidos de compensación, preguntas sobre los backups, gente
+anunciando que se va.
+
+**Cómo:** el actor ya tenía el modo `Get Replies`, que toma el id de un posteo. El flujo es
+`Advanced Search` con `from:<handle>` para listar los posteos propios con su `reply_count`, y
+después `Get Replies` sobre los dos o tres con más respuestas. Cuesta ~1,5 centavos y unos 35
+segundos repartidos en tres llamadas.
+
+**El filtro de publicidad, que no es opcional:** X inyecta anuncios entre las respuestas —cuentas
+con miles de likes sin relación con el hilo—. Se descartan con una regla exacta y sin criterio:
+**toda respuesta cuyo `conversation_id` no sea igual al `id` pedido**. En las pruebas eliminó 13
+de 13 anuncios sin descartar una sola respuesta legítima.
+
+**Consecuencia:** `relacion` pasa de tres valores a cuatro, con `respuesta` entre `propia` y
+`dirigida`, y aparece `responde_a` con el id del posteo del que cuelga. La sección *Quién te está
+hablando* se parte en dos bloques que **no se suman**: las respuestas son la audiencia que el
+objetivo ya tiene, no la conversación general, y la gente responde sobre todo para reclamar.
+Mezclarlas en el porcentaje general lo empujaría hacia lo desfavorable por una razón que no es
+reputacional. Además, en ese bloque el alcance deja de medir importancia: casi todas tienen cero
+o un like, y eso no las hace menos urgentes.
+
+**Lo que sigue sin poder hacerse:** traer el hilo completo. Un posteo con 109 respuestas devolvió
+83. El informe declara cuántas trajo sobre cuántas declara el posteo.
+
+---
+
+## 11. La ventana temporal, verificada
+
+**Decisión:** la ventana se acota en la query con `since:AAAA-MM-DD_HH:MM:SS_UTC`, no filtrando
+después de traer los datos.
+
+**Por qué:** `REQUISITOS.md` dejó anotado que faltaba verificar si el actor pasaba los operadores
+temporales sin tocarlos, y que el plan B —filtrar por `created_at` después— desperdiciaba crédito
+porque se paga por menciones que se descartan. **El actor los respeta.** Verificado el 2026-09-04:
+la misma query sin ventana devolvió posteos de hasta nueve días atrás; con `since:` de 24 horas,
+ninguno anterior a esa marca; con `since:` de 6 horas, ninguno anterior a esa marca.
+
+**Consecuencia, y es la que importa:** el requisito de "las últimas X horas" queda resuelto sin
+código y sin estado. Pero aparece el riesgo de volumen que el propio requisito anticipaba, ahora
+con números: **la misma ventana de 6 horas devolvió cientos de menciones sobre una figura pública
+muy comentada y dos sobre una marca chica.** Cuanto más corta la ventana, más grande tiene que ser
+el objetivo. El agente avisa cuando la ventana trae menos de diez menciones en vez de escribir un
+informe sobre esa base.
+
+**Los cuatro techos de volumen**, porque la pregunta "¿trae todas las menciones?" tiene cuatro
+respuestas superpuestas y el crédito casi nunca es el que aprieta:
+
+| Techo | Cuál es |
+| :--- | :--- |
+| Lo que se pide | Exactamente `max_results`. Nunca trae de más. |
+| Lo que existe | Con ventana corta y objetivo chico pueden ser 2. |
+| El techo práctico | ~150. A 300 la llamada tarda 41 s y devuelve 160 KB. |
+| El crédito de Apify | ~33.000 menciones al mes: unos 330 informes de 100. |

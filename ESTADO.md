@@ -89,22 +89,25 @@ registro al pie de `prompts/analista-sentimiento.md`.
 
 ## El kit de ChatGPT, probado contra el Actor real
 
-Nueve corridas el 2026-09-04, ~$0.06 de crédito. Lo que se aprendió:
+Dieciséis corridas el 2026-09-04, ~$0.15 de crédito. Está en `chatgpt/` y es la vía de uso
+recomendada para quien no usa Claude.
 
 | | |
 | :--- | :--- |
-| 100 posteos, con `fields` | **21–22 s**, 45 KB, 9 campos por posteo |
-| 25 posteos, sin `fields` | 30 s, 55 KB, **41 campos** por posteo |
-| Rango total observado | 6 s a 31 s |
+| 100 posteos, con `fields` | 21–22 s, 45 KB |
+| 300 posteos, con `fields` | 41 s, 160 KB — el techo sensato es 150 |
+| 25 posteos, sin `fields` | 30 s, 55 KB, 41 campos por posteo |
+| Respuestas de un hilo (83 de 109) | 11 s |
 
-- **El techo de `max_results` era más alto de lo asumido.** Se había recomendado 50 por miedo al
-  timeout; 100 tarda 21 segundos. El kit pasó a 100.
-- **El tiempo no depende de la cantidad.** Lo domina el arranque del Actor: una corrida de 25
-  tardó 30 s y una de 100 tardó 21 s. Pedir menos no acelera nada.
 - **`fields` no es una optimización, es lo que hace que funcione.** Sin él, 100 posteos serían
   ~200 KB de JSON crudo.
-- **`-from:` funciona.** Estaba documentado en `apify-actor-x.md` pero nunca se había ejecutado.
-- **El Actor falla en silencio.** Una de las nueve corridas devolvió `[{}]` —un objeto vacío,
-  HTTP 201, en 6 segundos— en vez de un error. No es una mención: es una corrida fallida. El
-  reintento salió bien. Las instrucciones del GPT ahora descartan toda entrada sin `id` y
-  reintentan una vez, porque un consumidor ingenuo lo leería como "una mención".
+- **El tiempo no depende de la cantidad.** Lo domina el arranque del Actor: 25 posteos tardaron
+  30 s y 100 tardaron 21.
+- **El Actor falla en silencio.** Una corrida devolvió `[{}]` —objeto vacío, HTTP 201, 6 s— en
+  vez de un error. Las instrucciones descartan toda entrada sin `id` y reintentan una vez.
+- **`since:` funciona** (decisión 11) y **`Get Replies` también** (decisión 10). Los dos estaban
+  anotados como pendientes de verificar y los dos quedaron resueltos.
+
+Lo único que no pude probar: **la Action desde dentro de ChatGPT**, por no tener cuenta paga. La
+API responde como el esquema dice, en tiempos y tamaños que una Action tolera, pero el armado del
+GPT está sin estrenar. Si algo falla va a ser en el paso 4 de la guía.

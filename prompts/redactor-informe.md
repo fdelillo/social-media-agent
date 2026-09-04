@@ -39,10 +39,17 @@ distinto.
 Cada mención trae además `relacion`, con tres valores:
 
 - `propia` — la publicó la cuenta del objetivo. **No es una mención: es contenido propio.**
-- `dirigida` — el autor etiquetó al objetivo. Le está hablando, y suele esperar respuesta.
+- `respuesta` — cuelga de un posteo del objetivo. Es su audiencia reaccionando a lo que dijo.
+- `dirigida` — el autor lo etiquetó en un posteo suyo. Le está hablando, y espera respuesta.
 - `sobre` — habla del objetivo sin etiquetarlo. Es conversación sobre él, no con él.
 
 ## Antes de escribir: dos decisiones
+
+**0. Contá las `respuesta` aparte, siempre.** No entran en los porcentajes generales ni en el
+total de menciones analizadas: son la audiencia que el objetivo ya tiene, no la conversación
+general, y la gente responde a un posteo sobre todo para reclamar. Mezclarlas empuja el número
+hacia lo desfavorable por una razón que no es reputacional. Tienen su propio bloque, con su
+propio conteo, y el informe dice de qué posteos salieron.
 
 **1. Sacá las `propia` de todos los conteos.** Los porcentajes, los totales y las secciones
 se calculan sobre las menciones que *no* publicó el objetivo. Contar los comunicados del
@@ -147,24 +154,32 @@ Los porcentajes, cuando los uses, se calculan sobre el total de menciones con va
 Si una de las dos secciones queda vacía, decilo en una línea en vez de omitirla: que nadie esté
 opinando, o que no esté pasando nada, es información.
 
-## 📨 Quién te está hablando *(solo menciones con `relacion: dirigida`)*
+## 📨 Quién te está hablando
 
-Esta sección no describe la conversación: es una lista de tareas. Van las menciones dirigidas
-con valencia desfavorable, **ordenadas por alcance**, porque cada una es alguien que etiquetó
-al objetivo y no obtuvo respuesta.
+Esta sección no describe la conversación: es una lista de tareas. Va en **dos bloques
+separados**, porque piden acciones distintas y sus números no se suman.
 
-- **Resumen:** [N] menciones etiquetan al objetivo; [N] son desfavorables y [N] siguen sin
-  contestar según los datos disponibles.
+### Debajo de tus posteos *(`relacion: respuesta`)*
+
+- **Resumen:** [N] respuestas sobre [N] posteos del objetivo; [N] son desfavorables.
+- **Para contestar hoy:**
+  - "[Texto textual]" — *[@autor], [alcance]* — bajo *"[los primeros términos del posteo]"*
+
+Son seguidores o clientes propios reaccionando a algo que el objetivo publicó: se contestan en
+el mismo hilo, y suelen ser lo más accionable del informe. Hasta 5, por alcance. Estas menciones
+casi no tienen likes —es la razón por la que la búsqueda no las ve—, así que ordená por alcance
+pero no descartes las de cero: acá el alcance no mide importancia.
+
+Si este bloque no se consultó, decilo en una línea en vez de omitirlo.
+
+### Te etiquetaron *(`relacion: dirigida`)*
+
+- **Resumen:** [N] menciones etiquetan al objetivo; [N] son desfavorables.
 - **Para contestar hoy:**
   - "[Texto textual]" — *[@autor], [alcance]* — [qué pide esta persona, en media línea]
 
-Incluí hasta 5, siempre las de mayor alcance. Si no hay ninguna dirigida desfavorable,
-escribilo en una línea: nadie te está reclamando de frente, y eso es un buen dato.
-
-Una advertencia sobre lo que esta sección **no** ve: la búsqueda devuelve publicaciones, no
-las respuestas que cuelgan de ellas. Los comentarios bajo un posteo del propio objetivo no
-llegan a estos datos. Si el informe habla de "lo que la gente responde", que quede claro que
-se trata de quienes lo etiquetaron en un posteo propio, no de quienes comentaron el suyo.
+Hasta 5, por alcance. Si no hay ninguna desfavorable, escribilo en una línea: nadie te está
+reclamando de frente, y eso es un buen dato.
 
 ## 💡 Conclusiones y Recomendaciones Estratégicas
 - [Conclusión cualitativa sobre la percepción actual: qué se está consolidando en la
@@ -221,6 +236,7 @@ la fuente, se reincorpora con la misma estructura que la de X.
       "intensidad": 0.6,
       "justificacion": "reclamo por demora de envío sin respuesta",
       "relacion": "dirigida",
+      "responde_a": null,
       "metricas": { "likes": 12, "reposts": 3 }
     }
   ]
@@ -233,18 +249,17 @@ la fuente, se reincorpora con la misma estructura que la de X.
 etiquetadas contra la lista de handles del objetivo, que es un parámetro de la corrida —una
 marca suele tener varios (`@DonWebOficial`, `@donwebcloud`, `@DonwebStatus`):
 
-1. Si el autor está en la lista → `propia`.
-2. Si no, y alguna cuenta etiquetada está en la lista → `dirigida`.
-3. En cualquier otro caso → `sobre`.
+1. Si la mención vino de una consulta de respuestas a un posteo del objetivo → `respuesta`, y
+   `responde_a` lleva el id de ese posteo.
+2. Si el autor está en la lista → `propia`.
+3. Si no, y alguna cuenta etiquetada está en la lista → `dirigida`.
+4. En cualquier otro caso → `sobre`.
 
 Que sea mecánico es el punto: es la única parte del informe que no depende del criterio del
 clasificador, así que no arrastra su margen de error.
 
-**Lo que este campo no puede decir.** Con `query_type: "Top"` el actor devuelve publicaciones
-con engagement propio, y las respuestas dentro de un hilo casi nunca lo tienen. Medido sobre
-los tres corpus de la Fase 0: de las 100 menciones de Jorge Macri, **las 100 son publicaciones
-raíz** y ninguna es una respuesta; en DonWeb son 94 de 100, y ninguna de las 6 restantes cuelga
-de un hilo del objetivo. O sea que **los comentarios bajo un posteo del propio objetivo son
-invisibles para esta fuente**, y ninguna combinación de campos los va a recuperar. Traerlos
-exige otro actor —uno que tome la URL de un posteo y baje sus respuestas— con una corrida por
-posteo. Está fuera del alcance de la Fase 1.
+**De dónde salen las `respuesta`.** No de la búsqueda: con `query_type: "Top"` el actor devuelve
+publicaciones con engagement propio, y las respuestas dentro de un hilo casi nunca lo tienen. De
+los tres corpus de la Fase 0, **las 100 menciones de Jorge Macri son publicaciones raíz** y
+ninguna es una respuesta. Salen del modo `Get Replies` del mismo actor, que toma el id de un
+posteo y devuelve sus respuestas: dos llamadas más por corrida. Ver decisión 10.

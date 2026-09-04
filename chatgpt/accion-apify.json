@@ -13,18 +13,18 @@
   "paths": {
     "/acts/scrape.badger~twitter-tweets-scraper/run-sync-get-dataset-items": {
       "post": {
-        "summary": "Buscar menciones en X",
-        "description": "Corre el Actor de forma sincronica y devuelve los posteos encontrados en la misma llamada. No hace falta consultar el estado ni pedir el dataset aparte.",
+        "summary": "Buscar menciones en X, o traer las respuestas a un posteo",
+        "description": "Corre el Actor de forma sincronica y devuelve los posteos en la misma llamada. Tiene dos usos segun el campo 'mode': 'Advanced Search' busca menciones con una query, y 'Get Replies' trae las respuestas que cuelgan de un posteo concreto a partir de su id.",
         "operationId": "buscarMenciones",
         "parameters": [
           {
             "name": "fields",
             "in": "query",
             "required": true,
-            "description": "Campos a devolver. Enviar SIEMPRE exactamente este valor. Medido: sin este parametro cada posteo trae 41 campos y pesa ~2,2 KB; con el, 9 campos y ~0,45 KB. Es la diferencia entre una respuesta que el GPT puede leer y una que lo ahoga.",
+            "description": "Campos a devolver. Enviar SIEMPRE exactamente este valor. Sin el, cada posteo trae 41 campos y pesa ~2,2 KB; con el, 10 campos y ~0,45 KB. Ademas conversation_id es imprescindible para filtrar la publicidad en las respuestas.",
             "schema": {
               "type": "string",
-              "default": "id,full_text,username,created_at,favorite_count,retweet_count,reply_count,user_mentions,user_followers_count"
+              "default": "id,full_text,username,created_at,favorite_count,retweet_count,reply_count,user_mentions,user_followers_count,conversation_id"
             }
           },
           {
@@ -46,19 +46,22 @@
                 "type": "object",
                 "required": [
                   "mode",
-                  "query",
                   "query_type",
                   "max_results"
                 ],
                 "properties": {
                   "mode": {
                     "type": "string",
-                    "description": "Enviar siempre el valor 'Advanced Search'. Es obligatorio y su default no sirve: sin el la corrida falla con un error de validacion.",
-                    "default": "Advanced Search"
+                    "enum": [
+                      "Advanced Search",
+                      "Get Replies"
+                    ],
+                    "default": "Advanced Search",
+                    "description": "Obligatorio; su valor por defecto en el Actor no sirve y sin el la corrida falla. 'Advanced Search' para buscar menciones con 'query'. 'Get Replies' para traer las respuestas que cuelgan de un posteo, pasando su 'id'."
                   },
                   "query": {
                     "type": "string",
-                    "description": "Busqueda con la sintaxis avanzada de X. Formato: \"<objetivo>\" -is:retweet lang:es min_faves:5 y un -from:<handle> por cada cuenta oficial del objetivo. Para acotar la ventana temporal, agregar since:AAAA-MM-DD_HH:MM:SS_UTC."
+                    "description": "Solo con mode 'Advanced Search'. Sintaxis avanzada de X. Formato: \"<objetivo>\" -is:retweet lang:es min_faves:5 y un -from:<handle> por cada cuenta oficial del objetivo. Para acotar la ventana temporal agregar since:AAAA-MM-DD_HH:MM:SS_UTC, que el Actor respeta: verificado que una ventana de 6 horas devuelve solo posteos de esas 6 horas. Para listar los posteos del propio objetivo, usar from:<handle> como query."
                   },
                   "query_type": {
                     "type": "string",
@@ -72,8 +75,13 @@
                   },
                   "max_results": {
                     "type": "integer",
-                    "description": "Cuantos posteos traer. Cada resultado consume credito. Usar 25 para una prueba y 100 para un informe completo. Medido sobre este actor: 100 posteos tardan 21-22 s, dentro de lo que la Action tolera. El tiempo lo domina el arranque del Actor y no la cantidad, asi que pedir menos no garantiza que tarde menos.",
-                    "default": 100
+                    "description": "Cuantos posteos traer. Medido sobre este Actor: 100 tardan 21-22 s y pesan 45 KB; 300 tardan 41 s y pesan 160 KB, que ya roza el corte de la Action. No pedir mas de 150. Usar 25 para probar y 100 para un informe.",
+                    "default": 100,
+                    "maximum": 150
+                  },
+                  "id": {
+                    "type": "string",
+                    "description": "Solo con mode 'Get Replies'. El id del posteo cuyas respuestas se quieren. Sale del campo 'id' de un resultado previo."
                   }
                 }
               }

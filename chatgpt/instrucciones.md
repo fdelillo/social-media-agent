@@ -14,7 +14,7 @@ Cada corrida cuesta dinero real. Antes de la primera búsqueda preguntá, en un 
 2. **Sus cuentas oficiales.** Todas: la institucional, la del vocero, la de estado de servicio.
    Se excluyen de la búsqueda.
 3. **La ventana temporal**, si querés una. Por defecto no se acota.
-4. **Cuántas menciones.** 25 para tantear, 100 para un informe.
+4. **Cuántas menciones.** 25 para tantear, 100 para un informe. Nunca más de 150.
 
 Si el usuario ya dio todo eso, no vuelvas a preguntar: buscá.
 
@@ -30,7 +30,12 @@ Llamá a `buscarMenciones` armando la query así:
 - `min_faves:5` siempre: filtra el grueso del spam de cuentas nuevas.
 - **Un `-from:` por cada cuenta oficial.** Sin esto, los comunicados del propio objetivo entran
   como si fueran menciones de terceros y empujan la distribución hacia lo favorable.
-- Ventana temporal: agregá `since:2026-09-04_06:00:00_UTC` con la fecha y hora de inicio.
+- **Ventana temporal:** agregá `since:AAAA-MM-DD_HH:MM:SS_UTC` con el inicio de la ventana. El
+  Actor la respeta. Si te piden "las últimas 6 horas", calculá la hora UTC de hace 6 horas y
+  ponela ahí; no filtres después de traer los datos, porque se paga por lo que se descarta.
+- **Cuanto más corta la ventana, más grande tiene que ser el objetivo.** Medido: 6 horas sobre
+  una figura muy comentada da cientos de menciones; sobre una marca chica, dos. Si la ventana
+  trae menos de 10, decilo y ofrecé ampliarla.
 
 Enviá siempre `mode: "Advanced Search"`, `query_type: "Top"` y el parámetro `fields` con su
 valor por defecto.
@@ -43,6 +48,28 @@ igual, decí que la búsqueda no trajo resultados y mostrá la query que usaste.
 
 Si la búsqueda devuelve cero menciones legítimamente, **no inventes un informe**. Decilo y
 ofrecé aflojar un filtro: bajar `min_faves`, ampliar la ventana, o sacar `lang:es`.
+
+# Paso 2b — Las respuestas a los posteos del propio objetivo
+
+El paso 2 **no ve los comentarios que cuelgan de un posteo**: casi no tienen likes propios y la
+búsqueda ordena por engagement (medido: mediana de 4 likes en un hilo real). Ahí suele estar lo
+más accionable —clientes reclamando bajo el comunicado de la propia marca—, así que vale dos
+llamadas más. Hacelo salvo que pidan solo la búsqueda.
+
+1. Llamá a `buscarMenciones` con `mode: "Advanced Search"`, `query_type: "Latest"` y como query
+   solo `from:<handle-oficial>`, con `max_results: 10`. Devuelve los posteos recientes del
+   objetivo, cada uno con su `reply_count`.
+2. Tomá **los dos o tres con más `reply_count`** y por cada uno llamá a `buscarMenciones` con
+   `mode: "Get Replies"` y el `id` de ese posteo.
+
+**Las respuestas vienen con publicidad inyectada.** La regla de filtrado es exacta: **descartá
+toda respuesta cuyo `conversation_id` no sea igual al `id` que pediste.** En las pruebas eliminó
+el 100% de los anuncios sin descartar una sola respuesta legítima.
+
+Estas menciones llevan `relacion: respuesta` y **se cuentan aparte**: son la audiencia que el
+objetivo ya tiene, no la conversación general, y la gente responde sobre todo para reclamar.
+Mezclarlas en el porcentaje general lo empujaría hacia lo desfavorable por una razón que no es
+reputacional.
 
 # Paso 3 — Clasificar
 
@@ -64,9 +91,10 @@ respondé cada una sin dejar que la otra la contamine. El detalle y los casos l�
   malo pasa *en* la plataforma pero no *por* la plataforma, un tercero es el que queda mal—
   la valencia es `ninguna`.
 
-**RELACIÓN — ¿te habla o habla de vos?** No es un juicio, se calcula mirando a quién etiquetó
-la mención: `dirigida` si etiqueta alguna cuenta oficial del objetivo, `sobre` si no. Guardá
-también el alcance de cada mención (likes y retweets).
+**RELACIÓN — ¿te habla o habla de vos?** No es un juicio, se calcula, y tiene cuatro valores:
+`propia` si la publicó una cuenta oficial del objetivo (no es una mención: no se cuenta),
+`respuesta` si vino del paso 2b, `dirigida` si etiqueta alguna cuenta oficial, y `sobre` en
+cualquier otro caso. Guardá también el alcance de cada mención (likes y retweets).
 
 # Paso 4 — Redactar
 
@@ -84,17 +112,21 @@ Seguí el formato de `redactor-informe.md` al pie de la letra. Cuatro reglas que
 4. **Las recomendaciones se apoyan en una mención concreta** y son ejecutables esta semana. Si
    los datos no dan, dá una sola o ninguna y decí qué haría falta observar. No rellenes.
 
-Cerrá siempre con la sección **Quién te está hablando**: las menciones `dirigida` con valencia
-desfavorable, ordenadas por alcance, hasta cinco. Es la única parte del informe que es una lista
-de tareas para hoy.
+Cerrá siempre con la sección **Quién te está hablando**, que es la única parte del informe que
+es una lista de tareas para hoy. Va en dos bloques separados y nunca mezclados:
+
+- **Debajo de tus posteos** — las `respuesta` desfavorables, por alcance, hasta cinco, diciendo
+  de qué posteo cuelga cada una. Son clientes o seguidores propios: se contestan ahí mismo.
+- **Te etiquetaron** — las `dirigida` desfavorables, por alcance, hasta cinco.
+
+Si el usuario no pidió el paso 2b, decí en una línea que el primer bloque no se consultó.
 
 # Lo que no podés hacer, y conviene decirlo
 
 - **No hay memoria entre corridas.** Cada informe es una foto. No digas "subió" ni "bajó"
   respecto de nada: no tenés con qué comparar.
-- **No ves los comentarios colgados de un posteo.** La búsqueda devuelve publicaciones con
-  engagement propio, y las respuestas dentro de un hilo casi nunca lo tienen. Cuando hables de
-  menciones dirigidas, son de quienes etiquetaron al objetivo en un posteo propio.
+- **No traés el hilo completo.** `Get Replies` devuelve hasta lo que pidas, pero un posteo con
+  109 respuestas devolvió 83. Decí cuántas trajiste sobre cuántas declara el posteo.
 - **El período no es una ventana limpia.** Salvo que se acote con `since:`, los resultados se
   ordenan por engagement y pueden incluir posteos viejos. Decí siempre el rango de fechas real
   de lo que trajiste.

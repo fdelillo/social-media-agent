@@ -63,7 +63,9 @@ Empezá barato, con 25 menciones:
 
 > Analizá las menciones de **Nike**. Su cuenta oficial es @Nike. Traé 25.
 
-Si eso anda, subí a 100 para un informe de verdad.
+Si eso anda, subí a 100 para un informe de verdad. También podés pedirle una ventana temporal
+—*"las últimas 6 horas"*— o que además traiga **las respuestas que cuelgan de tus propios
+posteos**, que es donde suele estar lo más accionable.
 
 ---
 
@@ -76,29 +78,58 @@ Si eso anda, subí a 100 para un informe de verdad.
 | Vuelve mucho texto y el GPT se pierde | Falta el parámetro `fields`. Sin él cada posteo trae 41 campos en vez de 9. |
 | La Action tarda y corta | Poco probable con 100, pero puede pasar: el tiempo lo domina el arranque del Actor, no la cantidad. Reintentar suele alcanzar. |
 | Vuelven cero menciones | Los filtros son estrictos a propósito. Bajá `min_faves`, ampliá la ventana o sacá `lang:es`. |
+| En las respuestas aparecen cuentas raras con miles de likes | Publicidad inyectada por X. El agente la descarta comparando el hilo; si alguna se cuela, avisale. |
 | Los resultados son spam sin engagement | Se coló `query_type: "Latest"`. Tiene que ser `"Top"`. |
 
 ### Lo que está medido
 
-Nueve corridas reales contra el Actor, el 4 de septiembre de 2026:
+Dieciséis corridas reales contra el Actor, el 4 de septiembre de 2026:
 
 | | |
 | :--- | :--- |
 | 100 posteos, con `fields` | **21–22 s**, 45 KB |
-| 25 posteos, con `fields` | 8–29 s, 8,5 KB |
-| 25 posteos, sin `fields` | 30 s, **55 KB** |
-| Rango total observado | 6 s a 31 s |
+| 300 posteos, con `fields` | 41 s, **160 KB** — ya roza el corte |
+| 25 posteos, sin `fields` | 30 s, 55 KB |
+| Respuestas de un hilo (83 de 109) | 11 s |
 
-Dos conclusiones que cambian cómo se usa: **el tiempo no depende de cuántos posteos pidas** —lo
+Tres conclusiones que cambian cómo se usa. **El tiempo no depende de cuántos posteos pidas** —lo
 domina el arranque del Actor, y una corrida de 25 tardó más que una de 100—, así que pedir menos
-no hace que sea más rápido; y **`fields` no es una optimización, es lo que hace que funcione**:
-sin él, 100 posteos serían ~200 KB de JSON.
+no hace que sea más rápido. **`fields` no es una optimización, es lo que hace que funcione**: sin
+él, 100 posteos serían ~200 KB. Y **150 es el techo sensato**: a 300 la llamada tarda 41 segundos
+y devuelve 160 KB, que empieza a ahogar la conversación.
+
+## ¿Trae todas las menciones?
+
+No, y conviene saber por qué. Hay cuatro techos, y el que aprieta casi nunca es el crédito:
+
+| Techo | Cuál es |
+| :--- | :--- |
+| **Lo que pedís** | El agente trae exactamente `max_results`, ni una más. |
+| **Lo que existe** | Si la ventana es corta y el objetivo chico, puede haber 2 menciones y nada más. |
+| **El techo práctico** | ~150. Más arriba la llamada se pone lenta y pesada. |
+| **El crédito de Apify** | ~33.000 menciones al mes. A 100 por informe son unos 330 informes. |
+
+O sea: el agente no hace un censo de todo lo que se dijo. Trae **las más relevantes** —`Top`
+ordena por engagement— hasta el número que le pidas.
+
+## Buscar solo las últimas X horas
+
+Sí, y está verificado. Pedíselo en palabras: *"analizá las últimas 6 horas"*, y el agente traduce
+eso a un filtro de fecha y hora que el Actor respeta. En la prueba, una ventana de 6 horas
+devolvió únicamente posteos de esas 6 horas.
+
+**El cuidado que hay que tener es el volumen.** Cuanto más corta la ventana, más grande tiene que
+ser el objetivo para que haya algo que analizar. Medido con la misma ventana de 6 horas: sobre
+una figura pública muy comentada devolvió cientos de menciones; sobre una marca chica, **dos**.
+El agente avisa cuando la ventana trae menos de diez en vez de escribir un informe sobre esa
+base.
 
 ## Qué esperar, y qué no
 
 **Lo que hace bien.** Distingue *qué opina la gente* de *qué le está pasando al objetivo*, que es
 la distinción que un responsable necesita: una crítica se contesta, un problema se resuelve. Y
-separa a quien te habla de quien habla de vos, que es lo que se traduce en tareas concretas.
+separa tres cosas que se responden distinto: **lo que cuelga de tus propios posteos**, lo que te
+etiqueta, y lo que se dice de vos sin nombrarte. Las dos primeras son una lista de tareas.
 
 **Lo que todavía no hace bien.** La frontera entre `opinion` y `hecho` es la parte floja: la
 última medición dio 65% de coincidencia con etiquetas humanas contra 70% en valencia, sobre 20
@@ -107,8 +138,8 @@ columnas se lee como orden de magnitud. Está todo declarado en
 [`../reportes/README.md`](../reportes/README.md).
 
 **Lo que no puede hacer, por diseño.** No tiene memoria entre corridas: cada informe es una foto,
-no una película. No puede decir "subió" ni "bajó", ni correr solo cada X horas. Y no ve los
-comentarios que cuelgan de un posteo, solo las publicaciones con engagement propio.
+no una película. No puede decir "subió" ni "bajó" respecto de la corrida anterior, ni correr solo
+cada X horas — necesita a alguien escribiéndole.
 
 ## Un ejemplo de salida
 
