@@ -102,9 +102,47 @@ que ese piso sea lo más bajo posible, no en eliminarlo.
 
 ---
 
+## Actualización del 2026-09-04: dos incógnitas resueltas y una cerrada
+
+**`since:` funciona.** El actor respeta los operadores temporales sin tocarlos, verificado con
+ventanas de 24 y de 6 horas. El plan B de filtrar por `created_at` después de traer los datos
+queda descartado, y con él el desperdicio de crédito. La ventana = la cadencia se sostiene: sin
+superposición, sin deduplicar, sin base de datos.
+
+**El riesgo de volumen es real y ahora tiene número.** La misma ventana de 6 horas devolvió
+cientos de menciones sobre una figura pública muy comentada y **dos** sobre una marca chica.
+Cuanto más corta la ventana, más grande tiene que ser el objetivo.
+
+**El requisito 4 no se puede resolver dentro de ChatGPT.** Las tareas programadas existen y
+corren hasta ~1 vez por hora, pero **no pueden invocar GPTs personalizados**. Eso cierra la
+esperanza de que el requisito 2 y el 4 se resolvieran con la misma pieza: cualquier ejecución
+automática necesita algo instalado y prendido, y un servidor MCP propio tampoco lo arregla,
+porque también necesita un cliente corriendo.
+
+**La salida práctica:** lo automático lo corre quien construye, no quien consume. El cron vive
+en una máquina propia y el destinatario solo recibe el informe. El requisito 2 se resuelve con
+el GPT a demanda, el 4 con el cron. Nadie del otro lado instala nada.
+
+**Y el costo cambia de naturaleza, que es lo que más pesa sobre la decisión.** Hoy el modelo es
+una suscripción ya pagada. En el CLI pasa a ser una API con factura:
+
+| | Por mes, cada 6 horas |
+| :--- | ---: |
+| Apify (4 corridas × 100 menciones) | ~$1,80 de los $5 gratuitos |
+| **El modelo** (~$0,35 × 120 corridas) | **~$42** |
+
+Automatizar convierte una herramienta gratis en una de ~$40 mensuales, y el gasto es del modelo,
+no de los datos. Eso abre una pregunta de diseño previa a escribir código: **¿vigilar barato y
+analizar caro?** Contar volumen y detectar un pico no necesita LLM; disparar el informe completo
+solo cuando algo se mueve bajaría el costo casi un orden de magnitud.
+
+---
+
 ## Qué hay que decidir antes de escribir código
 
-- [ ] ¿Servidor MCP propio + CLI, o solo CLI con cron?
+- [ ] ¿Vigilancia barata cada 6 h + informe completo solo ante un pico, o informe completo
+      siempre? Es la decisión que más mueve el costo.
+- [ ] ¿Servidor MCP propio + CLI, o solo CLI con cron? (el MCP ya no resuelve el requisito 4)
 - [ ] ¿Marca de agua para no perder ventanas ante una corrida fallida, o se acepta perderlas?
 - [ ] ¿Qué hace el agente cuando la ventana no trae menciones?
 - [ ] ¿A dónde "entrega" el informe? Archivo, mail, mensaje — no está definido y cambia el trabajo.

@@ -124,6 +124,44 @@ una figura pública muy comentada devolvió cientos de menciones; sobre una marc
 El agente avisa cuando la ventana trae menos de diez en vez de escribir un informe sobre esa
 base.
 
+## ¿Y si lo quiero cada 6 horas, sin pedírselo?
+
+**Este GPT no puede programarse a sí mismo.** ChatGPT tiene tareas programadas —prompts que corren
+solos, hasta ~1 vez por hora— pero **no pueden usar GPTs personalizados adentro**. Sirven con apps
+conectadas, no con un GPT que llama a su propia API.
+
+Automatizarlo requiere un programa corriendo en una máquina prendida, con un temporizador.
+Técnicamente no es difícil: la búsqueda ya acepta ventanas de tiempo, y si corre cada 6 horas
+buscando las últimas 6, las ventanas no se pisan y no hace falta recordar nada entre corridas.
+
+**Lo que cambia es quién paga el análisis.** Hoy el que analiza es tu suscripción de ChatGPT, ya
+paga; automatizado, pasa a ser una API con factura por uso:
+
+| | Hoy, a pedido | Automático cada 6 h |
+| :--- | ---: | ---: |
+| Las menciones | ~$0,015 por informe | ~$1,80 / mes |
+| El análisis | incluido en tu plan | **~$42 / mes** |
+
+O sea que la automatización convierte una herramienta gratis en una de unos cuarenta dólares al
+mes, **y el gasto es del análisis, no de los datos**. Antes de construir nada conviene contestar
+si hacen falta cuatro informes completos por día, o si alcanza con **vigilar barato y analizar
+caro**: contar menciones y detectar un pico no necesita análisis, y disparar el informe completo
+solo cuando algo se mueve baja el costo casi diez veces.
+
+**Quién lo corre.** Cualquier ejecución automática necesita algo instalado y prendido, así que
+lo natural es que corra del lado de quien armó esto y que el informe llegue ya hecho. El GPT
+sigue sirviendo para consultar a demanda.
+
+**Lo que hay que decidir**, y depende de quien lo va a leer:
+
+- **A dónde llega.** Un informe guardado en un archivo que nadie abre no sirve. Mail, Telegram,
+  Slack: el canal que se use de verdad.
+- **Cada cuánto se lee.** Seis horas suena bien hasta que son cuatro documentos por día.
+- **Qué merece interrumpir.** Un hecho desfavorable con alcance no es lo mismo que quince
+  opiniones más: lo primero se avisa al toque, lo segundo espera al informe diario.
+
+Las decisiones abiertas están en [`../REQUISITOS.md`](../REQUISITOS.md).
+
 ## Qué esperar, y qué no
 
 **Lo que hace bien.** Distingue *qué opina la gente* de *qué le está pasando al objetivo*, que es
