@@ -11,33 +11,39 @@
 | 3. Conectar el MCP | ⏭️ opcional, no está en el camino crítico (se usa `curl`) |
 | 4. Tres corridas | ✅ 300 menciones: MercadoLibre, DonWeb, Jorge Macri — en `datos/crudo/` |
 | 5. Set dorado | ✅ 30 etiquetadas, más 4 rondas de medición |
-| 6. Medir y ajustar | 🔄 **acá estamos** |
-| 7. Informe de ejemplo | ⬜ pendiente |
+| 6. Medir y ajustar | ⏸️ pausado a propósito: 4 rondas sin converger (ver abajo) |
+| 7. Informe de ejemplo | ✅ [`reportes/ejemplo-donweb.md`](reportes/ejemplo-donweb.md), 100 menciones |
 
 Gasto de Apify hasta ahora: ~$0.05 de los $5 mensuales.
 
 ## Lo que pasa mañana
 
-La ronda 4 ya está medida: **tipo 65%, valencia 70%**, ninguna llega al 80% del criterio de
-salida. El detalle está en [`datos/dorado/ronda4-medicion.md`](datos/dorado/ronda4-medicion.md).
+**Pulir el informe.** Está en [`reportes/ejemplo-donweb.md`](reportes/ejemplo-donweb.md), sobre
+las 100 menciones de DonWeb. Ese archivo es ahora la vara de la Fase 1: lo que genere el CLI se
+compara contra él. Leerlo como si lo recibiera un tercero y anotar qué sobra, qué falta y qué no
+se entiende.
 
-Hay dos cosas pendientes, y la segunda **bloquea** a la ronda 5:
+**El ciclo de medición queda pausado, y es una decisión, no un olvido.** Cuatro rondas dieron
+67%, 75%, 60% y (65% / 70%) sin converger, y con 20 menciones por ronda el intervalo de confianza
+al 95% es de ±20 puntos: el 80% del criterio de salida cae dentro del intervalo de casi todas las
+mediciones hechas. Una ronda de 20 no puede demostrar que se pasó ni que no. Seguir agregando
+rondas era comprar ruido.
 
-1. **Agregar a la calibración del prompt el criterio de "la marca como escenario"** — algo malo
-   que pasa *en* MercadoLibre y no *por* MercadoLibre no le carga valencia. Explica 5 de los 6
-   errores de valencia y no depende de que nadie decida nada.
-2. **Adjudicar tres casos donde el criterio humano se contradice** (ver abajo). Sin eso, la
-   dimensión `tipo` no se puede arreglar, porque sus 7 errores van para los dos lados.
+Lo que sí se hizo antes de pausar fue el arreglo que no dependía de ninguna decisión: el criterio
+del **objetivo como escenario** ya está en la calibración del prompt. Explicaba 5 de los 6 errores
+de valencia de la ronda 4.
 
-Después de eso, ronda 5 sobre menciones nuevas.
+### Pendientes que quedan anotados, en orden de prioridad
 
-### Los casos a adjudicar
-
-- **15 vs. 16 y 18.** Los tres son cuentas partidarias que reportan un evento verificable con
-  encuadre pesado. El 15 quedó `hecho` y los otros dos `opinion`. ¿Cuál es la regla?
-- **7 vs. 4.** El 4 —un llamado a reclamar ante Defensa del Consumidor— quedó `perjudica`. El
-  7 —"¿quién renueva plan después de este incidente?"— quedó `ninguna`. Los dos empujan clientes
-  fuera de DonWeb.
+1. **Pulir el informe** ← acá estamos.
+2. **Una sola medición de ~100 menciones**, después del informe. Es el único tamaño que puede
+   distinguir 70% de 80%; cinco rondas de 20 no llegan.
+3. **Adjudicar los casos de `tipo` que se contradicen** (ronda 4: el 15 quedó `hecho` y sus
+   gemelos 16 y 18 `opinion`; el 7 quedó `ninguna` y el 4, equivalente, `perjudica`).
+4. **Medir el techo humano**, como último recurso: reetiquetar los 20 de la calibración y ver
+   cuánto coincide la persona consigo misma. Si ese techo es 85%, pedirle 80% al modelo es
+   pedirle casi el máximo posible. No viola la regla de no reutilizar menciones porque no es una
+   medición del modelo.
 
 ## El hilo de la historia, en corto
 

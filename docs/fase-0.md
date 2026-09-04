@@ -104,12 +104,23 @@ Mirar los desacuerdos uno por uno. En la práctica se concentran en dos lugares:
 Ajustar el prompt sobre esos casos — agregando ejemplos concretos a la sección de calibración —
 y volver a medir. Registrar cada iteración al pie de `analista-sentimiento.md`, con el número.
 
-## Paso 7 — Un informe completo
+## Paso 7 — Un informe completo ✅
 
-Con las menciones ya clasificadas de una de las corridas, correr
-[`../prompts/redactor-informe.md`](../prompts/redactor-informe.md) y guardar el resultado como
-`reportes/ejemplo-<marca>.md`. Ese archivo se versiona: es la referencia contra la cual se
-compara la salida del CLI en la Fase 1.
+**Hecho el 2026-09-04.** El informe de referencia es
+[`../reportes/ejemplo-donweb.md`](../reportes/ejemplo-donweb.md), sobre las 100 menciones de
+DonWeb: la caída del nodo NOVA es el caso más rico de los tres corpus, porque tiene hechos
+desfavorables graves y opiniones desfavorables a la vez, que es justo lo que el esquema de dos
+dimensiones existe para separar.
+
+Se generó en dos pasos, como en la Fase 1: primero
+[`../prompts/analista-sentimiento.md`](../prompts/analista-sentimiento.md) sobre las menciones
+normalizadas —resultado en `datos/clasificado/donweb-2026-09-03.json`— y después
+[`../prompts/redactor-informe.md`](../prompts/redactor-informe.md) sobre ese JSON.
+
+**Se hizo antes de cerrar el paso 6, a propósito.** La medición no converge (ver abajo) y el
+informe responde una pregunta que la medición no responde: si esto le sirve a alguien. Las
+limitaciones de la clasificación están declaradas al frente, en
+[`../reportes/README.md`](../reportes/README.md), en vez de escondidas.
 
 ---
 
@@ -118,7 +129,22 @@ compara la salida del CLI en la Fase 1.
 Se pasa a la Fase 1 cuando se cumplen las dos:
 
 - [ ] **≥80% de coincidencia** con el set dorado, con los desacuerdos revisados y entendidos.
-- [ ] Un informe de ejemplo que te resulte presentable a un tercero.
+- [x] Un informe de ejemplo que te resulte presentable a un tercero.
+
+### El primer criterio, revisado
+
+Tal como estaba escrito, ese 80% **no era medible con el procedimiento que usábamos**. Cuatro
+rondas de 20 menciones dieron 67%, 75%, 60% y (65% en `tipo` / 70% en `valencia`), y con n=20 el
+intervalo de confianza al 95% ronda los ±20 puntos: el 80% cae dentro del intervalo de casi todas
+esas mediciones. Ninguna ronda podía demostrar que se pasó, y ninguna podía demostrar que no.
+Peor: la diferencia entre 60% y 75% tampoco es distinguible del ruido, así que la frase "la
+precisión bajaba a medida que se agregaban reglas" hay que leerla con pinzas — el argumento que
+sostiene la decisión 8 es la *forma* de los errores, no esa tendencia numérica.
+
+**Corrección del procedimiento:** la coincidencia se mide **una sola vez sobre ~100 menciones**,
+que es el tamaño mínimo que distingue 70% de 80%, y no en rondas sucesivas de 20. Las rondas
+chicas siguen sirviendo para *encontrar* criterios que faltan —para eso funcionaron bien— pero no
+para decidir si se pasa de fase.
 
 Si el actor devuelve texto truncado o volumen inservible, **no se sigue**: se cambia de actor y
 se repite desde el paso 2. Ese es exactamente el descubrimiento que esta fase existe para

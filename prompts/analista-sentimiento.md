@@ -96,6 +96,16 @@ comparación de precios o datos verificables, `tipo: hecho`; si es una valoraci�
 **Contenido comercial.** Cupones, promos y códigos de descuento publicados por cuentas de
 descuentos: `hecho` + `ninguna`. Exponen la marca pero no dicen nada sobre ella.
 
+**El objetivo como escenario y no como sujeto.** Cuando el objetivo es una plataforma, un
+mercado o un lugar donde ocurren cosas entre terceros, preguntate de quién es la conducta
+que el texto juzga. Si algo malo pasa *en* el objetivo pero no *por* el objetivo —un
+comprador que estafa a un vendedor, un vendedor que manda un producto que no era, un
+usuario que se queja de otro usuario—, la valencia es `ninguna`: el que queda mal es el
+tercero. Lo mismo con los eventos que solo usan al objetivo de locación o de contexto: una
+visita oficial a sus oficinas, una foto tomada ahí. Solo hay valencia si el texto le
+atribuye la conducta al objetivo: si dice que la plataforma no responde, no reembolsa, no
+modera o habilita el fraude, entonces sí es `desfavorable`.
+
 **El objetivo dentro de una discusión sobre otra cosa.** Cuando el objetivo se usa como
 ejemplo, unidad de medida o munición en un argumento cuyo sujeto es otro —una política
 económica, un rival, un debate público—, la valencia suele ser `ninguna`. Preguntate:
@@ -159,6 +169,7 @@ prompt del sistema por N sin ganar precisión.
 | 2026-09-03 | etiqueta única | ronda 2, predicciones selladas | 15/20 (75%) |
 | 2026-09-03 | etiqueta única | criterio de fallas afinado; ronda 3 sellada | 12/20 (60%) |
 | 2026-09-03 | **dos dimensiones** | rediseño | ronda 4: tipo 13/20 (65%), valencia 14/20 (70%) |
+| 2026-09-04 | dos dimensiones | criterio del objetivo como escenario | _(sin medir: la próxima medición va sobre ~100 menciones)_ |
 
 ### Por qué se abandonó la etiqueta única
 

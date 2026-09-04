@@ -6,9 +6,10 @@
 datos/crudo/*
 !datos/crudo/.gitkeep
 
-# Informes generados. Se versionan solo los ejemplos de referencia.
+# Informes generados. Se versionan solo los ejemplos de referencia y su nota de método.
 reportes/*
 !reportes/.gitkeep
+!reportes/README.md
 !reportes/ejemplo-*.md
 
 # Python (Fase 1)

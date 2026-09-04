@@ -1,0 +1,1805 @@
+{
+ "objetivo": "DonWeb",
+ "menciones": [
+  {
+   "id": "1991522330284290337",
+   "autor": "@matiasbaldanza",
+   "texto": "Desde hoy ya no trabajo en DonWeb.\n\nGran equipo y en todo sentido fue una excelente experiencia laboral. Si tienen chance de trabajar ahí, no la desaprovechen.\n\nMe tomo el resto de la semana para ver cómo sigo y vuelvo a la búsqueda laboral. https://t.co/RgAI64zgPJ",
+   "url": "https://x.com/matiasbaldanza/status/1991522330284290337",
+   "publicado_en": "Thu Nov 20 15:01:38 +0000 2025",
+   "metricas": {
+    "likes": 51,
+    "reposts": 2,
+    "replies": 10,
+    "views": 6600,
+    "seguidores_autor": 7508
+   },
+   "tipo": "opinion",
+   "valencia": "favorable",
+   "intensidad": 0.7,
+   "justificacion": "ex empleado recomienda trabajar ahi: 'gran equipo', 'excelente experiencia laboral'"
+  },
+  {
+   "id": "2095238368342704277",
+   "autor": "@jfr4nc0_",
+   "texto": "a un cliente mio que tiene como proveedor DonWeb para el VPS esta inhabilitado desde hace +72hrs ya, seguro se comieron un lindo ransomware en toda la red y estan hasta las manos.\n\n@DonWebOficial van a salir a decir cual es el incidente de seguridad o no, si tienen un ransomware o algo porque sus clientes estan en la nada misma.",
+   "url": "https://x.com/jfr4nc0_/status/2095238368342704277",
+   "publicado_en": "Wed Sep 02 19:52:09 +0000 2026",
+   "metricas": {
+    "likes": 2,
+    "reposts": 0,
+    "replies": 1,
+    "views": 238,
+    "seguidores_autor": 30
+   },
+   "tipo": "opinion",
+   "valencia": "desfavorable",
+   "intensidad": 0.7,
+   "justificacion": "especula con un ransomware y exige que la empresa se pronuncie"
+  },
+  {
+   "id": "2095561133675475394",
+   "autor": "@gjeangeorges",
+   "texto": "#Fallas en servicios de #CloudServers en nodo Nova de #DonWeb.\nIncident Report for #StatusDonWeb\n📷Monitoring: Actualmente el 100% del nodo NOVA se encuentra operativo.\nTras la recuperacion no se reporta pérdidas de datos.\nVer: https://t.co/3kF7DHuCKM https://t.co/Y6SGihJGuB",
+   "url": "https://x.com/gjeangeorges/status/2095561133675475394",
+   "publicado_en": "Thu Sep 03 17:14:42 +0000 2026",
+   "metricas": {
+    "likes": 0,
+    "reposts": 0,
+    "replies": 0,
+    "views": 27,
+    "seguidores_autor": 852
+   },
+   "tipo": "hecho",
+   "valencia": "favorable",
+   "intensidad": 0.4,
+   "justificacion": "parte de incidente: el nodo NOVA volvio a estar 100% operativo sin perdida de datos"
+  },
+  {
+   "id": "2094172881303339300",
+   "autor": "@martinacostadev",
+   "texto": "DonWeb Cloud Server caído desde las 9 AM. NUEVE horas de outage 100% inaccesible. Un desastre @DonWebOficial https://t.co/JW51iHV6e7",
+   "url": "https://x.com/martinacostadev/status/2094172881303339300",
+   "publicado_en": "Sun Aug 30 21:18:17 +0000 2026",
+   "metricas": {
+    "likes": 95,
+    "reposts": 11,
+    "replies": 54,
+    "views": 20100,
+    "seguidores_autor": 9599
+   },
+   "tipo": "hecho",
+   "valencia": "desfavorable",
+   "intensidad": 0.8,
+   "justificacion": "reporta nueve horas de outage; etiqueta humana de la ronda 4"
+  },
+  {
+   "id": "2094781853546827807",
+   "autor": "@identidadrobada",
+   "texto": "¿Qué está pasando con DonWeb?\n\nEl incidente que afecta al 100% de los Cloud Servers del nodo NOVA lleva varios días y mantiene servicios inaccesibles. DonWeb informó que no existe riesgo de pérdida de datos, pero la magnitud de la afectación merece una reflexión.\n\nhttps://t.co/cur3JY5af2",
+   "url": "https://x.com/identidadrobada/status/2094781853546827807",
+   "publicado_en": "Tue Sep 01 13:38:07 +0000 2026",
+   "metricas": {
+    "likes": 115,
+    "reposts": 11,
+    "replies": 33,
+    "views": 15073,
+    "seguidores_autor": 21423
+   },
+   "tipo": "hecho",
+   "valencia": "desfavorable",
+   "intensidad": 0.7,
+   "justificacion": "reporta que el incidente afecta al 100% del nodo NOVA hace varios dias"
+  },
+  {
+   "id": "2095531459909939266",
+   "autor": "@nicolas_random_",
+   "texto": "@DamianCatanzaro Acá estaba charlando con la IA para migrar a la bosta de Donweb ya que levantó el cloud después de 4 días... https://t.co/5FN9kBu5ao",
+   "url": "https://x.com/nicolas_random_/status/2095531459909939266",
+   "publicado_en": "Thu Sep 03 15:16:47 +0000 2026",
+   "metricas": {
+    "likes": 2,
+    "reposts": 0,
+    "replies": 1,
+    "views": 212,
+    "seguidores_autor": 151
+   },
+   "tipo": "opinion",
+   "valencia": "desfavorable",
+   "intensidad": 0.7,
+   "justificacion": "insulto directo al servicio: 'la bosta de Donweb'"
+  },
+  {
+   "id": "2094869024546914734",
+   "autor": "@jdbulIa",
+   "texto": "La semana pasada arranque como sysadmin del nodo nova de DonWeb, deseenme suerte!",
+   "url": "https://x.com/jdbulIa/status/2094869024546914734",
+   "publicado_en": "Tue Sep 01 19:24:30 +0000 2026",
+   "metricas": {
+    "likes": 197,
+    "reposts": 6,
+    "replies": 14,
+    "views": 6092,
+    "seguidores_autor": 507
+   },
+   "tipo": "opinion",
+   "valencia": "desfavorable",
+   "intensidad": 0.5,
+   "justificacion": "chiste a costa de la caida: se presenta como el sysadmin del nodo que fallo"
+  },
+  {
+   "id": "2095139388451700976",
+   "autor": "@Horacio_Oggero",
+   "texto": "Empiezan a llegar mas precisiones de lo ocurrido en donweb @DonWebOficial",
+   "url": "https://x.com/Horacio_Oggero/status/2095139388451700976",
+   "publicado_en": "Wed Sep 02 13:18:50 +0000 2026",
+   "metricas": {
+    "likes": 0,
+    "reposts": 0,
+    "replies": 0,
+    "views": 204,
+    "seguidores_autor": 106
+   },
+   "tipo": "opinion",
+   "valencia": "ninguna",
+   "intensidad": 0.2,
+   "justificacion": "etiqueta humana de la calibracion: comenta que llegan precisiones sin decir cuales"
+  },
+  {
+   "id": "2094399347253268949",
+   "autor": "@DonwebStatus",
+   "texto": "[status] Update: Fallas en servicios de Cloud Servers en nodo Nova.\n\nContinuamos trabajando en restablecer el servicio a la mayor brevedad posible.\n\nDetalles en:\nhttps://t.co/YSc8XpyBgu",
+   "url": "https://x.com/DonwebStatus/status/2094399347253268949",
+   "publicado_en": "Mon Aug 31 12:18:11 +0000 2026",
+   "metricas": {
+    "likes": 8,
+    "reposts": 4,
+    "replies": 109,
+    "views": 17241,
+    "seguidores_autor": 1218
+   },
+   "tipo": "hecho",
+   "valencia": "desfavorable",
+   "intensidad": 0.6,
+   "justificacion": "parte oficial de la propia empresa: falla en curso sin restablecer"
+  },
+  {
+   "id": "2094625440807748015",
+   "autor": "@soddone",
+   "texto": "Hosting Donweb caído hace 48 horas\n\n48 horas (y seguimos) con nuestro sitio web caído por una falla de nuestro proveedor de hosting, @DonWebOficial\nPara nosotros que dependemos de la presencia online para dar cursos, comunicarnos con alumnos y clientes, es letal. https://t.co/linAPYyu5u",
+   "url": "https://x.com/soddone/status/2094625440807748015",
+   "publicado_en": "Tue Sep 01 03:16:36 +0000 2026",
+   "metricas": {
+    "likes": 79,
+    "reposts": 9,
+    "replies": 20,
+    "views": 9937,
+    "seguidores_autor": 517
+   },
+   "tipo": "hecho",
+   "valencia": "desfavorable",
+   "intensidad": 0.9,
+   "justificacion": "cliente reporta 48 horas de sitio caido y el impacto en su operacion"
+  },
+  {
+   "id": "2095136114596044848",
+   "autor": "@DonwebStatus",
+   "texto": "Update - Qué ocurrió\n\nEl incidente se originó en una falla lógica dentro de la infraestructura de almacenamiento del nodo NOVA...\n\nVer estado completo en: https://t.co/f2bTWWAbpj",
+   "url": "https://x.com/DonwebStatus/status/2095136114596044848",
+   "publicado_en": "Wed Sep 02 13:05:50 +0000 2026",
+   "metricas": {
+    "likes": 12,
+    "reposts": 3,
+    "replies": 25,
+    "views": 9024,
+    "seguidores_autor": 1218
+   },
+   "tipo": "hecho",
+   "valencia": "desfavorable",
+   "intensidad": 0.5,
+   "justificacion": "parte oficial que explica el origen de la falla en el almacenamiento del nodo"
+  },
+  {
+   "id": "2095535333400064161",
+   "autor": "@gjeangeorges",
+   "texto": "⚠️ #CAÍDA DE #DONWEB 🧑‍💻 ❌  ORIGEN Y CUÁNDO SE SOLUCIONA. Tras la interrupción iniciada el 30/08/2026, la empresa emitió un reporte en el diario La Capital 2/9/2026 qué dice:\n📌 No sé perdió información.\nDetalles y tiempos de recuperación:👉 3 días más. 👇 https://t.co/ynaXMKUrDP",
+   "url": "https://x.com/gjeangeorges/status/2095535333400064161",
+   "publicado_en": "Thu Sep 03 15:32:11 +0000 2026",
+   "metricas": {
+    "likes": 0,
+    "reposts": 0,
+    "replies": 0,
+    "views": 45,
+    "seguidores_autor": 852
+   },
+   "tipo": "hecho",
+   "valencia": "desfavorable",
+   "intensidad": 0.7,
+   "justificacion": "reporta la caida y tres dias mas de recuperacion segun la propia empresa"
+  },
+  {
+   "id": "2094866318360973328",
+   "autor": "@datatrendslatam",
+   "texto": "El apagón de DonWeb y la pregunta que nadie te puede responder\n\nImaginate que tu empresa depende de un proveedor de hosting. Un día, sin aviso previo, todos tus servicios dejan de andar. No podés facturar, no podés atender a tus clientes, ni siquiera…\n\nhttps://t.co/abLQ581rkq",
+   "url": "https://x.com/datatrendslatam/status/2094866318360973328",
+   "publicado_en": "Tue Sep 01 19:13:45 +0000 2026",
+   "metricas": {
+    "likes": 2,
+    "reposts": 0,
+    "replies": 0,
+    "views": 548,
+    "seguidores_autor": 7
+   },
+   "tipo": "hecho",
+   "valencia": "desfavorable",
+   "intensidad": 0.6,
+   "justificacion": "nota sobre el apagon y la dependencia de un proveedor de hosting"
+  },
+  {
+   "id": "1211852711865540608",
+   "autor": "@jedux",
+   "texto": "El sitio del CEO de donweb no tiene ssl. https://t.co/iCghqlGTOk",
+   "url": "https://x.com/jedux/status/1211852711865540608",
+   "publicado_en": "Tue Dec 31 03:32:56 +0000 2019",
+   "metricas": {
+    "likes": 60,
+    "reposts": 11,
+    "replies": 3,
+    "views": null,
+    "seguidores_autor": 3549
+   },
+   "tipo": "hecho",
+   "valencia": "desfavorable",
+   "intensidad": 0.5,
+   "justificacion": "dato verificable y embarazoso: el sitio del CEO no tiene SSL"
+  },
+  {
+   "id": "2095558776740806693",
+   "autor": "@AbogadosRosarin",
+   "texto": "#Fallas en servicios de #CloudServers en nodo Nova de #DonWeb.\nIncident Report for #StatusDonWeb\n📷Monitoring: Actualmente el 100% del nodo NOVA se encuentra operativo. Tras la recuperacion no se reporta pérdidas de datos. Montoreo: https://t.co/o3MXExo6oY https://t.co/PfvscLmkjQ",
+   "url": "https://x.com/AbogadosRosarin/status/2095558776740806693",
+   "publicado_en": "Thu Sep 03 17:05:20 +0000 2026",
+   "metricas": {
+    "likes": 0,
+    "reposts": 0,
+    "replies": 0,
+    "views": 25,
+    "seguidores_autor": 346
+   },
+   "tipo": "hecho",
+   "valencia": "favorable",
+   "intensidad": 0.4,
+   "justificacion": "replica del parte de recuperacion: nodo operativo, sin perdida de datos"
+  },
+  {
+   "id": "2095220503913140448",
+   "autor": "@ChrisV_Dev",
+   "texto": "Mientras tanto hablo con un amigo dev que trabaja en una empresa afectada que es gran cliente de Donweb me dice que perdieron el acceso a sus propios servidores por un hackeo...\n\nSabiendo el historial que tiene Donweb habiendo sido y siendo la infame Dattatec oficialmente no les creo 🤣\n\n(Tuvieron que cambiar el nombre de fantasia para que no los bardearan tanto) \n\nLo barato (y de mal soporte) sale caro...",
+   "url": "https://x.com/ChrisV_Dev/status/2095220503913140448",
+   "publicado_en": "Wed Sep 02 18:41:10 +0000 2026",
+   "metricas": {
+    "likes": 6,
+    "reposts": 1,
+    "replies": 4,
+    "views": 1771,
+    "seguidores_autor": 328
+   },
+   "tipo": "opinion",
+   "valencia": "desfavorable",
+   "intensidad": 0.9,
+   "justificacion": "desconfia del comunicado por el historial de la empresa: 'lo barato sale caro'"
+  },
+  {
+   "id": "2094537600958615825",
+   "autor": "@_franle",
+   "texto": "Con más de 30 horas de downtime, parece que DonWeb no puede encontrar la solución. \nDicen \"no existe riesgo de pérdida de datos\", pero según cuentan clientes, no los dejan acceder a los backups ni migrar mientras la incidencia permanezca activa.\nParece como si funcionara todo como un monorepo.",
+   "url": "https://x.com/_franle/status/2094537600958615825",
+   "publicado_en": "Mon Aug 31 21:27:33 +0000 2026",
+   "metricas": {
+    "likes": 17,
+    "reposts": 2,
+    "replies": 4,
+    "views": 2108,
+    "seguidores_autor": 518
+   },
+   "tipo": "hecho",
+   "valencia": "desfavorable",
+   "intensidad": 0.8,
+   "justificacion": "reporta 30 horas de downtime y que los clientes no acceden a sus backups"
+  },
+  {
+   "id": "2095014513011564550",
+   "autor": "@jmaxdev",
+   "texto": "Que se caiga un nodo o un servidor es algo común y no debería haber pánico al respecto. Los ordenadores se caen y fallan, por eso hay que darles mantenimiento. \nLo correcto sería que #DonWeb habilitará una opcion de multi nodo, por si uno se cae el de backup se levante.",
+   "url": "https://x.com/jmaxdev/status/2095014513011564550",
+   "publicado_en": "Wed Sep 02 05:02:38 +0000 2026",
+   "metricas": {
+    "likes": 4,
+    "reposts": 0,
+    "replies": 4,
+    "views": 1077,
+    "seguidores_autor": 1
+   },
+   "tipo": "opinion",
+   "valencia": "desfavorable",
+   "intensidad": 0.3,
+   "justificacion": "relativiza la caida pero reclama que la empresa deberia ofrecer multi nodo"
+  },
+  {
+   "id": "2094386387550089718",
+   "autor": "@Mat_Cas",
+   "texto": "Bueno, lunes a la mañana y todos los clientes desesperados por no poder usar el sistema caído de DonWeb https://t.co/cmYobEADnm",
+   "url": "https://x.com/Mat_Cas/status/2094386387550089718",
+   "publicado_en": "Mon Aug 31 11:26:41 +0000 2026",
+   "metricas": {
+    "likes": 14,
+    "reposts": 2,
+    "replies": 6,
+    "views": 2113,
+    "seguidores_autor": 213
+   },
+   "tipo": "hecho",
+   "valencia": "desfavorable",
+   "intensidad": 0.7,
+   "justificacion": "reporta clientes sin poder usar el sistema; etiqueta humana de la ronda 4"
+  },
+  {
+   "id": "2095527021300359303",
+   "autor": "@briannvalente",
+   "texto": "hostearon ChatGPT en Donweb? está caído, tira 404 https://t.co/FvRPrexWgR",
+   "url": "https://x.com/briannvalente/status/2095527021300359303",
+   "publicado_en": "Thu Sep 03 14:59:09 +0000 2026",
+   "metricas": {
+    "likes": 7,
+    "reposts": 0,
+    "replies": 2,
+    "views": 853,
+    "seguidores_autor": 4993
+   },
+   "tipo": "opinion",
+   "valencia": "desfavorable",
+   "intensidad": 0.5,
+   "justificacion": "chiste sobre la caida usando el 404 de un tercero"
+  },
+  {
+   "id": "2095494520594981247",
+   "autor": "@identidadrobada",
+   "texto": "🧵 DonWeb: el nodo NOVA vuelve a estar operativo después de una extensa interrupción\nActualización importante sobre la caída de servicios Cloud Servers en el nodo NOVA de DonWeb.\nEsto es lo que informó oficialmente la empresa y los puntos que todavía quedan por aclarar. 👇",
+   "url": "https://x.com/identidadrobada/status/2095494520594981247",
+   "publicado_en": "Thu Sep 03 12:50:00 +0000 2026",
+   "metricas": {
+    "likes": 18,
+    "reposts": 0,
+    "replies": 5,
+    "views": 3764,
+    "seguidores_autor": 21423
+   },
+   "tipo": "hecho",
+   "valencia": "favorable",
+   "intensidad": 0.3,
+   "justificacion": "informa que el nodo NOVA volvio a estar operativo, con puntos pendientes"
+  },
+  {
+   "id": "2095549761877086293",
+   "autor": "@DolarDivisaARG",
+   "texto": "📌 Cotizaciones Registradas de las 13,20 hs del 03-SEPT-2026\nSeguimos trabajando para subir en nuevo portal, en \"servidor seguro\", dado que DonWeb aún no está 100%n seguro \n\n#economía #finanzas #tesoreria #comercioexterior #exportaciones #importaciones #importadores #exportadores #pymes #MULC #DolarDivisa",
+   "url": "https://x.com/DolarDivisaARG/status/2095549761877086293",
+   "publicado_en": "Thu Sep 03 16:29:31 +0000 2026",
+   "metricas": {
+    "likes": 0,
+    "reposts": 0,
+    "replies": 0,
+    "views": 36,
+    "seguidores_autor": 1783
+   },
+   "tipo": "hecho",
+   "valencia": "desfavorable",
+   "intensidad": 0.5,
+   "justificacion": "un tercero informa que migra a otro servidor porque DonWeb no esta operativo"
+  },
+  {
+   "id": "1767603591546634248",
+   "autor": "@Rosariociudadok",
+   "texto": "Me pregunta Germán de #DonWeb porqué dimos de baja el servicio después de SUFRIRLO un año entero.\n\nBásicamente porque son PÉSIMOS, cortes y caídas constantes, y cuando tuvieron crisis de caída muchas horas NO RESPONDIERON de manera acorde. https://t.co/cVWaKhvmUn",
+   "url": "https://x.com/Rosariociudadok/status/1767603591546634248",
+   "publicado_en": "Tue Mar 12 17:28:31 +0000 2024",
+   "metricas": {
+    "likes": 22,
+    "reposts": 3,
+    "replies": 9,
+    "views": 10310,
+    "seguidores_autor": 58314
+   },
+   "tipo": "opinion",
+   "valencia": "desfavorable",
+   "intensidad": 0.9,
+   "justificacion": "cliente que se dio de baja: 'son PESIMOS, cortes y caidas constantes'"
+  },
+  {
+   "id": "1674523383285833730",
+   "autor": "@maxiloayza",
+   "texto": "@DonWebOficial Buenas equipo! estan caído DonWeb en toda Argentina al igual que sus webs? https://t.co/pMua8TKDxU",
+   "url": "https://x.com/maxiloayza/status/1674523383285833730",
+   "publicado_en": "Thu Jun 29 21:01:00 +0000 2023",
+   "metricas": {
+    "likes": 19,
+    "reposts": 1,
+    "replies": 16,
+    "views": 2535,
+    "seguidores_autor": 761
+   },
+   "tipo": "hecho",
+   "valencia": "desfavorable",
+   "intensidad": 0.5,
+   "justificacion": "pregunta que describe una caida nacional del servicio y de sus propias webs"
+  },
+  {
+   "id": "2095520469982069029",
+   "autor": "@jadomillan",
+   "texto": "DonWeb: Nova restablecido !!\n\nCronología de una tragedia superada...\n\nhttps://t.co/Ib6MkWl89i\n\n#DonWeb #CloudServers #NodoNova #Outage #NextCloud #VPS #OpenStack #Datacenter #Rosario #ArgentinaTech #Infraestructura #AltaDisponibilidad #CloudComputing #Sysadmin #DevOps https://t.co/qaJY7UJxa2",
+   "url": "https://x.com/jadomillan/status/2095520469982069029",
+   "publicado_en": "Thu Sep 03 14:33:07 +0000 2026",
+   "metricas": {
+    "likes": 0,
+    "reposts": 1,
+    "replies": 0,
+    "views": 92,
+    "seguidores_autor": 49
+   },
+   "tipo": "hecho",
+   "valencia": "favorable",
+   "intensidad": 0.4,
+   "justificacion": "informa el restablecimiento del nodo Nova"
+  },
+  {
+   "id": "2095112735587459469",
+   "autor": "@b0d2ae215bb44c7",
+   "texto": "@mis2centavos de la caida del nodo NOVA de Donweb sabes algo?",
+   "url": "https://x.com/b0d2ae215bb44c7/status/2095112735587459469",
+   "publicado_en": "Wed Sep 02 11:32:56 +0000 2026",
+   "metricas": {
+    "likes": 0,
+    "reposts": 0,
+    "replies": 0,
+    "views": 65,
+    "seguidores_autor": 1
+   },
+   "tipo": "opinion",
+   "valencia": "desfavorable",
+   "intensidad": 0.3,
+   "justificacion": "etiqueta humana de la calibracion: pide informacion sobre la caida del nodo"
+  },
+  {
+   "id": "1780908966379192606",
+   "autor": "@hcamusso09",
+   "texto": "#donwebcaido #donweb\nNo levanta ningún servicio de Donweb.",
+   "url": "https://x.com/hcamusso09/status/1780908966379192606",
+   "publicado_en": "Thu Apr 18 10:39:19 +0000 2024",
+   "metricas": {
+    "likes": 8,
+    "reposts": 4,
+    "replies": 11,
+    "views": 814,
+    "seguidores_autor": 22
+   },
+   "tipo": "hecho",
+   "valencia": "desfavorable",
+   "intensidad": 0.6,
+   "justificacion": "reporta que ningun servicio levanta (incidente de 2024)"
+  },
+  {
+   "id": "2095144061116043290",
+   "autor": "@beast_ok18",
+   "texto": "Siempre que use donweb tenían fallos, lentitudes.\nLo único a rescatar que siempre tuve de donweb es que respondían rápido los rockets pero siempre odié tenerlos como proveedor de algo porque siempre un problema y encima es carísimo",
+   "url": "https://x.com/beast_ok18/status/2095144061116043290",
+   "publicado_en": "Wed Sep 02 13:37:24 +0000 2026",
+   "metricas": {
+    "likes": 0,
+    "reposts": 0,
+    "replies": 0,
+    "views": 156,
+    "seguidores_autor": 415
+   },
+   "tipo": "opinion",
+   "valencia": "desfavorable",
+   "intensidad": 0.8,
+   "justificacion": "balance de su experiencia como cliente: fallos, lentitudes y precio alto"
+  },
+  {
+   "id": "1773475178619482421",
+   "autor": "@G_Programming",
+   "texto": "🎉 ¡Atención, comunidad tech! 🎉\n\n¡Estoy súper emocionado de anunciarles que junto con el equipo de DonWeb, voy a estar dictando un súper curso sobre NVIM! Y lo mejor de todo… ¡es GRATIS! 💻🚀 🪡🧵\n\n#NVIM #CursoGratis #DonWebTech #Programación #DesarrolloWeb #TechLife",
+   "url": "https://x.com/G_Programming/status/1773475178619482421",
+   "publicado_en": "Thu Mar 28 22:20:06 +0000 2024",
+   "metricas": {
+    "likes": 34,
+    "reposts": 7,
+    "replies": 2,
+    "views": 2058,
+    "seguidores_autor": 20925
+   },
+   "tipo": "hecho",
+   "valencia": "favorable",
+   "intensidad": 0.5,
+   "justificacion": "anuncio de un curso gratuito dictado junto al equipo de la empresa"
+  },
+  {
+   "id": "1163467498752290816",
+   "autor": "@alejoasotelo",
+   "texto": "@DonWebOficial #DonWeb caído... El estado de los servicios igual. Quedamos en bolas. Genios!!! https://t.co/T0Gka7Kz2M",
+   "url": "https://x.com/alejoasotelo/status/1163467498752290816",
+   "publicado_en": "Mon Aug 19 15:07:22 +0000 2019",
+   "metricas": {
+    "likes": 12,
+    "reposts": 3,
+    "replies": 9,
+    "views": null,
+    "seguidores_autor": 175
+   },
+   "tipo": "hecho",
+   "valencia": "desfavorable",
+   "intensidad": 0.7,
+   "justificacion": "reporta la caida y que la pagina de estado tambien esta caida (2019)"
+  },
+  {
+   "id": "2095564061417021691",
+   "autor": "@peronistor",
+   "texto": "Entonces Grok, Claude y ChatGPT funcionaban en Donweb?",
+   "url": "https://x.com/peronistor/status/2095564061417021691",
+   "publicado_en": "Thu Sep 03 17:26:20 +0000 2026",
+   "metricas": {
+    "likes": 0,
+    "reposts": 0,
+    "replies": 0,
+    "views": 57,
+    "seguidores_autor": 260
+   },
+   "tipo": "opinion",
+   "valencia": "desfavorable",
+   "intensidad": 0.3,
+   "justificacion": "chiste que amplifica el meme de que la caida rompio medio internet"
+  },
+  {
+   "id": "1532355108029308928",
+   "autor": "@Mayoraz",
+   "texto": "Que pedazo de poronga que es DonWeb.",
+   "url": "https://x.com/Mayoraz/status/1532355108029308928",
+   "publicado_en": "Thu Jun 02 13:35:02 +0000 2022",
+   "metricas": {
+    "likes": 16,
+    "reposts": 0,
+    "replies": 11,
+    "views": null,
+    "seguidores_autor": 14055
+   },
+   "tipo": "opinion",
+   "valencia": "desfavorable",
+   "intensidad": 0.9,
+   "justificacion": "insulto sin contenido factual (2022)"
+  },
+  {
+   "id": "2095335669937602560",
+   "autor": "@lazcano",
+   "texto": "Recuerdos de 2017 cuando se incendió el Datacenter de @Donweb y estuvo caído todo como quince días; por planificación, pude levantar backups semanales en otro hosting, gracias a tener las DNS en Cloudflare, etc... Y muchos clientes querían volver por baratos, por eso pedía tiempo",
+   "url": "https://x.com/lazcano/status/2095335669937602560",
+   "publicado_en": "Thu Sep 03 02:18:47 +0000 2026",
+   "metricas": {
+    "likes": 2,
+    "reposts": 1,
+    "replies": 0,
+    "views": 411,
+    "seguidores_autor": 1075
+   },
+   "tipo": "hecho",
+   "valencia": "desfavorable",
+   "intensidad": 0.6,
+   "justificacion": "recuerda el incendio del datacenter de 2017 y los quince dias de caida"
+  },
+  {
+   "id": "657204638643523584",
+   "autor": "@VolemosAr",
+   "texto": "Perdonen, pero estuvimos con el sitio caído gracias a @DonWebOficial, así que ya saben si necesitan servicio de hosting... #donweb #not",
+   "url": "https://x.com/VolemosAr/status/657204638643523584",
+   "publicado_en": "Thu Oct 22 14:39:30 +0000 2015",
+   "metricas": {
+    "likes": 7,
+    "reposts": 4,
+    "replies": 1,
+    "views": null,
+    "seguidores_autor": 84656
+   },
+   "tipo": "opinion",
+   "valencia": "desfavorable",
+   "intensidad": 0.7,
+   "justificacion": "anti recomendacion sarcastica de contratar el hosting: '#not' (2015)"
+  },
+  {
+   "id": "2095550233048469841",
+   "autor": "@DolarDivisaARG",
+   "texto": "📌 Cotizaciones Registradas de las 13,15 hs del 03-SEPT-2026\nSeguimos trabajando para subir en nuevo portal, en \"servidor seguro\", dado que DonWeb aún no es 100% operativo\n\n#economía #finanzas #tesoreria #comercioexterior #exportaciones #importaciones #importadores #exportadores #pymes #MULC #DolarDivisa",
+   "url": "https://x.com/DolarDivisaARG/status/2095550233048469841",
+   "publicado_en": "Thu Sep 03 16:31:23 +0000 2026",
+   "metricas": {
+    "likes": 0,
+    "reposts": 0,
+    "replies": 1,
+    "views": 39,
+    "seguidores_autor": 1783
+   },
+   "tipo": "hecho",
+   "valencia": "desfavorable",
+   "intensidad": 0.4,
+   "justificacion": "etiqueta humana de la ronda 4: un tercero migra porque DonWeb no esta operativo"
+  },
+  {
+   "id": "2095356517838897346",
+   "autor": "@temnoticiasarg",
+   "texto": "#Sociedad] DonWeb: Una de las mayores empresas proveedoras de hosting de la #Argentina lleva tres días caída y hay cientos de pymes afectadas\n\n👇\nhttps://t.co/edco8Cl8ow https://t.co/7ebx8tPztG",
+   "url": "https://x.com/temnoticiasarg/status/2095356517838897346",
+   "publicado_en": "Thu Sep 03 03:41:38 +0000 2026",
+   "metricas": {
+    "likes": 0,
+    "reposts": 0,
+    "replies": 1,
+    "views": 173,
+    "seguidores_autor": 254
+   },
+   "tipo": "hecho",
+   "valencia": "desfavorable",
+   "intensidad": 0.7,
+   "justificacion": "nota periodistica: tres dias caida y cientos de pymes afectadas"
+  },
+  {
+   "id": "823751709608603648",
+   "autor": "@josuefuentesve",
+   "texto": "Investigando a causa de la caída me entere que #donweb esta en proceso de venta y traspaso a https://t.co/tAkIyNbJYo https://t.co/rVqUvvjr65",
+   "url": "https://x.com/josuefuentesve/status/823751709608603648",
+   "publicado_en": "Tue Jan 24 04:38:06 +0000 2017",
+   "metricas": {
+    "likes": 10,
+    "reposts": 7,
+    "replies": 1,
+    "views": null,
+    "seguidores_autor": 3308
+   },
+   "tipo": "hecho",
+   "valencia": "desfavorable",
+   "intensidad": 0.4,
+   "justificacion": "informa que la empresa esta en proceso de venta, a raiz de investigar una caida (2017)"
+  },
+  {
+   "id": "1197889200487567361",
+   "autor": "@jedux",
+   "texto": "me gusta la falopa de marketing de donweb. https://t.co/oGaPWGuQIo",
+   "url": "https://x.com/jedux/status/1197889200487567361",
+   "publicado_en": "Fri Nov 22 14:46:55 +0000 2019",
+   "metricas": {
+    "likes": 13,
+    "reposts": 1,
+    "replies": 4,
+    "views": null,
+    "seguidores_autor": 3549
+   },
+   "tipo": "opinion",
+   "valencia": "desfavorable",
+   "intensidad": 0.5,
+   "justificacion": "se burla del marketing de la empresa (2019)"
+  },
+  {
+   "id": "2094400231068635366",
+   "autor": "@polipotus",
+   "texto": "y se cayo mi nodo de donweb nomas, qepd",
+   "url": "https://x.com/polipotus/status/2094400231068635366",
+   "publicado_en": "Mon Aug 31 12:21:41 +0000 2026",
+   "metricas": {
+    "likes": 5,
+    "reposts": 0,
+    "replies": 1,
+    "views": 1046,
+    "seguidores_autor": 105
+   },
+   "tipo": "hecho",
+   "valencia": "desfavorable",
+   "intensidad": 0.5,
+   "justificacion": "reporta la caida de su propio nodo"
+  },
+  {
+   "id": "2095159429700153616",
+   "autor": "@jmaxdev",
+   "texto": "Voy a explicar que es un \"Nodo\" y que es un VPS. Y si afecta a tu dominio. Ahora con lo ocurrido con #DonWeb.\n\n1. Nodo: es el ordenador físico \n2. Vps: es una maquina virtual, independiente para cada usuario que funciona dentro del Nodo.\n\n1/3",
+   "url": "https://x.com/jmaxdev/status/2095159429700153616",
+   "publicado_en": "Wed Sep 02 14:38:28 +0000 2026",
+   "metricas": {
+    "likes": 2,
+    "reposts": 1,
+    "replies": 1,
+    "views": 479,
+    "seguidores_autor": 1
+   },
+   "tipo": "hecho",
+   "valencia": "ninguna",
+   "intensidad": 0.0,
+   "justificacion": "hilo didactico que explica que es un nodo y que es un VPS; usa el caso como excusa"
+  },
+  {
+   "id": "2095558004833657104",
+   "autor": "@AbogadosRosarin",
+   "texto": "@DonWebOficial #Fallas en servicios de #CloudServers en nodo Nova de #DonWeb.\nIncident Report for #StatusDonWeb (3/9/2026)\n📷Monitoring: Actualmente el 100% del nodo NOVA se encuentra operativo.\nTras la recuperacion no se reporta pérdidas de datos.\nhttps://t.co/o3MXExo6oY https://t.co/eyPHCsrqJt",
+   "url": "https://x.com/AbogadosRosarin/status/2095558004833657104",
+   "publicado_en": "Thu Sep 03 17:02:16 +0000 2026",
+   "metricas": {
+    "likes": 0,
+    "reposts": 0,
+    "replies": 0,
+    "views": 32,
+    "seguidores_autor": 346
+   },
+   "tipo": "hecho",
+   "valencia": "favorable",
+   "intensidad": 0.4,
+   "justificacion": "replica del parte de recuperacion del 3/9"
+  },
+  {
+   "id": "2094599871340675081",
+   "autor": "@jbap1204",
+   "texto": "Me imagino que le vamos a hacer juicio a Donweb no?",
+   "url": "https://x.com/jbap1204/status/2094599871340675081",
+   "publicado_en": "Tue Sep 01 01:34:59 +0000 2026",
+   "metricas": {
+    "likes": 14,
+    "reposts": 1,
+    "replies": 4,
+    "views": 1951,
+    "seguidores_autor": 1399
+   },
+   "tipo": "opinion",
+   "valencia": "desfavorable",
+   "intensidad": 0.6,
+   "justificacion": "pregunta retorica que propone demandar judicialmente a la empresa"
+  },
+  {
+   "id": "2095125967962341451",
+   "autor": "@AbogadosRosarin",
+   "texto": "🚨 Información sobre el incidente masivo en #DonWeb: Desde el 30/08 hay una falla grave en el nodo NOVA (Cloud/Servidores). \n✅ ¡Llevamos tranquilidad! Nuestra web https://t.co/jelCD2kFVr sigue 100% ONLINE y operativa. No fuimos afectados .Gracias🧵1/2 https://t.co/KbSWdSdPIL",
+   "url": "https://x.com/AbogadosRosarin/status/2095125967962341451",
+   "publicado_en": "Wed Sep 02 12:25:30 +0000 2026",
+   "metricas": {
+    "likes": 0,
+    "reposts": 0,
+    "replies": 2,
+    "views": 298,
+    "seguidores_autor": 346
+   },
+   "tipo": "hecho",
+   "valencia": "desfavorable",
+   "intensidad": 0.6,
+   "justificacion": "informa la falla grave del nodo NOVA desde el 30/08"
+  },
+  {
+   "id": "2094959998476390501",
+   "autor": "@patribonaerense",
+   "texto": "Hijos de puta desde el domingo tenemos el diario caído por culpa de DonWeb",
+   "url": "https://x.com/patribonaerense/status/2094959998476390501",
+   "publicado_en": "Wed Sep 02 01:26:00 +0000 2026",
+   "metricas": {
+    "likes": 0,
+    "reposts": 0,
+    "replies": 0,
+    "views": 447,
+    "seguidores_autor": 15
+   },
+   "tipo": "opinion",
+   "valencia": "desfavorable",
+   "intensidad": 0.9,
+   "justificacion": "insulto directo mas el reporte de su diario caido desde el domingo"
+  },
+  {
+   "id": "2095120655855362377",
+   "autor": "@diegovit",
+   "texto": "Que servidor tiene donweb que la página está online? Ni ellos confían en el propio",
+   "url": "https://x.com/diegovit/status/2095120655855362377",
+   "publicado_en": "Wed Sep 02 12:04:24 +0000 2026",
+   "metricas": {
+    "likes": 0,
+    "reposts": 0,
+    "replies": 0,
+    "views": 208,
+    "seguidores_autor": 144
+   },
+   "tipo": "opinion",
+   "valencia": "desfavorable",
+   "intensidad": 0.6,
+   "justificacion": "ironiza con que la empresa no hostea su propia pagina donde hostea a sus clientes"
+  },
+  {
+   "id": "2094911965759967594",
+   "autor": "@identidadrobada",
+   "texto": "DonWeb comercializa su Cloud Server diciendo:\n“datos replicados en tres nodos diferentes y en tiempo real”\n\ny también:\n\n“backups externos automáticos”.\n\nSin embargo, ante la caída:\n\nno pueden migrar las máquinas a otro nodo\nno pueden acceder temporalmente a los backups\n100% del nodo NOVA está inaccesible.\n\n¿Dónde están físicamente las réplicas y los backups, y por qué tampoco pueden utilizarse como mecanismo de recuperación durante la falla de NOVA?\n\nhttps://t.co/XcnCMpk0Iv",
+   "url": "https://x.com/identidadrobada/status/2094911965759967594",
+   "publicado_en": "Tue Sep 01 22:15:08 +0000 2026",
+   "metricas": {
+    "likes": 190,
+    "reposts": 27,
+    "replies": 33,
+    "views": 13600,
+    "seguidores_autor": 21423
+   },
+   "tipo": "hecho",
+   "valencia": "desfavorable",
+   "intensidad": 0.9,
+   "justificacion": "contrasta lo que la empresa promete en su publicidad con lo que no pudo hacer en la caida"
+  },
+  {
+   "id": "2095146256209244378",
+   "autor": "@elentrerios",
+   "texto": "#Tecnología Una falla masiva en la infraestructura tecnológica de DonWeb, la mayor empresa de registro de dominios y alojamiento web de Argentina, mantiene paralizadas las operaciones de cientos de pequeñas y medianas empresas en #EntreRíos y todo el país.\nhttps://t.co/LfwdGEkM8Y",
+   "url": "https://x.com/elentrerios/status/2095146256209244378",
+   "publicado_en": "Wed Sep 02 13:46:08 +0000 2026",
+   "metricas": {
+    "likes": 0,
+    "reposts": 0,
+    "replies": 0,
+    "views": 194,
+    "seguidores_autor": 7538
+   },
+   "tipo": "hecho",
+   "valencia": "desfavorable",
+   "intensidad": 0.8,
+   "justificacion": "nota: la falla mantiene paralizadas a cientos de pymes de todo el pais"
+  },
+  {
+   "id": "2095133448503464156",
+   "autor": "@LT8am830",
+   "texto": "#ElPrimero\nProblemas en la compañía de hosting DonWeb\n\"Es una incógnita. Está afectando a clientes que usan un servicio específico; la mayoría, pymes y grandes empresas. La única comunicación oficial se hizo por la red X:\nhttps://t.co/xqh3rC9Joy\"\nAbogado Gonzalo Jeangeorges https://t.co/KFDaEZD6n7",
+   "url": "https://x.com/LT8am830/status/2095133448503464156",
+   "publicado_en": "Wed Sep 02 12:55:14 +0000 2026",
+   "metricas": {
+    "likes": 0,
+    "reposts": 1,
+    "replies": 2,
+    "views": 525,
+    "seguidores_autor": 32090
+   },
+   "tipo": "hecho",
+   "valencia": "desfavorable",
+   "intensidad": 0.7,
+   "justificacion": "radio: la unica comunicacion oficial se hizo por X"
+  },
+  {
+   "id": "1326163223230484487",
+   "autor": "@AntiPhishing_La",
+   "texto": "CUIDADO: nuevo caso de #phishing que utiliza una redirección de @MundoWix (hace más de 5 días) y se aloja en un sitio vulnerado en @DonWebOficial \nAsunto del correo: \"Aviso Importante\".\n\nWix y DonWeb, por favor den de baja el sitio reportado a abuse@, sean responsables! https://t.co/mxpPGOIjH8",
+   "url": "https://x.com/AntiPhishing_La/status/1326163223230484487",
+   "publicado_en": "Tue Nov 10 14:02:05 +0000 2020",
+   "metricas": {
+    "likes": 12,
+    "reposts": 15,
+    "replies": 0,
+    "views": null,
+    "seguidores_autor": 6959
+   },
+   "tipo": "opinion",
+   "valencia": "desfavorable",
+   "intensidad": 0.5,
+   "justificacion": "reclama que den de baja un sitio de phishing alojado en su infraestructura (2020)"
+  },
+  {
+   "id": "2094841078524334166",
+   "autor": "@tomburrieza",
+   "texto": "lo de donweb suena a ransomsito fuerte, que mal :(",
+   "url": "https://x.com/tomburrieza/status/2094841078524334166",
+   "publicado_en": "Tue Sep 01 17:33:28 +0000 2026",
+   "metricas": {
+    "likes": 1,
+    "reposts": 0,
+    "replies": 0,
+    "views": 450,
+    "seguidores_autor": 205
+   },
+   "tipo": "opinion",
+   "valencia": "desfavorable",
+   "intensidad": 0.4,
+   "justificacion": "especula con que la causa fue un ransomware"
+  },
+  {
+   "id": "2095011100391612767",
+   "autor": "@jmaxdev",
+   "texto": "Que bueno que toda mi infraestructura esta en el nodo Yoga de #DonWeb y no en el Nova...",
+   "url": "https://x.com/jmaxdev/status/2095011100391612767",
+   "publicado_en": "Wed Sep 02 04:49:04 +0000 2026",
+   "metricas": {
+    "likes": 1,
+    "reposts": 0,
+    "replies": 0,
+    "views": 1689,
+    "seguidores_autor": 1
+   },
+   "tipo": "opinion",
+   "valencia": "desfavorable",
+   "intensidad": 0.3,
+   "justificacion": "se alivia de no estar en el nodo afectado"
+  },
+  {
+   "id": "2094505382144053628",
+   "autor": "@ncarugatti",
+   "texto": "La mejor decisión que tome fue sacar todo de DonWeb. Un servicio pésimo, vulnerable y caro. A mi me dejaron 1 semana off line",
+   "url": "https://x.com/ncarugatti/status/2094505382144053628",
+   "publicado_en": "Mon Aug 31 19:19:31 +0000 2026",
+   "metricas": {
+    "likes": 13,
+    "reposts": 0,
+    "replies": 3,
+    "views": 1788,
+    "seguidores_autor": 1030
+   },
+   "tipo": "opinion",
+   "valencia": "desfavorable",
+   "intensidad": 0.9,
+   "justificacion": "cliente que migro: 'un servicio pesimo, vulnerable y caro'"
+  },
+  {
+   "id": "1383927637253394442",
+   "autor": "@AntiPhishing_La",
+   "texto": "Continúan correos #phishing para engañar a clientes de @Banco_SantaFe \n\nWeb falsa ahora alojada en ONG de Rosario, abusada\n\nCorreo enviado (ab)usando servicios de @EnvialoSimple (Donweb/Dattatec revisen el abuso: Message-ID: &lt;0.0.A.820.1D734463B00FAE4.E8099@mta118.73.tstes.net&gt;) https://t.co/2IRPooi4x9",
+   "url": "https://x.com/AntiPhishing_La/status/1383927637253394442",
+   "publicado_en": "Sun Apr 18 23:37:15 +0000 2021",
+   "metricas": {
+    "likes": 11,
+    "reposts": 12,
+    "replies": 0,
+    "views": null,
+    "seguidores_autor": 6959
+   },
+   "tipo": "opinion",
+   "valencia": "desfavorable",
+   "intensidad": 0.4,
+   "justificacion": "pide que revisen el abuso de su servicio de envio de correos (2021)"
+  },
+  {
+   "id": "955444526994350081",
+   "autor": "@juligurfinkiel",
+   "texto": "Hace 6 días que @DonWebOficial se olvidó de hacer un tramite en nic.br y tenemos todos los dominios caídos y encima no dejan transferirlos. 0 Respuestas. No registren por nada del mundo en Donweb! @GuilleTornatore",
+   "url": "https://x.com/juligurfinkiel/status/955444526994350081",
+   "publicado_en": "Mon Jan 22 14:18:21 +0000 2018",
+   "metricas": {
+    "likes": 12,
+    "reposts": 13,
+    "replies": 1,
+    "views": null,
+    "seguidores_autor": 5385
+   },
+   "tipo": "hecho",
+   "valencia": "desfavorable",
+   "intensidad": 0.9,
+   "justificacion": "etiqueta humana de la calibracion: seis dias de dominios caidos por un tramite no hecho"
+  },
+  {
+   "id": "1936157340132131083",
+   "autor": "@elanarcoc",
+   "texto": "Rubro Hosting: Nunca contratar ni Godaddy, ni Hostinger. En Argentina evitar a DonWeb. Además dejo captura de las marcas de la empresa \"Newfold Digital Inc.\" Vean sus marcas, es todo lo mismo. https://t.co/eW8CejpDss",
+   "url": "https://x.com/elanarcoc/status/1936157340132131083",
+   "publicado_en": "Fri Jun 20 20:20:56 +0000 2025",
+   "metricas": {
+    "likes": 17,
+    "reposts": 2,
+    "replies": 8,
+    "views": 3149,
+    "seguidores_autor": 2905
+   },
+   "tipo": "opinion",
+   "valencia": "desfavorable",
+   "intensidad": 0.8,
+   "justificacion": "recomendacion explicita de evitar la empresa"
+  },
+  {
+   "id": "2095535525029409265",
+   "autor": "@maxifirtman",
+   "texto": "Y un día, la humanidad descubrió que todas las IAs estaban hosteadas en DonWeb. https://t.co/ldwbDKUBe3",
+   "url": "https://x.com/maxifirtman/status/2095535525029409265",
+   "publicado_en": "Thu Sep 03 15:32:56 +0000 2026",
+   "metricas": {
+    "likes": 710,
+    "reposts": 39,
+    "replies": 18,
+    "views": 28855,
+    "seguidores_autor": 84215
+   },
+   "tipo": "opinion",
+   "valencia": "desfavorable",
+   "intensidad": 0.6,
+   "justificacion": "chiste viral que usa la caida como si hubiera volteado a todas las IAs"
+  },
+  {
+   "id": "2095489075171958992",
+   "autor": "@tibueze",
+   "texto": "Para los que están sufriendo con #DonWeb les dejo esto que publiqué en 2017 cuando se quemó el datacenter y yo tenía el último cliente legacy allí hosteado todavía... \nhttps://t.co/0lsWfxqcCi",
+   "url": "https://x.com/tibueze/status/2095489075171958992",
+   "publicado_en": "Thu Sep 03 12:28:22 +0000 2026",
+   "metricas": {
+    "likes": 0,
+    "reposts": 1,
+    "replies": 0,
+    "views": 96,
+    "seguidores_autor": 806
+   },
+   "tipo": "hecho",
+   "valencia": "desfavorable",
+   "intensidad": 0.5,
+   "justificacion": "recupera lo que publico en el incendio del datacenter de 2017"
+  },
+  {
+   "id": "2095489737100521887",
+   "autor": "@elanarcoc",
+   "texto": "Vean la fecha, hace más de un año. Les avisé que no usen Donweb.",
+   "url": "https://x.com/elanarcoc/status/2095489737100521887",
+   "publicado_en": "Thu Sep 03 12:31:00 +0000 2026",
+   "metricas": {
+    "likes": 14,
+    "reposts": 2,
+    "replies": 4,
+    "views": 916,
+    "seguidores_autor": 2905
+   },
+   "tipo": "opinion",
+   "valencia": "desfavorable",
+   "intensidad": 0.6,
+   "justificacion": "se remite a su propia advertencia previa de no usar la empresa"
+  },
+  {
+   "id": "2095254795594375544",
+   "autor": "@arcoiris_blanco",
+   "texto": "Bueno ahora sucede que los que veníamos usando DonWeb hace mil años somos unos pelotudos y nos re cabe, pero nadie recomienda ningún otro.\nHáganse ortear.",
+   "url": "https://x.com/arcoiris_blanco/status/2095254795594375544",
+   "publicado_en": "Wed Sep 02 20:57:25 +0000 2026",
+   "metricas": {
+    "likes": 4,
+    "reposts": 0,
+    "replies": 4,
+    "views": 584,
+    "seguidores_autor": 596
+   },
+   "tipo": "opinion",
+   "valencia": "ninguna",
+   "intensidad": 0.2,
+   "justificacion": "discute con quienes se burlan de los clientes, no juzga a la empresa"
+  },
+  {
+   "id": "2095469444612964641",
+   "autor": "@camela_ben16544",
+   "texto": "Jajajajaja que le respondo a DonWeb? https://t.co/Z0wq24gycM",
+   "url": "https://x.com/camela_ben16544/status/2095469444612964641",
+   "publicado_en": "Thu Sep 03 11:10:22 +0000 2026",
+   "metricas": {
+    "likes": 0,
+    "reposts": 0,
+    "replies": 0,
+    "views": 133,
+    "seguidores_autor": 107
+   },
+   "tipo": "hecho",
+   "valencia": "ninguna",
+   "intensidad": 0.0,
+   "justificacion": "demasiado corto y ambiguo para leerle una valencia"
+  },
+  {
+   "id": "2094785373167644729",
+   "autor": "@Tropea",
+   "texto": "Incidencia en DonWeb desde hace dos/tres días. No se puede ni migrar porque los datos están inaccesibles. Cliente todavía está en ese hosting, a pesar de haberle recomendado hace tiempo que se cambie. 🙃",
+   "url": "https://x.com/Tropea/status/2094785373167644729",
+   "publicado_en": "Tue Sep 01 13:52:06 +0000 2026",
+   "metricas": {
+    "likes": 1,
+    "reposts": 0,
+    "replies": 0,
+    "views": 80,
+    "seguidores_autor": 4
+   },
+   "tipo": "hecho",
+   "valencia": "desfavorable",
+   "intensidad": 0.7,
+   "justificacion": "reporta dos o tres dias de incidencia y que no se puede migrar por datos inaccesibles"
+  },
+  {
+   "id": "2095160902169358551",
+   "autor": "@VeraJuanIgnacio",
+   "texto": "Con el quilombo que están teniendo en Donweb, varios clientes nuestros que hosteaban con ellos, nos pidieron migrar a nosotros porque ya les resulta crítico.",
+   "url": "https://x.com/VeraJuanIgnacio/status/2095160902169358551",
+   "publicado_en": "Wed Sep 02 14:44:19 +0000 2026",
+   "metricas": {
+    "likes": 21,
+    "reposts": 0,
+    "replies": 1,
+    "views": 2857,
+    "seguidores_autor": 445
+   },
+   "tipo": "hecho",
+   "valencia": "desfavorable",
+   "intensidad": 0.7,
+   "justificacion": "reporta que varios clientes le pidieron migrar desde DonWeb por la crisis"
+  },
+  {
+   "id": "2095142867589083269",
+   "autor": "@rockanrolnena",
+   "texto": "#DonWeb transmitiendo en vivo un evento de IA mientras sigue todo el Nodo Nova explotado.... pasen a saludar y dejen sus comentarios por el canal! https://t.co/z4StaunxWI",
+   "url": "https://x.com/rockanrolnena/status/2095142867589083269",
+   "publicado_en": "Wed Sep 02 13:32:40 +0000 2026",
+   "metricas": {
+    "likes": 0,
+    "reposts": 0,
+    "replies": 0,
+    "views": 163,
+    "seguidores_autor": 19
+   },
+   "tipo": "opinion",
+   "valencia": "desfavorable",
+   "intensidad": 0.7,
+   "justificacion": "sarcasmo por el evento de IA en vivo mientras el nodo sigue caido, e invita a comentar ahi"
+  },
+  {
+   "id": "2094923765306036398",
+   "autor": "@jpescotorin",
+   "texto": "Un nodo de @DonWebOficial lleva días caído.\nNo hay tiempo estimado de resolución. No hay acceso a backups ni posibilidad de migrar.\n\nLos sistemas fallan. Todo se rompe.\nLa pregunta es qué construimos alrededor de esa certeza:\nEscribí sobre eso acá 👇 \nhttps://t.co/9vgFa58vTN",
+   "url": "https://x.com/jpescotorin/status/2094923765306036398",
+   "publicado_en": "Tue Sep 01 23:02:02 +0000 2026",
+   "metricas": {
+    "likes": 1,
+    "reposts": 1,
+    "replies": 2,
+    "views": 375,
+    "seguidores_autor": 64
+   },
+   "tipo": "hecho",
+   "valencia": "desfavorable",
+   "intensidad": 0.6,
+   "justificacion": "reporta dias de caida sin ETA, sin backups y sin migracion posible"
+  },
+  {
+   "id": "2094840070280769919",
+   "autor": "@mzagrocomar",
+   "texto": "Hace más de 48 horas que no podemos publicar: el proveedor de hosting que usamos (#DonWeb) tiene caído el nodo donde está alojado nuestro sitio desde el 30/08, sin tiempo estimado de resolución.\n\nNo es un problema nuestro ni de contenido — es una falla de infraestructura que afecta a miles de sitios, sistemas de facturación y tiendas online en todo el país, no solo a MZAgro.\n\nSegún la propia empresa @DonWebOficial, no hay riesgo de pérdida de información. Esperamos que así sea. No han dado plazos ni más detalles. Apenas se normalice el servicio, volvemos con todo.\n\nGracias por la paciencia 🙏",
+   "url": "https://x.com/mzagrocomar/status/2094840070280769919",
+   "publicado_en": "Tue Sep 01 17:29:27 +0000 2026",
+   "metricas": {
+    "likes": 18,
+    "reposts": 3,
+    "replies": 3,
+    "views": 2084,
+    "seguidores_autor": 20
+   },
+   "tipo": "hecho",
+   "valencia": "desfavorable",
+   "intensidad": 0.8,
+   "justificacion": "medio afectado: 48 horas sin poder publicar por la falla del nodo"
+  },
+  {
+   "id": "2094947153244266764",
+   "autor": "@jiborio",
+   "texto": "Quien despues de este incidente con @DonWebOficial, renueva plan con la empresa? #donweb",
+   "url": "https://x.com/jiborio/status/2094947153244266764",
+   "publicado_en": "Wed Sep 02 00:34:58 +0000 2026",
+   "metricas": {
+    "likes": 0,
+    "reposts": 0,
+    "replies": 0,
+    "views": 301,
+    "seguidores_autor": 88
+   },
+   "tipo": "opinion",
+   "valencia": "ninguna",
+   "intensidad": 0.3,
+   "justificacion": "etiqueta humana de la ronda 4: pregunta quien renovaria plan despues del incidente"
+  },
+  {
+   "id": "2095511373178454241",
+   "autor": "@elanarcoc",
+   "texto": "Publicidad de Donweb en Facebook, miren el precio. Ojo, el equivocado soy yo, Donweb sabe que la gente compra mierda barata y ellos ofrecen mierda barata. https://t.co/bJdAAGHFXl",
+   "url": "https://x.com/elanarcoc/status/2095511373178454241",
+   "publicado_en": "Thu Sep 03 13:56:58 +0000 2026",
+   "metricas": {
+    "likes": 2,
+    "reposts": 0,
+    "replies": 0,
+    "views": 220,
+    "seguidores_autor": 2905
+   },
+   "tipo": "opinion",
+   "valencia": "desfavorable",
+   "intensidad": 0.9,
+   "justificacion": "acusa a la empresa de vender barato a sabiendas de la calidad"
+  },
+  {
+   "id": "2095128144889987311",
+   "autor": "@maxifirtman",
+   "texto": "Mientras tanto, Donweb arrancó el \"donweb day\" en YouTube ahora en vivo 👀\n\nArrancó el CEO de la empresa hablando 10 minutos de IA: no se hizo mención al inconveniente en curso. El chat está monotemático sobre eso. https://t.co/Kv9M7SyKf5",
+   "url": "https://x.com/maxifirtman/status/2095128144889987311",
+   "publicado_en": "Wed Sep 02 12:34:09 +0000 2026",
+   "metricas": {
+    "likes": 86,
+    "reposts": 6,
+    "replies": 12,
+    "views": 12440,
+    "seguidores_autor": 84215
+   },
+   "tipo": "hecho",
+   "valencia": "desfavorable",
+   "intensidad": 0.8,
+   "justificacion": "reporta que el CEO hablo diez minutos de IA en vivo sin mencionar la caida en curso"
+  },
+  {
+   "id": "2095181846048817530",
+   "autor": "@EstebanCervi",
+   "texto": "Me preguntan por la caída de Donweb. No voy a decir nada más salvo que espero que resuelvan rápido y bien, y es un recordatorio más de que siempre hay que tener backup frecuente local y remoto adicional de todo lo que es valioso para nosotros. Nadie está exento de nada.",
+   "url": "https://x.com/EstebanCervi/status/2095181846048817530",
+   "publicado_en": "Wed Sep 02 16:07:33 +0000 2026",
+   "metricas": {
+    "likes": 46,
+    "reposts": 2,
+    "replies": 4,
+    "views": 8891,
+    "seguidores_autor": 39581
+   },
+   "tipo": "opinion",
+   "valencia": "ninguna",
+   "intensidad": 0.2,
+   "justificacion": "se abstiene de opinar y desea que lo resuelvan; convierte el caso en consejo de backups"
+  },
+  {
+   "id": "1319417190710497281",
+   "autor": "@SeguInfo",
+   "texto": "OJO 👇, está muy bien hecho!\nVamos a ver cuanto tarda @donweb en darlo de baja :)",
+   "url": "https://x.com/SeguInfo/status/1319417190710497281",
+   "publicado_en": "Thu Oct 22 23:15:46 +0000 2020",
+   "metricas": {
+    "likes": 22,
+    "reposts": 17,
+    "replies": 0,
+    "views": null,
+    "seguidores_autor": 38259
+   },
+   "tipo": "opinion",
+   "valencia": "desfavorable",
+   "intensidad": 0.4,
+   "justificacion": "ironiza sobre cuanto va a tardar la empresa en dar de baja un sitio malicioso (2020)"
+  },
+  {
+   "id": "2095358722612629649",
+   "autor": "@dzapatillas",
+   "texto": "\"DonWeb: una de las mayores empresas de hosting del país lleva tres días caída y hay cientos de pymes afectadas\"\n\ndeberían resarcir",
+   "url": "https://x.com/dzapatillas/status/2095358722612629649",
+   "publicado_en": "Thu Sep 03 03:50:24 +0000 2026",
+   "metricas": {
+    "likes": 64,
+    "reposts": 8,
+    "replies": 5,
+    "views": 8824,
+    "seguidores_autor": 341562
+   },
+   "tipo": "opinion",
+   "valencia": "desfavorable",
+   "intensidad": 0.7,
+   "justificacion": "cita la nota y reclama que la empresa resarza a los afectados"
+  },
+  {
+   "id": "2095538856988705135",
+   "autor": "@elanarcoc",
+   "texto": "Me causa gracia que Donweb diga luego de casi una semana de caído su servicio, \"No hubo pérdida de datos\" AMEO se perdieron todos los datos de esta semana, los correos que no llegarán porque pasaron más de 72 horas, las ventas que no se hicieron, los portales de noticias, etc.",
+   "url": "https://x.com/elanarcoc/status/2095538856988705135",
+   "publicado_en": "Thu Sep 03 15:46:11 +0000 2026",
+   "metricas": {
+    "likes": 18,
+    "reposts": 1,
+    "replies": 2,
+    "views": 382,
+    "seguidores_autor": 2905
+   },
+   "tipo": "opinion",
+   "valencia": "desfavorable",
+   "intensidad": 0.8,
+   "justificacion": "disputa el 'no hubo perdida de datos' enumerando lo que si se perdio"
+  },
+  {
+   "id": "2095519346768425307",
+   "autor": "@sebarh",
+   "texto": "Donweb se tiene que poner una cancha de padel",
+   "url": "https://x.com/sebarh/status/2095519346768425307",
+   "publicado_en": "Thu Sep 03 14:28:39 +0000 2026",
+   "metricas": {
+    "likes": 0,
+    "reposts": 0,
+    "replies": 0,
+    "views": 60,
+    "seguidores_autor": 1002
+   },
+   "tipo": "opinion",
+   "valencia": "desfavorable",
+   "intensidad": 0.3,
+   "justificacion": "burla sobre pivotear a canchas de padel"
+  },
+  {
+   "id": "2095356463048753291",
+   "autor": "@temnoticiasarg",
+   "texto": "#Sociedad] DonWeb: Una de las mayores empresas proveedoras de hosting de la #Argentina lleva tres días caída y hay cientos de pymes afectadas\n\nhttps://t.co/edco8Cl8ow",
+   "url": "https://x.com/temnoticiasarg/status/2095356463048753291",
+   "publicado_en": "Thu Sep 03 03:41:25 +0000 2026",
+   "metricas": {
+    "likes": 0,
+    "reposts": 0,
+    "replies": 0,
+    "views": 147,
+    "seguidores_autor": 254
+   },
+   "tipo": "hecho",
+   "valencia": "desfavorable",
+   "intensidad": 0.7,
+   "justificacion": "etiqueta humana de la ronda 4: tres dias caida y cientos de pymes afectadas"
+  },
+  {
+   "id": "2094488276094918896",
+   "autor": "@Laterminalblog",
+   "texto": "DonWeb, la compañía rosarina de hosting web y registro de dominios más grande de Argentina, está  dowtime en su nodo Nova desde hace más de 30 hs, sin tiempo de recuperación. Ese  nodo operan empresas, sistemas de facturación, bases de datos complejas y  tiendas de e-commerce. https://t.co/2N1p0Rc8YQ",
+   "url": "https://x.com/Laterminalblog/status/2094488276094918896",
+   "publicado_en": "Mon Aug 31 18:11:33 +0000 2026",
+   "metricas": {
+    "likes": 320,
+    "reposts": 36,
+    "replies": 56,
+    "views": 58085,
+    "seguidores_autor": 3494
+   },
+   "tipo": "hecho",
+   "valencia": "desfavorable",
+   "intensidad": 0.8,
+   "justificacion": "etiqueta humana de la calibracion: 30 horas de downtime sin tiempo de recuperacion"
+  },
+  {
+   "id": "2095134046317695469",
+   "autor": "@maxifirtman",
+   "texto": "El CEO de DonWeb dijo recién que \"en el 2000 no había carrera que te enseñaran a programar, a diseñar, era todo autodidacta\".\n\nGuillermo: esto es FALSO. ¿de dónde sacaste eso? Yo empecé a estudiar una carrera formal de programación en 1998 y en el 2001 empecé a dar clases en una carrera privada. La carrera de computador científico se creó en 1963. Analista de Sistemas arrancó en los '70. Durante los '80 y '90 hubo cursos cortos, carreras terciarias, tecnicaturas y carreras de grado para programación y diseño en muchísimos lugares. Por 1995 ya había cursos de programación en academias privadas. Había revistas. Libros. Existía ya todo un ecosistema armado para la educación en programación.\n\n\"Hoy, al contrario del 2000, tenemos todo Internet para preguntar, todo a flor de piel para aprender\" 🤌\n\"Hoy volvemos a tener una necesidad de ser autodidacta\" 👎\n\nVengo combatiendo es mito hace años. Antes era \"Internet\", después \"está todo en youtube\", después \"tenés las clases gratis de Harvard\". \n\nEs un mito elitista y simplista: yo aprendí autodidacta, todos pueden y deben aprender así. Los que venimos dando clases hace años sabemos que eso es FALSO. No todo el mundo es autodidacta: no importa bajo qué paradigma, es con libros, con enciclopedias, con videos de youtube o con una IA. Mucha gente necesita un apoyo docente por diversos motivos. Hasta el día de hoy no hay registro de una herramienta que convierta a todo el mundo en autodidacta. La IA tampoco, al menos por ahora. El proceso educativo no existe por el objetivo de disponibilizar información al destinatario y, por ende, si la información ahora está disponible, el proceso educativo ya no tiene sentido. La información es lo menos relevante.",
+   "url": "https://x.com/maxifirtman/status/2095134046317695469",
+   "publicado_en": "Wed Sep 02 12:57:37 +0000 2026",
+   "metricas": {
+    "likes": 356,
+    "reposts": 27,
+    "replies": 54,
+    "views": 29679,
+    "seguidores_autor": 84215
+   },
+   "tipo": "opinion",
+   "valencia": "desfavorable",
+   "intensidad": 0.7,
+   "justificacion": "desmiente publicamente una afirmacion del CEO durante el evento"
+  },
+  {
+   "id": "2095258751552892969",
+   "autor": "@cristian",
+   "texto": "Si te pegó la caída de DonWeb y necesitás levantar urgente mails o una landing provisoria, puedo darte espacio temporal en uno de mis servidores.\n\nSin compromiso ni migración. Solo para salir del paso hasta que vuelva todo.",
+   "url": "https://x.com/cristian/status/2095258751552892969",
+   "publicado_en": "Wed Sep 02 21:13:09 +0000 2026",
+   "metricas": {
+    "likes": 8,
+    "reposts": 5,
+    "replies": 0,
+    "views": 1322,
+    "seguidores_autor": 5028
+   },
+   "tipo": "hecho",
+   "valencia": "desfavorable",
+   "intensidad": 0.3,
+   "justificacion": "ofrece hosting temporal a los afectados por la caida"
+  },
+  {
+   "id": "824303950832828416",
+   "autor": "@lazcano",
+   "texto": "🔥CLIENTES DE #DONWEB, tanto argentinos como extranjeros, HAGAN EL DEBIDO #RECLAMO EN @DNDConsumidor https://t.co/z301WK1an8 Se agradece RT! https://t.co/wv1nWgJE7B",
+   "url": "https://x.com/lazcano/status/824303950832828416",
+   "publicado_en": "Wed Jan 25 17:12:31 +0000 2017",
+   "metricas": {
+    "likes": 6,
+    "reposts": 28,
+    "replies": 6,
+    "views": null,
+    "seguidores_autor": 1075
+   },
+   "tipo": "opinion",
+   "valencia": "desfavorable",
+   "intensidad": 0.7,
+   "justificacion": "etiqueta humana de la ronda 4: convoca a reclamar ante Defensa del Consumidor (2017)"
+  },
+  {
+   "id": "2095475904721940932",
+   "autor": "@PoloSurTDF",
+   "texto": "Crisis en DonWeb: la caída de uno de los mayores proveedores de hosting en Argentina afecta a cientos de PYMEs https://t.co/RG8ZffpkxE",
+   "url": "https://x.com/PoloSurTDF/status/2095475904721940932",
+   "publicado_en": "Thu Sep 03 11:36:02 +0000 2026",
+   "metricas": {
+    "likes": 0,
+    "reposts": 0,
+    "replies": 0,
+    "views": 44,
+    "seguidores_autor": 1083
+   },
+   "tipo": "hecho",
+   "valencia": "desfavorable",
+   "intensidad": 0.7,
+   "justificacion": "etiqueta humana de la calibracion: la caida afecta a cientos de pymes"
+  },
+  {
+   "id": "2094924710660157919",
+   "autor": "@are_bitcoin",
+   "texto": "en el data center de donweb ahora mismo https://t.co/fESISdeVt7",
+   "url": "https://x.com/are_bitcoin/status/2094924710660157919",
+   "publicado_en": "Tue Sep 01 23:05:47 +0000 2026",
+   "metricas": {
+    "likes": 0,
+    "reposts": 1,
+    "replies": 0,
+    "views": 287,
+    "seguidores_autor": 81
+   },
+   "tipo": "opinion",
+   "valencia": "desfavorable",
+   "intensidad": 0.4,
+   "justificacion": "meme sobre el estado del datacenter"
+  },
+  {
+   "id": "2094690799120187671",
+   "autor": "@x61sh",
+   "texto": "@Laterminalblog que poronga DonWeb",
+   "url": "https://x.com/x61sh/status/2094690799120187671",
+   "publicado_en": "Tue Sep 01 07:36:18 +0000 2026",
+   "metricas": {
+    "likes": 0,
+    "reposts": 0,
+    "replies": 0,
+    "views": 493,
+    "seguidores_autor": 991
+   },
+   "tipo": "opinion",
+   "valencia": "desfavorable",
+   "intensidad": 0.8,
+   "justificacion": "insulto sin contenido factual"
+  },
+  {
+   "id": "2095147886736461915",
+   "autor": "@kastor",
+   "texto": "Como vas a alojar tus cosas en algo que se llama DonWeb ?",
+   "url": "https://x.com/kastor/status/2095147886736461915",
+   "publicado_en": "Wed Sep 02 13:52:36 +0000 2026",
+   "metricas": {
+    "likes": 190,
+    "reposts": 12,
+    "replies": 19,
+    "views": 11157,
+    "seguidores_autor": 1282
+   },
+   "tipo": "opinion",
+   "valencia": "desfavorable",
+   "intensidad": 0.6,
+   "justificacion": "se burla del nombre de la marca como razon para no confiarle infraestructura"
+  },
+  {
+   "id": "2094902320848912823",
+   "autor": "@gubargentina",
+   "texto": "@ativazquez @DonWebOficial Yo tengo 5 VPS , tenía los 5 en donweb.\nUn fin de semana largo se pinchó el principal y me di cuenta que no había nadie de guardia.\nRecién renovaba por un año, lo cambié a Hostinger y me quedó el VPS al pepe.\nLos otros 4 son secundarios, 1 solo en Nova...",
+   "url": "https://x.com/gubargentina/status/2094902320848912823",
+   "publicado_en": "Tue Sep 01 21:36:49 +0000 2026",
+   "metricas": {
+    "likes": 0,
+    "reposts": 0,
+    "replies": 2,
+    "views": 551,
+    "seguidores_autor": 39
+   },
+   "tipo": "hecho",
+   "valencia": "desfavorable",
+   "intensidad": 0.6,
+   "justificacion": "cliente relata que no habia nadie de guardia un fin de semana largo y migro a otro proveedor"
+  },
+  {
+   "id": "1445423636798713857",
+   "autor": "@NicolasGil2011",
+   "texto": "Qué impresentables que son @DonWebOficial. Pésimo el servicio, el hosting y todo. Son de cuarta. No le recomiendo contratar el servicio de #DonWeb a nadie.",
+   "url": "https://x.com/NicolasGil2011/status/1445423636798713857",
+   "publicado_en": "Tue Oct 05 16:20:24 +0000 2021",
+   "metricas": {
+    "likes": 13,
+    "reposts": 14,
+    "replies": 1,
+    "views": null,
+    "seguidores_autor": 4896
+   },
+   "tipo": "opinion",
+   "valencia": "desfavorable",
+   "intensidad": 0.9,
+   "justificacion": "'que impresentables', 'son de cuarta', no lo recomienda a nadie (2021)"
+  },
+  {
+   "id": "2094897882486698288",
+   "autor": "@Horacio_Oggero",
+   "texto": "Como carajo luego de 3 días de downtime NO SE FILTRO NADA SOBRE LOS MOTIVOS DE LA CAIDA  de donweb COMO CARAJO ES POSIBLE ESTO!!! @DonWebOficial",
+   "url": "https://x.com/Horacio_Oggero/status/2094897882486698288",
+   "publicado_en": "Tue Sep 01 21:19:11 +0000 2026",
+   "metricas": {
+    "likes": 6,
+    "reposts": 0,
+    "replies": 1,
+    "views": 847,
+    "seguidores_autor": 106
+   },
+   "tipo": "opinion",
+   "valencia": "desfavorable",
+   "intensidad": 0.7,
+   "justificacion": "reclama a los gritos que a tres dias de la caida no se sepan los motivos"
+  },
+  {
+   "id": "823961432421265409",
+   "autor": "@FDoficial",
+   "texto": "Alojamos sueños (?) #DonWeb https://t.co/GwNy3GEEhW",
+   "url": "https://x.com/FDoficial/status/823961432421265409",
+   "publicado_en": "Tue Jan 24 18:31:28 +0000 2017",
+   "metricas": {
+    "likes": 72,
+    "reposts": 11,
+    "replies": 3,
+    "views": null,
+    "seguidores_autor": 106060
+   },
+   "tipo": "opinion",
+   "valencia": "desfavorable",
+   "intensidad": 0.5,
+   "justificacion": "ironiza con el eslogan 'alojamos suenos' durante el incendio de 2017"
+  },
+  {
+   "id": "824058099690602497",
+   "autor": "@Ale_Vivone",
+   "texto": "Que noche jodida van a pasar hoy los pibes de #Donweb #incendio #datacenter #rosario\n22hs sin servicio.",
+   "url": "https://x.com/Ale_Vivone/status/824058099690602497",
+   "publicado_en": "Wed Jan 25 00:55:35 +0000 2017",
+   "metricas": {
+    "likes": 4,
+    "reposts": 8,
+    "replies": 0,
+    "views": null,
+    "seguidores_autor": 360
+   },
+   "tipo": "hecho",
+   "valencia": "desfavorable",
+   "intensidad": 0.5,
+   "justificacion": "reporta 22 horas sin servicio durante el incendio, con solidaridad hacia el equipo"
+  },
+  {
+   "id": "2094872419425304999",
+   "autor": "@CortaRosario",
+   "texto": "Un servidor rosarino cayó y afectó a miles de clientes en todo el país\n\nDonWeb tiene base en Rosario y es la empresa de hosting más grande de la región. Desde el domingo presenta problemas en un nodo que afecta facturación, e-commerce y bases de datos. \n\nEntre sus clientes están Aerolíneas Argentinas, Paladini y Bimbo.\n\nProfundizá en https://t.co/bu4hi3aC2u",
+   "url": "https://x.com/CortaRosario/status/2094872419425304999",
+   "publicado_en": "Tue Sep 01 19:38:00 +0000 2026",
+   "metricas": {
+    "likes": 33,
+    "reposts": 9,
+    "replies": 5,
+    "views": 13388,
+    "seguidores_autor": 522
+   },
+   "tipo": "hecho",
+   "valencia": "desfavorable",
+   "intensidad": 0.8,
+   "justificacion": "nota local: miles de clientes afectados, incluidos Aerolineas, Paladini y Bimbo"
+  },
+  {
+   "id": "823756559792701440",
+   "autor": "@dantezor_",
+   "texto": "Acabo de realizar un llamado a la dotación de bomberos voluntarios.\nel incendio en #donweb es verídico. Esta controlado, no se sabe de daños",
+   "url": "https://x.com/dantezor_/status/823756559792701440",
+   "publicado_en": "Tue Jan 24 04:57:23 +0000 2017",
+   "metricas": {
+    "likes": 6,
+    "reposts": 4,
+    "replies": 5,
+    "views": null,
+    "seguidores_autor": 2912
+   },
+   "tipo": "hecho",
+   "valencia": "desfavorable",
+   "intensidad": 0.6,
+   "justificacion": "confirma que el incendio del datacenter es real y esta controlado (2017)"
+  },
+  {
+   "id": "1674517963838312451",
+   "autor": "@jerovazquez10",
+   "texto": "@DonWebOficial @donwebcloud La experiencia ya está comenzando a ser increíble, todos los servicios donweb caídos... 🤦‍♂️",
+   "url": "https://x.com/jerovazquez10/status/1674517963838312451",
+   "publicado_en": "Thu Jun 29 20:39:28 +0000 2023",
+   "metricas": {
+    "likes": 39,
+    "reposts": 2,
+    "replies": 8,
+    "views": 1885,
+    "seguidores_autor": 2
+   },
+   "tipo": "hecho",
+   "valencia": "desfavorable",
+   "intensidad": 0.7,
+   "justificacion": "etiqueta humana de la ronda 4: sarcasmo sobre todos los servicios caidos"
+  },
+  {
+   "id": "824207801325068289",
+   "autor": "@martin33333",
+   "texto": "Donweb sigue sin funcionar y ya pasaron mas de 24 horas. Ninguna información a los clientes. Desastre Total",
+   "url": "https://x.com/martin33333/status/824207801325068289",
+   "publicado_en": "Wed Jan 25 10:50:27 +0000 2017",
+   "metricas": {
+    "likes": 4,
+    "reposts": 7,
+    "replies": 3,
+    "views": null,
+    "seguidores_autor": 27
+   },
+   "tipo": "hecho",
+   "valencia": "desfavorable",
+   "intensidad": 0.8,
+   "justificacion": "mas de 24 horas sin funcionar y sin informacion a los clientes (2017)"
+  },
+  {
+   "id": "824438685483618304",
+   "autor": "@sysarmy",
+   "texto": "Nuestros informantes dicen, aprox 2hs van a estar los clouds funcionando. Desde ya nuestra solidaridad con clientes y equipo técnico #donweb https://t.co/wFGlUfP2V7",
+   "url": "https://x.com/sysarmy/status/824438685483618304",
+   "publicado_en": "Thu Jan 26 02:07:54 +0000 2017",
+   "metricas": {
+    "likes": 9,
+    "reposts": 7,
+    "replies": 4,
+    "views": null,
+    "seguidores_autor": 28145
+   },
+   "tipo": "hecho",
+   "valencia": "favorable",
+   "intensidad": 0.3,
+   "justificacion": "informa que los clouds volverian en unas dos horas, con solidaridad al equipo (2017)"
+  },
+  {
+   "id": "2095494522671104154",
+   "autor": "@identidadrobada",
+   "texto": "Según la última actualización publicada por DonWeb, el 100% del nodo NOVA se encuentra actualmente operativo.\nLa compañía afirma además que, tras la recuperación, no se reportaron pérdidas de datos.\nPero esto no significa que el incidente esté completamente cerrado.",
+   "url": "https://x.com/identidadrobada/status/2095494522671104154",
+   "publicado_en": "Thu Sep 03 12:50:01 +0000 2026",
+   "metricas": {
+    "likes": 6,
+    "reposts": 0,
+    "replies": 1,
+    "views": 965,
+    "seguidores_autor": 21423
+   },
+   "tipo": "hecho",
+   "valencia": "favorable",
+   "intensidad": 0.3,
+   "justificacion": "informa el nodo operativo y sin perdidas, aclarando que el incidente no esta cerrado"
+  },
+  {
+   "id": "1769451455184855460",
+   "autor": "@Rosariociudadok",
+   "texto": "Me declaro desinfluencer de #DonWeb mamita... un desastre, un año de sufrimiento que ya pasó, (error grosero el mío pagar un año anticipado)\n\nQue no les pase.",
+   "url": "https://x.com/Rosariociudadok/status/1769451455184855460",
+   "publicado_en": "Sun Mar 17 19:51:16 +0000 2024",
+   "metricas": {
+    "likes": 13,
+    "reposts": 2,
+    "replies": 3,
+    "views": 14176,
+    "seguidores_autor": 58314
+   },
+   "tipo": "opinion",
+   "valencia": "desfavorable",
+   "intensidad": 0.8,
+   "justificacion": "se declara 'desinfluencer' tras un ano de mal servicio (2024)"
+  },
+  {
+   "id": "1642977947513499648",
+   "autor": "@SoyDalto",
+   "texto": "¿Ya lo vieron? \n\n- Es 4K HQ\n- Está completo y es gratis\n- Durá 7 Horas 21 minutos\n- Con explicaciones super trabajadas\n- Chequeado por Hostinger, Donweb, ARC, etc...\n- La producción está 10 de 10 (cine)\n\n¿Estas esperando algo? ¡Miratelo ahora! ↓\n\nEnlace: https://t.co/whzDLOWtLq https://t.co/gOqc13t6da",
+   "url": "https://x.com/SoyDalto/status/1642977947513499648",
+   "publicado_en": "Mon Apr 03 19:50:42 +0000 2023",
+   "metricas": {
+    "likes": 2468,
+    "reposts": 465,
+    "replies": 56,
+    "views": 79711,
+    "seguidores_autor": 86824
+   },
+   "tipo": "hecho",
+   "valencia": "ninguna",
+   "intensidad": 0.0,
+   "justificacion": "etiqueta humana de la calibracion: la marca aparece como una de varias que chequearon un curso"
+  },
+  {
+   "id": "2094862052963545117",
+   "autor": "@Qac78N",
+   "texto": "Letal lo de donweb para todos los que tenemos servicios con ellos.\n2 dias de quejas con clientes, malfuncionamientos\n\n@DonWebOficial me hacen considerar cambiar de hosting, tétrica semana",
+   "url": "https://x.com/Qac78N/status/2094862052963545117",
+   "publicado_en": "Tue Sep 01 18:56:48 +0000 2026",
+   "metricas": {
+    "likes": 5,
+    "reposts": 0,
+    "replies": 0,
+    "views": 644,
+    "seguidores_autor": 1009
+   },
+   "tipo": "hecho",
+   "valencia": "desfavorable",
+   "intensidad": 0.7,
+   "justificacion": "dos dias de quejas de sus propios clientes; evalua cambiar de hosting"
+  },
+  {
+   "id": "2095256078405578880",
+   "autor": "@laopinionsp",
+   "texto": "La Cooperativa de Servicios Eléctricos explicó que la interrupción se debe a una caída a nivel nacional de los servidores de DonWeb. Algunos trámites y gestiones online permanecen momentáneamente in...  https://t.co/fsZ0bUasqv",
+   "url": "https://x.com/laopinionsp/status/2095256078405578880",
+   "publicado_en": "Wed Sep 02 21:02:31 +0000 2026",
+   "metricas": {
+    "likes": 0,
+    "reposts": 0,
+    "replies": 0,
+    "views": 185,
+    "seguidores_autor": 3273
+   },
+   "tipo": "hecho",
+   "valencia": "desfavorable",
+   "intensidad": 0.6,
+   "justificacion": "etiqueta humana de la calibracion: una cooperativa explica que sus tramites caen por DonWeb"
+  },
+  {
+   "id": "2095153042605629800",
+   "autor": "@Laterminalblog",
+   "texto": "La caída de un nodo de DonWeb desde hace 3 días y que afecta a miles de empresas, llega a Clarín. https://t.co/96hnqlNTJp",
+   "url": "https://x.com/Laterminalblog/status/2095153042605629800",
+   "publicado_en": "Wed Sep 02 14:13:06 +0000 2026",
+   "metricas": {
+    "likes": 29,
+    "reposts": 3,
+    "replies": 2,
+    "views": 1550,
+    "seguidores_autor": 3494
+   },
+   "tipo": "hecho",
+   "valencia": "desfavorable",
+   "intensidad": 0.7,
+   "justificacion": "la caida llega a la cobertura de Clarin"
+  },
+  {
+   "id": "2094756302517911935",
+   "autor": "@elroldanense",
+   "texto": "👎DonWeb, la compañía rosarina de hosting web y registro de dominios más grande de Argentina, tiene caído su nodo Nova desde hace más de 48 hs, sin tiempo de recuperación y sin respuesta sobre la gravedad del caso. https://t.co/JSSvZhh9OO",
+   "url": "https://x.com/elroldanense/status/2094756302517911935",
+   "publicado_en": "Tue Sep 01 11:56:35 +0000 2026",
+   "metricas": {
+    "likes": 9,
+    "reposts": 3,
+    "replies": 2,
+    "views": 1429,
+    "seguidores_autor": 1900
+   },
+   "tipo": "hecho",
+   "valencia": "desfavorable",
+   "intensidad": 0.8,
+   "justificacion": "mas de 48 horas caido, sin tiempo de recuperacion ni respuesta sobre la gravedad"
+  },
+  {
+   "id": "2095192639549137070",
+   "autor": "@rodrigouroz",
+   "texto": "Saluden a DonWeb que se va. Aprovechen mientras todavia haya algo de valor en la empresa y pivoteen hacia canchas de futbol o de paddle, que se volvio a poner de moda.",
+   "url": "https://x.com/rodrigouroz/status/2095192639549137070",
+   "publicado_en": "Wed Sep 02 16:50:26 +0000 2026",
+   "metricas": {
+    "likes": 0,
+    "reposts": 0,
+    "replies": 0,
+    "views": 232,
+    "seguidores_autor": 585
+   },
+   "tipo": "opinion",
+   "valencia": "desfavorable",
+   "intensidad": 0.7,
+   "justificacion": "vaticina el fin de la empresa y le sugiere pivotear a canchas de padel"
+  }
+ ]
+}
