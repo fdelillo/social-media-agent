@@ -149,3 +149,49 @@ secciones en vez de una distribución de sentimiento.
 **Costo:** hay que reetiquetar. El set dorado y las rondas 2 y 3 están en el esquema viejo y no
 se pueden traducir automáticamente —`neutro` es ambiguo entre "hecho desfavorable" y "sin
 valencia", que es justamente el problema que motivó el cambio.
+
+---
+
+## 9. Tres relaciones y dos modos de informe
+
+**Decisión:** cada mención lleva un tercer campo, `relacion`, con tres valores —`propia`,
+`dirigida`, `sobre`—, calculado mecánicamente al normalizar; y el informe se escribe en uno de
+dos modos, **incidente** o **estado**, elegidos por lo que traen los datos y nunca por cada
+cuánto se corre.
+
+**Por qué:** el informe de ejemplo se escribió sobre una crisis con principio y final, y esa
+forma no sobrevive a un objetivo sin crisis. Corrido sobre una campaña política cada seis horas,
+el formato produciría la misma narrativa y dos recomendaciones inventadas cuatro veces por día.
+Un informe que suena a alarma cada vez que se corre deja de leerse.
+
+Los tres corpus de la Fase 0 mostraron además que el conteo crudo no mide lo mismo en todos los
+objetivos:
+
+| | Autores únicos | Del propio objetivo | Top 3 autores |
+| :--- | ---: | ---: | ---: |
+| DonWeb | 78/100 | 2 | 11% |
+| MercadoLibre | 80/100 | 11 | 17% |
+| Jorge Macri | 58/100 | 10 | 23% |
+
+Diez de las cien menciones de Jorge Macri son tuits del propio Jorge Macri: el informe estaría
+contando los comunicados del cliente como menciones sobre el cliente. Y nueve son de una sola
+cuenta hostil. Un titular "90% desfavorable" ahí no habla de la opinión pública, habla de cuán
+activa estuvo la oposición esa mañana.
+
+**Consecuencia:** las `propia` salen de todos los conteos y se declara cuántas se excluyeron;
+todo porcentaje va acompañado de cuántos autores distintos lo sostienen; y aparece una sección
+nueva, *Quién te está hablando*, con las menciones `dirigida` desfavorables ordenadas por
+alcance. Esa sección es la única del informe que se traduce en una lista de tareas para hoy, y
+funciona igual con incidente que sin él.
+
+**Lo que esta decisión no resuelve, y por qué no se intenta acá:** la distinción entre un
+comentario colgado de un posteo del objetivo y una mención suelta en el posteo de otro **no es
+recuperable con esta fuente**. Con `query_type: "Top"` el actor devuelve publicaciones con
+engagement propio, y las respuestas dentro de un hilo casi nunca lo tienen: de las 100 menciones
+de Jorge Macri, las 100 son publicaciones raíz. `relacion: dirigida` es la aproximación
+disponible —quién te etiquetó— y es una pregunta distinta, aunque sirva para lo mismo.
+
+Tampoco resuelve el delta entre corridas, que es lo que una cadencia de seis horas realmente
+pide. Eso exige recordar la corrida anterior, deduplicar y guardar histórico, que es
+exactamente lo que vive en el proyecto hermano (ver decisión 2). Este proyecto da la foto; la
+película se arma allá, cargando el JSON clasificado que acá se produce.

@@ -33,9 +33,15 @@ Lo que sí se hizo antes de pausar fue el arreglo que no dependía de ninguna de
 del **objetivo como escenario** ya está en la calibración del prompt. Explicaba 5 de los 6 errores
 de valencia de la ronda 4.
 
+> ⚠️ **El informe de ejemplo quedó atrás del prompt.** La decisión 9 —`relacion`, los dos modos
+> y la sección *Quién te está hablando*— ya está escrita en `redactor-informe.md`, pero
+> `reportes/ejemplo-donweb.md` es anterior y no la refleja. Regenerarlo es una decisión
+> pendiente, a propósito: primero conviene saber si el formato nuevo convence.
+
 ### Pendientes que quedan anotados, en orden de prioridad
 
-1. **Pulir el informe** ← acá estamos.
+1. **Pulir el informe** ← acá estamos. Incluye decidir si se regenera con el formato de la
+   decisión 9.
 2. **Una sola medición de ~100 menciones**, después del informe. Es el único tamaño que puede
    distinguir 70% de 80%; cinco rondas de 20 no llegan.
 3. **Adjudicar los casos de `tipo` que se contradicen** (ronda 4: el 15 quedó `hecho` y sus
