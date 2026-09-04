@@ -1,6 +1,7 @@
 # Dónde quedamos
 
-Última sesión: **2026-09-04**. Fase 0 en curso, sin código todavía.
+Última sesión: **2026-09-04**. Fase 0 en curso, sin código todavía — pero el agente ya se
+puede usar: montado en un cliente de chat, sin CLI.
 
 ## Lo que está hecho
 
@@ -40,8 +41,8 @@ de valencia de la ronda 4.
 
 ### Pendientes que quedan anotados, en orden de prioridad
 
-1. **Pulir el informe** ← acá estamos. Incluye decidir si se regenera con el formato de la
-   decisión 9.
+0. **Probar el kit de ChatGPT de punta a punta** ← lo único sin verificar. Ver abajo.
+1. **Pulir el informe.** Incluye decidir si se regenera con el formato de la decisión 9.
 2. **Una sola medición de ~100 menciones**, después del informe. Es el único tamaño que puede
    distinguir 70% de 80%; cinco rondas de 20 no llegan.
 3. **Adjudicar los casos de `tipo` que se contradicen** (ronda 4: el 15 quedó `hecho` y sus
@@ -86,3 +87,18 @@ registro al pie de `prompts/analista-sentimiento.md`.
    va sobre otros.
 4. Ante un desacuerdo, **la etiqueta humana es la referencia**. Si un criterio del modelo la
    contradice sistemáticamente, el que está mal es el criterio.
+
+## Lo único del kit de ChatGPT que está sin probar
+
+`chatgpt/` está escrito y es coherente con el actor elegido, pero **nunca se ejecutó una Action
+real**. Dos cosas pueden fallar en el primer contacto y las dos se verifican con una corrida de
+25 ítems, que cuesta menos de medio centavo:
+
+1. **El timeout.** `run-sync-get-dataset-items` ejecuta el Actor y espera. Si tarda más de lo
+   que una Action de ChatGPT admite, corta. Por eso `max_results` recomienda 50 como techo y 25
+   para probar — pero el número real no está medido.
+2. **El parámetro `fields`.** Debería recortar la respuesta de ~40 campos por posteo a 9. Si el
+   endpoint del Actor no lo respeta, la respuesta vuelve entera y el GPT se ahoga.
+
+Medir cuánto tarda una corrida de 25 y de 50, y confirmar que `fields` recorta, es lo que
+convierte al kit de "escrito" en "probado".
