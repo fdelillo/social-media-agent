@@ -1,0 +1,82 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Menciones en X via Apify",
+    "description": "Ejecuta el Actor de scraping de X y devuelve las menciones en la misma respuesta.",
+    "version": "2.0.0"
+  },
+  "servers": [
+    { "url": "https://api.apify.com/v2" }
+  ],
+  "paths": {
+    "/acts/scrape.badger~twitter-tweets-scraper/run-sync-get-dataset-items": {
+      "post": {
+        "summary": "Buscar menciones en X",
+        "description": "Corre el Actor de forma sincronica y devuelve los posteos encontrados en la misma llamada. No hace falta consultar el estado ni pedir el dataset aparte.",
+        "operationId": "buscarMenciones",
+        "parameters": [
+          {
+            "name": "fields",
+            "in": "query",
+            "required": true,
+            "description": "Campos a devolver. Enviar SIEMPRE exactamente este valor: la respuesta completa del Actor trae unos 40 campos por posteo y no entra en una respuesta de Action.",
+            "schema": {
+              "type": "string",
+              "default": "id,full_text,username,created_at,favorite_count,retweet_count,reply_count,user_mentions,user_followers_count"
+            }
+          },
+          {
+            "name": "maxTotalChargeUsd",
+            "in": "query",
+            "required": true,
+            "description": "Tope duro de gasto para esta corrida, en dolares. Es el unico freno real si algo sale mal. Usar 0.02 para pruebas y 0.05 para un informe completo.",
+            "schema": { "type": "number", "default": 0.05 }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["mode", "query", "query_type", "max_results"],
+                "properties": {
+                  "mode": {
+                    "type": "string",
+                    "description": "Enviar siempre el valor 'Advanced Search'. Es obligatorio y su default no sirve: sin el la corrida falla con un error de validacion.",
+                    "default": "Advanced Search"
+                  },
+                  "query": {
+                    "type": "string",
+                    "description": "Busqueda con la sintaxis avanzada de X. Formato: \"<objetivo>\" -is:retweet lang:es min_faves:5 y un -from:<handle> por cada cuenta oficial del objetivo. Para acotar la ventana temporal, agregar since:AAAA-MM-DD_HH:MM:SS_UTC."
+                  },
+                  "query_type": {
+                    "type": "string",
+                    "description": "Enviar siempre 'Top'. Con 'Latest' los resultados son mayormente spam de cuentas sin engagement y no sirven para medir reputacion.",
+                    "default": "Top",
+                    "enum": ["Top", "Latest", "Media"]
+                  },
+                  "max_results": {
+                    "type": "integer",
+                    "description": "Cuantos posteos traer. Cada resultado consume credito. Usar 25 para una prueba y 50 para un informe. Por encima de 50 la corrida puede tardar mas de lo que esta Action espera y fallar por timeout.",
+                    "default": 50
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Los posteos encontrados.",
+            "content": {
+              "application/json": {
+                "schema": { "type": "array", "items": { "type": "object" } }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

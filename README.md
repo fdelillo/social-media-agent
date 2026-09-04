@@ -7,9 +7,11 @@ recientes de X, clasifica el sentimiento de cada una y emite un informe ejecutiv
 datos salen de [Apify](https://apify.com) y el análisis lo hace un LLM. La meta es que alguien
 lo instale con un comando y lo corra.
 
-> **Estado actual: Fase 0 (validación).** Todavía no hay código ejecutable. Lo que hay son los
-> prompts, la configuración del MCP y el andamiaje para medir si el enfoque funciona antes de
-> escribir el CLI. Ver [`docs/fase-0.md`](docs/fase-0.md).
+> **Estado actual: Fase 0 (validación).** Todavía no hay código ejecutable, y **hoy no hace
+> falta**: el agente se puede usar montándolo en un cliente de chat. Para ChatGPT hay una guía
+> de diez minutos en [`chatgpt/README.md`](chatgpt/README.md); para Claude, los prompts de
+> [`prompts/`](prompts/) se leen tal cual. Lo que falta escribir es el CLI de la Fase 1, para
+> poder correrlo sin una persona adelante. Ver [`docs/fase-0.md`](docs/fase-0.md).
 
 ## Qué NO es esto
 
@@ -32,7 +34,7 @@ id externo, autor, texto, url, fecha, métricas), para que los datos sean interc
 | | |
 | :--- | :--- |
 | **Fuente** | X (Twitter), vía un Actor de Apify. Instagram queda para después, detrás de la misma normalización. |
-| **Análisis** | Sentimiento por mención: 🟢 positivo · 🟡 neutro · 🔴 negativo, con score y justificación. |
+| **Análisis** | Dos dimensiones independientes por mención: `tipo` (opinión / hecho) y `valencia` (favorable / desfavorable / ninguna), con intensidad y justificación. Una etiqueta única de sentimiento no alcanzaba — ver [`docs/decisiones.md`](docs/decisiones.md), decisión 8. |
 | **Salida** | Un informe Markdown: resumen ejecutivo, narrativa, menciones clave, conclusiones. |
 
 El formato exacto del informe está en [`social-media-agent.md`](social-media-agent.md), el
@@ -40,32 +42,50 @@ documento de visión que originó el proyecto.
 
 ## Cómo se usa hoy (Fase 0)
 
+El "agente" es un cliente de chat leyendo los prompts de [`prompts/`](prompts/). No hace falta
+API key del modelo: el modelo es el de tu suscripción. La única credencial es la de Apify.
+
+**Si usás ChatGPT** (plan pago), seguí [`chatgpt/README.md`](chatgpt/README.md): se arma un GPT
+propio con una Action contra Apify, en unos diez minutos y sin instalar nada. Lo armás vos con tu
+token, así que nadie gasta el crédito de otro.
+
+**Si usás Claude Code o Claude Desktop:**
+
 1. Crear una cuenta en [apify.com](https://apify.com) y copiar el API token desde
    **Settings → Integrations**.
 2. `cp .env.example .env` y completar `APIFY_TOKEN`.
 3. Conectar el MCP de Apify siguiendo [`mcp/README.md`](mcp/README.md).
 4. Seguir los pasos de [`docs/fase-0.md`](docs/fase-0.md).
 
-En la Fase 0 el "agente" es Claude Code (o Claude Desktop) leyendo los prompts de
-[`prompts/`](prompts/). No hace falta API key de Anthropic: el modelo es el de tu suscripción.
-
 ## Cómo se va a usar (Fase 1)
+
+Todavía no existe: es la forma que va a tener cuando haya código.
 
 ```bash
 pipx install git+https://github.com/fdelillo/social-media-agent
 sma analizar "Nike" --limite 100
 ```
 
+Lo que agrega sobre la vía del chat es poder correr **sin una persona adelante** —un `cron` cada
+X horas—, que es justo lo que ningún cliente de chat puede hacer. Las decisiones que faltan
+tomar antes de escribirlo están en [`REQUISITOS.md`](REQUISITOS.md).
+
+## Licencia
+
+MIT. Ver [`LICENSE`](LICENSE).
+
 ## Estructura
 
 ```
-docs/          decisiones de diseño, criterios de clasificación, guía de la Fase 0,
-               notas del actor de Apify
-prompts/       los dos prompts: uno clasifica, otro redacta
-mcp/           configuración del servidor MCP de Apify
-datos/crudo/   JSON tal cual sale de Apify (no versionado)
-datos/dorado/  menciones etiquetadas a mano — la vara contra la que se mide el prompt
-reportes/      informes generados (se versionan solo los ejemplos)
+docs/              decisiones de diseño, criterios de clasificación, guía de la Fase 0,
+                   notas del actor de Apify
+prompts/           los dos prompts: uno clasifica, otro redacta
+chatgpt/           kit para montar el agente como un GPT propio (esquema + instrucciones)
+mcp/               configuración del servidor MCP de Apify
+datos/crudo/       JSON tal cual sale de Apify (no versionado)
+datos/dorado/      menciones etiquetadas a mano — la vara contra la que se mide el prompt
+datos/clasificado/ menciones ya clasificadas: la entrada del redactor
+reportes/          informes generados (se versionan solo los ejemplos)
 ```
 
 ## Costos
