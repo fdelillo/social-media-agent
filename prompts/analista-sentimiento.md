@@ -158,7 +158,7 @@ prompt del sistema por N sin ganar precisión.
 | 2026-09-03 | etiqueta única | criterios de fallas, promos y noticias | 26/30 (87%) — **inválido** |
 | 2026-09-03 | etiqueta única | ronda 2, predicciones selladas | 15/20 (75%) |
 | 2026-09-03 | etiqueta única | criterio de fallas afinado; ronda 3 sellada | 12/20 (60%) |
-| 2026-09-03 | **dos dimensiones** | rediseño | _(pendiente de medir)_ |
+| 2026-09-03 | **dos dimensiones** | rediseño | ronda 4: tipo 13/20 (65%), valencia 14/20 (70%) |
 
 ### Por qué se abandonó la etiqueta única
 
