@@ -10,19 +10,26 @@ puede usar: montado en un cliente de chat, sin CLI.
 | 1. Cuenta y token de Apify | ✅ `.env` con `APIFY_TOKEN`, plan FREE |
 | 2. Elegir el actor de X | ✅ `scrape.badger~twitter-tweets-scraper`, $0.15/1.000, validado por API |
 | 3. Conectar el MCP | ⏭️ opcional, no está en el camino crítico (se usa `curl`) |
+| — Vía de uso sin código | ✅ [`chatgpt/`](chatgpt/): un GPT propio con Action, probado contra el Actor |
 | 4. Tres corridas | ✅ 300 menciones: MercadoLibre, DonWeb, Jorge Macri — en `datos/crudo/` |
 | 5. Set dorado | ✅ 30 etiquetadas, más 4 rondas de medición |
 | 6. Medir y ajustar | ⏸️ pausado a propósito: 4 rondas sin converger (ver abajo) |
 | 7. Informe de ejemplo | ✅ [`reportes/ejemplo-donweb.md`](reportes/ejemplo-donweb.md), 100 menciones |
 
-Gasto de Apify hasta ahora: ~$0.05 de los $5 mensuales.
+Gasto de Apify hasta ahora: ~$0.20 de los $5 mensuales (300 menciones de los corpus + 16 corridas de prueba del kit).
 
 ## Lo que pasa mañana
 
-**Pulir el informe.** Está en [`reportes/ejemplo-donweb.md`](reportes/ejemplo-donweb.md), sobre
-las 100 menciones de DonWeb. Ese archivo es ahora la vara de la Fase 1: lo que genere el CLI se
-compara contra él. Leerlo como si lo recibiera un tercero y anotar qué sobra, qué falta y qué no
-se entiende.
+**Nada, hasta que llegue feedback de uso real.** El kit de ChatGPT está terminado y compartido:
+[`chatgpt/`](chatgpt/) más una guía de puesta en marcha publicada como página. Alguien lo va a
+armar con su propio token y usarlo; lo que devuelva decide qué se toca después.
+
+Las tres preguntas que se le pidieron: si las recomendaciones eran ejecutables o relleno, si
+alguna mención quedó mal clasificada y cuál, y qué sección leería primero con dos minutos.
+
+**Lo único sin probar del kit** es la Action desde dentro de ChatGPT, por no tener cuenta paga
+acá. La API responde como el esquema dice, en tiempos y tamaños que una Action tolera, pero el
+armado del GPT está sin estrenar. Si algo falla va a ser en el paso 4 de la guía.
 
 **El ciclo de medición queda pausado, y es una decisión, no un olvido.** Cuatro rondas dieron
 67%, 75%, 60% y (65% / 70%) sin converger, y con 20 menciones por ronda el intervalo de confianza
@@ -30,26 +37,26 @@ al 95% es de ±20 puntos: el 80% del criterio de salida cae dentro del intervalo
 mediciones hechas. Una ronda de 20 no puede demostrar que se pasó ni que no. Seguir agregando
 rondas era comprar ruido.
 
-Lo que sí se hizo antes de pausar fue el arreglo que no dependía de ninguna decisión: el criterio
-del **objetivo como escenario** ya está en la calibración del prompt. Explicaba 5 de los 6 errores
-de valencia de la ronda 4.
+> ⚠️ **El informe de ejemplo quedó atrás de los prompts.** `reportes/ejemplo-donweb.md` es
+> anterior a las decisiones 9 y 10 —`relacion`, los dos modos, la sección *Quién te está
+> hablando* partida en dos bloques— y no las refleja. Regenerarlo está pendiente a propósito:
+> primero conviene saber si el formato nuevo convence a alguien que lo use.
 
-> ⚠️ **El informe de ejemplo quedó atrás del prompt.** La decisión 9 —`relacion`, los dos modos
-> y la sección *Quién te está hablando*— ya está escrita en `redactor-informe.md`, pero
-> `reportes/ejemplo-donweb.md` es anterior y no la refleja. Regenerarlo es una decisión
-> pendiente, a propósito: primero conviene saber si el formato nuevo convence.
+### Pendientes, en orden de prioridad
 
-### Pendientes que quedan anotados, en orden de prioridad
-
-1. **Pulir el informe.** Incluye decidir si se regenera con el formato de la decisión 9.
-2. **Una sola medición de ~100 menciones**, después del informe. Es el único tamaño que puede
-   distinguir 70% de 80%; cinco rondas de 20 no llegan.
-3. **Adjudicar los casos de `tipo` que se contradicen** (ronda 4: el 15 quedó `hecho` y sus
+1. **Esperar feedback de uso real** ← acá estamos. Todo lo demás depende de eso.
+2. **Regenerar el informe de ejemplo** con el formato de las decisiones 9 y 10, si el formato
+   convence.
+3. **Las cinco decisiones de la Fase 1**, en [`REQUISITOS.md`](REQUISITOS.md). La primera es
+   nueva y es la que más mueve el costo: ¿vigilancia barata cada 6 h con informe completo solo
+   ante un pico, o informe completo siempre?
+4. **Una sola medición de ~100 menciones.** Es el único tamaño que puede distinguir 70% de 80%;
+   cinco rondas de 20 no llegan.
+5. **Adjudicar los casos de `tipo` que se contradicen** (ronda 4: el 15 quedó `hecho` y sus
    gemelos 16 y 18 `opinion`; el 7 quedó `ninguna` y el 4, equivalente, `perjudica`).
-4. **Medir el techo humano**, como último recurso: reetiquetar los 20 de la calibración y ver
+6. **Medir el techo humano**, como último recurso: reetiquetar los 20 de la calibración y ver
    cuánto coincide la persona consigo misma. Si ese techo es 85%, pedirle 80% al modelo es
-   pedirle casi el máximo posible. No viola la regla de no reutilizar menciones porque no es una
-   medición del modelo.
+   pedirle casi el máximo posible.
 
 ## El hilo de la historia, en corto
 
@@ -107,6 +114,10 @@ recomendada para quien no usa Claude.
   vez de un error. Las instrucciones descartan toda entrada sin `id` y reintentan una vez.
 - **`since:` funciona** (decisión 11) y **`Get Replies` también** (decisión 10). Los dos estaban
   anotados como pendientes de verificar y los dos quedaron resueltos.
+- **La ejecución automática no se puede resolver dentro de ChatGPT:** las tareas programadas no
+  pueden invocar GPTs personalizados. El requisito 4 solo sale por CLI + cron, y eso cambia el
+  costo de naturaleza — el modelo deja de ser una suscripción y pasa a ser factura. Está todo en
+  la actualización al pie de `REQUISITOS.md`.
 
 Lo único que no pude probar: **la Action desde dentro de ChatGPT**, por no tener cuenta paga. La
 API responde como el esquema dice, en tiempos y tamaños que una Action tolera, pero el armado del
