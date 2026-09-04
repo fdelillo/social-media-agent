@@ -24,6 +24,20 @@ Gasto de Apify hasta ahora: ~$0.20 de los $5 mensuales (300 menciones de los cor
 [`chatgpt/`](chatgpt/) más una guía de puesta en marcha publicada como página. Alguien lo va a
 armar con su propio token y usarlo; lo que devuelva decide qué se toca después.
 
+### Lo publicado, con su link
+
+Estas páginas **no se pueden reconstruir desde el repo**: republicar el mismo archivo desde otra
+conversación crea una página nueva con otra URL. Si hay que actualizarlas, se actualizan sobre
+estos links.
+
+| Qué | Link | Se genera desde |
+| :--- | :--- | :--- |
+| Guía de puesta en marcha en ChatGPT | https://claude.ai/code/artifact/5251dedc-ca98-4e92-9a05-88c772274d9a | `chatgpt/instrucciones.md` + `chatgpt/accion-apify.json` |
+| Informe de ejemplo, versión leíble | https://claude.ai/code/artifact/7675a180-e5ae-4599-a1a6-8b3033a69989 | `reportes/ejemplo-donweb.md` |
+
+Las dos nacen privadas: para que alguien las abra hay que compartirlas desde el menú de la
+página. La guía es la que se entrega; el informe es la referencia de formato.
+
 Las tres preguntas que se le pidieron: si las recomendaciones eran ejecutables o relleno, si
 alguna mención quedó mal clasificada y cuál, y qué sección leería primero con dos minutos.
 
