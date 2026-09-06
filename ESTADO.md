@@ -33,8 +33,13 @@ armar con su propio token y usarlo; lo que devuelva decide qué se toca después
 > *Qué decidió lo que ves acá*, con los recortes que ya estaban operando sin declararse.
 >
 > ⚠️ **Republicar no cambia lo que ve quien ya tenía el link.** La guía está compartida con una
-> versión fijada: hay que **mover el share pin** desde el menú de la página para que los que ya
-> la abrieron vean la nueva.
+> versión fijada. Para que los que ya la abrieron vean la nueva: abrir la página en el navegador
+> (`/artifacts` en la terminal, y `o`), entrar al control **Share** del encabezado, y activar el
+> toggle **«Always share latest version»** —o elegir la versión más nueva en el selector que dice
+> *«Sharing version N»*—. El link no cambia y no hay que reenviarlo.
+>
+> Con ese toggle activado, Claude Code **vuelve a pedir permiso en cada republicación** de esa
+> página, a propósito: evita cambiarle el contenido a alguien que lo está leyendo.
 
 ### Lo publicado, con su link
 
