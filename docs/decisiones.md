@@ -261,3 +261,67 @@ respuestas superpuestas y el crédito casi nunca es el que aprieta:
 | Lo que existe | Con ventana corta y objetivo chico pueden ser 2. |
 | El techo práctico | ~150. A 300 la llamada tarda 41 s y devuelve 160 KB. |
 | El crédito de Apify | ~33.000 menciones al mes: unos 330 informes de 100. |
+
+---
+
+## 12. Instagram entra por los comentarios propios, no por la escucha de red
+
+**Decisión:** la fuente de Instagram se construye sobre los **comentarios en los posteos del
+propio objetivo**. Los etiquetados entran como bloque secundario y declarado; la vía de hashtag
+queda afuera.
+
+**Por qué:** no es una preferencia de producto, es lo único que existe. **Instagram no tiene
+búsqueda de texto libre.** El campo `search` del actor busca hashtags, perfiles y lugares, nunca
+el texto de un caption, así que la pregunta que estructura toda la fuente de X —"quién escribió
+el nombre de la marca"— no se puede formular a ningún precio. Está medido en
+[`apify-actor-instagram.md`](apify-actor-instagram.md).
+
+De las tres fuentes que quedan, una anda bien y las otras dos están lisiadas:
+
+| Fuente | Estado medido |
+| :--- | :--- |
+| Comentarios en posteos propios | Funciona. Techo de 15 por posteo en plan FREE. |
+| Etiquetados (`mentions`) | Techo de 21, **y sin ningún filtro de calidad**: no hay `min_faves`, ni `lang`, ni `Top` vs `Latest`. |
+| Hashtag | Cae a un fallback de Google y devuelve un hashtag inventado con HTTP 201. |
+
+**Lo que esto revisa de la decisión 6.** Aquella dijo que los actores de Instagram serían "más
+frágiles y más caros porque dependen del login". Lo del costo era cierto y se quedó corto: son
+**18 veces** el actor de X. Lo del login no: los actores andan sin cookies. La fragilidad real
+resultó ser otra —la ausencia de búsqueda y la falla silenciosa del hashtag— y es una fragilidad
+de Instagram, no del actor, así que cambiar de proveedor no la arregla.
+
+**Consecuencia, y es la que ordena el informe:** en X, el bloque *Debajo de tus posteos* de la
+decisión 10 es un complemento de la escucha general. **En Instagram es casi todo el informe.** El
+formato no cambia, cambia de dónde se llena cada bloque, y el informe tiene que decir en una
+línea qué no está viendo: en Instagram no se ve lo que se dice del objetivo sin nombrarlo.
+
+**Y la consecuencia cara:** Instagram rompe la propiedad de que este proyecto es gratis. Con los
+$5 mensuales de Apify entran ~18 informes de 100 resultados, contra ~330 en X. Automatizado cada
+6 horas son ~$32/mes solo de datos, encima de los ~$42/mes del modelo que ya estimaba
+`REQUISITOS.md`. **Esto agrega una decisión a las cinco abiertas de la Fase 1:** si Instagram
+entra en la corrida automática o queda solo como consulta a demanda.
+
+### Corrección del 2026-09-06: la ventana temporal, y lo que le hace a la decisión 11
+
+La primera versión de esta decisión daba por hecho que la ventana temporal de Instagram se
+comportaba como la de X. **No se comporta**, y verificarlo cambió dos cosas.
+
+**`onlyPostsNewerThan` filtra por la fecha del posteo, no por la del comentario.** Con
+`resultsType: "comments"` descarta el posteo padre entero si se publicó fuera de la ventana, sin
+mirar los comentarios: medido, una ventana de 1 hora sobre un posteo de ayer devolvió el error
+`no_items`, no cero comentarios. Sobre una marca que postea una vez por semana, "las últimas 6
+horas" devuelve nada aunque el posteo del martes tenga doscientos comentarios de hoy — y ese es
+justamente el caso que importa, porque el reclamo fresco cuelga de contenido viejo.
+
+**Lo que esto le hace a la decisión 11.** Aquella dice acotar la ventana en origen y no filtrar
+después, "porque se paga por menciones que se descartan". Para los comentarios de Instagram **no
+hay forma de sostenerla**: se trae, se paga, y recién ahí se descarta por `timestamp` — a 18 veces
+el precio de X. La decisión 11 sigue valiendo entera para X y para los etiquetados de Instagram;
+para los comentarios, el desperdicio pasa a ser parte del costo y no un error a evitar.
+
+**Y un defecto propio que esto destapó:** el recorte de `fields` se aplica también a los objetos
+de error, así que la lista original —que no pedía `error`— convertía cualquier fallo en `[{}]`,
+el mismo objeto mudo del actor de X, y volvía inaplicable la regla de descarte que este mismo
+proyecto había escrito. Las dos listas ahora terminan en `error,errorDescription`. La lección es
+general y vale para cualquier fuente futura: **un recorte de campos puede borrar la evidencia de
+que la corrida falló.**

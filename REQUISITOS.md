@@ -142,6 +142,21 @@ solo cuando algo se mueve bajaría el costo casi un orden de magnitud.
 
 - [ ] ¿Vigilancia barata cada 6 h + informe completo solo ante un pico, o informe completo
       siempre? Es la decisión que más mueve el costo.
+- [ ] **¿Instagram entra en la corrida automática, o queda solo a demanda?** Es nueva, del
+      2026-09-05, y es la segunda que más mueve el costo: Instagram cuesta 18× lo que X ($2,70
+      por 1.000 resultados contra $0,15), así que cuatro corridas diarias son ~$22/mes de datos
+      contra los ~$1,80 de X. Es el único caso donde vigilar tampoco sale barato. El detalle
+      está en la decisión 12 y en [`docs/apify-actor-instagram.md`](docs/apify-actor-instagram.md).
+
+      **Y hay un agravante del 2026-09-06 que pesa sobre el requisito 4.** La cadencia de 6 horas
+      se sostenía en que la ventana se acota en origen: sin superposición, sin deduplicar, sin
+      base de datos. **En los comentarios de Instagram eso no se puede hacer.** El filtro de
+      fecha del Actor mira la fecha del posteo, no la del comentario, así que una ventana de 6
+      horas descarta el posteo padre entero y devuelve un error en vez de los comentarios
+      frescos que cuelgan de él. La única salida es traer los más nuevos y descartar por
+      `timestamp` — es decir, **pagar cuatro veces por día por resultados que se tiran**, a 18×
+      el precio de X. La propiedad "ventana = cadencia" sigue siendo cierta en X; en Instagram
+      cuesta plata cada seis horas.
 - [ ] ¿Servidor MCP propio + CLI, o solo CLI con cron? (el MCP ya no resuelve el requisito 4)
 - [ ] ¿Marca de agua para no perder ventanas ante una corrida fallida, o se acepta perderlas?
 - [ ] ¿Qué hace el agente cuando la ventana no trae menciones?

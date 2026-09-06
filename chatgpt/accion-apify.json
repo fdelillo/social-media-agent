@@ -1,9 +1,9 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "Menciones en X via Apify",
-    "description": "Ejecuta el Actor de scraping de X y devuelve las menciones en la misma respuesta.",
-    "version": "2.0.0"
+    "title": "Menciones en X e Instagram via Apify",
+    "description": "Ejecuta los Actors de scraping de X y de Instagram y devuelve las menciones en la misma respuesta. Son dos Actors distintos, uno por red, y se llaman por separado.",
+    "version": "3.0.0"
   },
   "servers": [
     {
@@ -91,6 +91,96 @@
         "responses": {
           "201": {
             "description": "Los posteos encontrados.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/acts/apify~instagram-scraper/run-sync-get-dataset-items": {
+      "post": {
+        "summary": "Traer comentarios, etiquetados o posteos de Instagram",
+        "description": "Corre el Actor de Instagram de forma sincronica y devuelve los resultados en la misma llamada. El campo 'resultsType' elige que se trae: 'comments' son los comentarios que cuelgan de posteos concretos (la fuente principal en Instagram), 'mentions' son posteos de terceros donde la cuenta esta etiquetada, y 'posts' son los posteos de un perfil. OJO: en Instagram NO existe la busqueda por texto. No hay forma de buscar quien escribio el nombre de la marca. Si el usuario lo pide, decilo en vez de intentarlo.",
+        "operationId": "buscarInstagram",
+        "parameters": [
+          {
+            "name": "fields",
+            "in": "query",
+            "required": true,
+            "description": "Campos a devolver, obligatorio. Sin el, cada posteo trae 28 campos anidados y pesa 28 KB: cien posteos serian 2,8 MB y la llamada no entra. Con el, 0,76 KB por posteo. El valor DEPENDE del resultsType y hay que cambiarlo: para 'posts', 'mentions' y 'reels' usar el valor por defecto de abajo; para 'comments' usar exactamente: id,text,ownerUsername,timestamp,likesCount,repliesCount,postUrl,error,errorDescription . Las dos listas terminan en 'error,errorDescription' y esos dos campos NO se sacan: sin ellos, una corrida fallida se recorta a [{}] —un objeto vacio con HTTP 201, indistinguible de un resultado— y no hay forma de saber que fallo.",
+            "schema": {
+              "type": "string",
+              "default": "id,shortCode,url,caption,ownerUsername,ownerFullName,timestamp,likesCount,commentsCount,type,hashtags,mentions,inputUrl,error,errorDescription"
+            }
+          },
+          {
+            "name": "maxTotalChargeUsd",
+            "in": "query",
+            "required": true,
+            "description": "Tope duro de gasto para esta corrida, en dolares. Importa mas que en X porque Instagram cuesta 18 veces mas ($2,70 por 1.000 resultados) y porque resultsLimit se multiplica por cada URL. Tres posteos a 15 comentarios son 45 resultados = $0,12.",
+            "schema": {
+              "type": "number",
+              "default": 0.15
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "resultsType",
+                  "directUrls",
+                  "resultsLimit"
+                ],
+                "properties": {
+                  "resultsType": {
+                    "type": "string",
+                    "enum": [
+                      "comments",
+                      "mentions",
+                      "posts",
+                      "reels",
+                      "details"
+                    ],
+                    "default": "comments",
+                    "description": "Que traer. 'comments' para los comentarios de posteos concretos: es la fuente principal en Instagram y la unica que anda bien. 'mentions' para los posteos donde etiquetaron a la cuenta. 'posts' para los posteos de un perfil, que sirve para elegir cuales tienen mas comentarios. Su valor por defecto en el Actor es 'posts', asi que si no lo mandas trae otra cosa sin avisar."
+                  },
+                  "directUrls": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Las URLs a scrapear. La forma tiene que coincidir con resultsType: para 'comments' van URLs de posteo (https://www.instagram.com/p/CODIGO/), y se pueden pasar varias de una vez en la misma llamada; para 'mentions', 'posts' y 'details' va la URL del perfil (https://www.instagram.com/usuario/). Verifica el handle antes: si no existe, la corrida se factura igual."
+                  },
+                  "resultsLimit": {
+                    "type": "integer",
+                    "default": 15,
+                    "maximum": 50,
+                    "description": "Cuantos resultados por URL. ES POR URL, NO POR CORRIDA: tres URLs con 15 son 45 resultados facturados. En plan gratuito de Apify hay dos techos duros medidos que no se pueden pasar: 15 comentarios por posteo y 21 etiquetados por perfil. Pedir mas no trae mas, solo confunde."
+                  },
+                  "onlyPostsNewerThan": {
+                    "type": "string",
+                    "description": "Ventana temporal opcional, en UTC. Acepta '2 days', '6 hours' o una fecha 'AAAA-MM-DD'. CUIDADO, no significa lo mismo que en X: filtra por la fecha del POSTEO, no por la de los comentarios. Con resultsType 'comments' descarta el posteo entero si fue publicado fuera de la ventana, aunque tenga comentarios recientes: pedir '6 hours' sobre una cuenta que postea una vez por semana devuelve un error 'no_items', no cero comentarios. Para acotar comentarios por su propia fecha NO uses este campo: traelos sin ventana (vienen ordenados del mas nuevo al mas viejo) y descarta por 'timestamp'. Con 'mentions' y 'posts' si sirve, pero los posteos fijados del perfil se cuelan igual."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Los resultados encontrados.",
             "content": {
               "application/json": {
                 "schema": {
