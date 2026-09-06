@@ -7,6 +7,24 @@ que es la fuente principal, e **Instagram**, que funciona distinto y cuesta bast
 > **Necesitás ChatGPT en un plan pago** (Plus, Pro o Team): crear GPTs y usar Actions no está
 > disponible en el plan gratuito.
 
+## Si ya lo armaste antes del 6 de septiembre
+
+**No se te rompió nada y no tenés que rehacerlo.** Todo lo de X sigue funcionando igual: esa
+parte del esquema no se tocó. Si no te interesa Instagram, podés saltear esta sección entera.
+
+Para sumar Instagram son tres cambios, dos minutos:
+
+1. **Reemplazar el texto de Instrucciones** por el de [`instrucciones.md`](instrucciones.md).
+   Cambió: ahora sabe preguntar por tu cuenta de Instagram y cómo tratarla.
+2. **Subir un tercer archivo de Conocimiento**,
+   [`../prompts/fuente-instagram.md`](../prompts/fuente-instagram.md). **Los otros dos no
+   cambiaron**, así que no hace falta volver a subirlos.
+3. **Reemplazar el esquema de la Action** por el de [`accion-apify.json`](accion-apify.json). El
+   token es el mismo; si ChatGPT te vuelve a pedir la autenticación, es el del paso 1.
+
+Sabés que quedó bien cuando en **Acciones** aparecen **dos** operaciones en vez de una:
+`buscarMenciones` y `buscarInstagram`.
+
 ## Por qué lo armás vos y no te paso uno hecho
 
 Cuando alguien comparte un GPT que llama a una API, **comparte su propia clave**: todo el que lo
@@ -118,54 +136,38 @@ no hace que sea más rápido. **`fields` no es una optimización, es lo que hace
 él, 100 posteos serían ~200 KB. Y **150 es el techo sensato**: a 300 la llamada tarda 41 segundos
 y devuelve 160 KB, que empieza a ahogar la conversación.
 
-## ¿Trae todas las menciones?
+## Los límites, y qué se decidió con cada uno
 
-No, y conviene saber por qué. Hay cuatro techos, y el que aprieta casi nunca es el crédito:
+Todo lo que sigue salió de correr la herramienta contra datos reales y contar qué devolvía. Cada
+límite obligó a una decisión, y esa decisión cambia cómo hay que leer el informe.
 
-| Techo | Cuál es |
-| :--- | :--- |
-| **Lo que pedís** | El agente trae exactamente `max_results`, ni una más. |
-| **Lo que existe** | Si la ventana es corta y el objetivo chico, puede haber 2 menciones y nada más. |
-| **El techo práctico** | ~150. Más arriba la llamada se pone lenta y pesada. |
-| **El crédito de Apify** | ~33.000 menciones al mes. A 100 por informe son unos 330 informes. |
+### Qué menciones llegan a vos
 
-O sea: el agente no hace un censo de todo lo que se dijo. Trae **las más relevantes** —`Top`
-ordena por engagement— hasta el número que le pidas.
+| Lo medido | Qué se decidió | Qué significa para vos |
+| :--- | :--- | :--- |
+| **IG** · El plan gratuito devuelve **15 comentarios por posteo**, aunque el posteo tenga 200. Probado contra uno que declaraba 62. | Pedir 15 y **declarar la proporción**: "15 de 62", nunca "62". | Si trajo 15 y los 15 entran en tu ventana, casi seguro hay más que no viste. El informe te lo avisa. |
+| **IG** · Devuelve **21 posteos etiquetados** por cuenta, sin orden ni filtro de calidad. El primero de la prueba etiquetaba 26 marcas de golpe. | Bloque aparte, y se descartan los que etiquetan a más de cinco cuentas. | Ese bloque es una muestra sucia, no un censo. Sirve para detectar, no para medir. |
+| **IG** · **No se puede buscar por texto.** No existe forma, a ningún precio. | Instagram entra por los comentarios en tus posteos, no por escucha de red. | En Instagram **no ves lo que se dice de vos sin nombrarte**. En X sí, y suele ser la mayor parte. |
+| **X** · Ordenando por lo más nuevo, los 5 resultados de la prueba eran spam: 0 likes, 5 idiomas. | Siempre orden por repercusión, y piso de 5 likes. | El agente no hace un censo: trae **las más relevantes** hasta donde le pidas. |
+| **X** · **150 es el techo práctico**: a 300 la llamada tarda 41 s y devuelve 160 KB. | No pedir más de 150 por corrida. | Para más volumen hacen falta varias corridas. Pedir menos no lo hace más rápido: manda el arranque de la fuente. |
 
-## Instagram funciona distinto, y conviene saber en qué
+### Cómo se cuentan
 
-**En Instagram no se puede buscar por texto.** Esto no es una limitación del agente ni del plan:
-Instagram no permite, a ningún precio y con ninguna herramienta, preguntar quién escribió el
-nombre de una marca. Su buscador encuentra hashtags, perfiles y lugares, nunca el texto de un
-posteo.
+| Lo medido | Qué se decidió | Qué significa para vos |
+| :--- | :--- | :--- |
+| **X** · El **11%** de las menciones de MercadoLibre eran posteos de su fundador; el **10%** de las de un político, suyas propias. | Las cuentas oficiales se excluyen de la búsqueda. | **Dale todas tus cuentas**: institucional, vocero, estado de servicio. Si falta una, tus comunicados entran como opinión ajena, y siempre hacia lo favorable. |
+| **X** · En un hilo real, la mediana de likes de las respuestas fue **4**. | Las respuestas a tus posteos se traen con llamadas aparte. | Es la parte que **ningún buscador encuentra**, porque todos ordenan por repercusión. Y es donde está lo accionable. |
+| Las respuestas y comentarios vienen de tu propia audiencia, que responde sobre todo para reclamar. | **Se cuentan aparte** del porcentaje general. | Mezclarlas inflaría tu porcentaje de negativas por una razón que no es reputacional. |
+| Con una sola etiqueta de sentimiento, tres mediciones dieron **67%, 75% y 60%** — y bajaba al agregar reglas. | Dos preguntas separadas: si alguien opina, y si eso te conviene. | Un servicio caído 30 horas es un hecho grave aunque nadie opine; una queja es una opinión. Se responden distinto. |
 
-Lo que sí se puede ver son dos cosas, y son valiosas:
+### Cuánto podés confiar
 
-| Qué | De dónde sale |
-| :--- | :--- |
-| **Lo que te comentan** | Los comentarios en tus propios posteos. Es la fuente principal y donde está el reclamo del cliente. |
-| **Lo que te etiqueta** | Los posteos de terceros donde etiquetaron a tu cuenta. |
-
-Y una que no: **lo que se dice de vos sin nombrarte.** En X es la mayor parte del informe; en
-Instagram no existe. El informe de Instagram lo dice en una línea, para que nadie crea que vio
-más de lo que vio.
-
-Tres números medidos el 5 de septiembre de 2026, en 14 corridas reales:
-
-| | |
-| :--- | :--- |
-| Comentarios de un posteo | 15 como máximo en plan gratuito (el posteo declaraba 62) |
-| Etiquetados de una cuenta | 21 como máximo en plan gratuito |
-| Recorte de `fields` | 84 KB → 2,3 KB por tres posteos, **37 veces menos** |
-
-Los dos techos se levantan pagando el plan Starter de Apify. El tercero es lo que hace que
-Instagram entre en una conversación de ChatGPT: sin `fields`, cien posteos serían 2,8 MB.
-
-**La advertencia sobre los etiquetados.** A diferencia de X, Instagram no ofrece ningún filtro de
-calidad: no hay mínimo de likes, ni idioma, ni orden por relevancia. Los 21 que llegan son
-arbitrarios y buena parte son cuentas que etiquetan decenas de marcas de golpe para que alguna
-las repostee — en la prueba, la primera etiquetaba 26 a la vez. El agente descarta las que
-etiquetan más de cinco, pero tomá ese bloque como una muestra sucia, no como un censo.
+| Lo medido | Qué se decidió | Qué significa para vos |
+| :--- | :--- | :--- |
+| Contra etiquetas humanas: **65%** en opinión/hecho, **70%** en valencia, sobre 20 menciones. | Se declara en el informe en vez de esconderse. | **Conteos gruesos y citas: confiables.** El reparto exacto entre las dos columnas: orden de magnitud. |
+| En cuatro mediciones, el modelo **nunca invirtió el signo** ni se perdió una desfavorable. Cuando falla, carga de más. | Se confía en la detección; el umbral se toma con pinzas. | Si el informe dice que hay un problema, **hay un problema**. Cuántas menciones lo sostienen es lo difuso. |
+| **X** · La fuente a veces devuelve **un objeto vacío con código de éxito** en vez de un error. | Una entrada sin `id` no cuenta, y se reintenta una vez. | Si ves "una sola mención vacía", **falló**: no es que no haya nada que decir. |
+| **IG** · La búsqueda por hashtag **cae a Google e inventa el hashtag**: devolvió uno con cero posteos, con HTTP 201. | La vía de hashtag quedó **fuera** del kit. | No le pidas búsqueda por hashtag en Instagram: no hay una que funcione, y la que hay miente. |
 
 ## Buscar solo las últimas X horas
 

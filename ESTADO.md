@@ -27,9 +27,14 @@ verificar la ventana temporal).
 [`chatgpt/`](chatgpt/) más una guía de puesta en marcha publicada como página. Alguien lo va a
 armar con su propio token y usarlo; lo que devuelva decide qué se toca después.
 
-> ⚠️ **La página publicada de la guía quedó atrás del repo.** Se generó antes de Instagram y no
-> menciona ni el tercer archivo de Conocimiento ni la segunda operación de la Action. Si el kit
-> se vuelve a compartir, hay que republicarla **sobre el mismo link** de la tabla de abajo.
+> ✅ **Las dos páginas se republicaron el 2026-09-06** y están al día con el repo. La guía suma
+> una sección para quien ya armó el GPT antes (no se le rompe nada; son tres cambios de dos
+> minutos) y otra que hace explícitas las decisiones que salieron del análisis. El informe suma
+> *Qué decidió lo que ves acá*, con los recortes que ya estaban operando sin declararse.
+>
+> ⚠️ **Republicar no cambia lo que ve quien ya tenía el link.** La guía está compartida con una
+> versión fijada: hay que **mover el share pin** desde el menú de la página para que los que ya
+> la abrieron vean la nueva.
 
 ### Lo publicado, con su link
 
@@ -39,7 +44,7 @@ estos links.
 
 | Qué | Link | Se genera desde |
 | :--- | :--- | :--- |
-| Guía de puesta en marcha en ChatGPT | https://claude.ai/code/artifact/5251dedc-ca98-4e92-9a05-88c772274d9a | `chatgpt/instrucciones.md` + `chatgpt/accion-apify.json` |
+| Guía de puesta en marcha en ChatGPT | https://claude.ai/code/artifact/5251dedc-ca98-4e92-9a05-88c772274d9a | `chatgpt/README.md` + `chatgpt/instrucciones.md` + `chatgpt/accion-apify.json` |
 | Informe de ejemplo, versión leíble | https://claude.ai/code/artifact/7675a180-e5ae-4599-a1a6-8b3033a69989 | `reportes/ejemplo-donweb.md` |
 
 Las dos nacen privadas: para que alguien las abra hay que compartirlas desde el menú de la
@@ -131,7 +136,8 @@ tolera.
 
 1. **Esperar feedback de uso real** ← acá estamos. Todo lo demás depende de eso.
 2. **Regenerar el informe de ejemplo** con el formato de las decisiones 9 y 10, si el formato
-   convence. Y republicar la página de la guía, que quedó atrás de Instagram.
+   convence. Los datos siguen siendo los del 3 de septiembre y no se recalcularon: la página
+   ahora declara qué le falta, pero declararlo no es lo mismo que tenerlo.
 3. **Decidir si Instagram entra en la corrida automática**, que es la sexta decisión de la Fase 1
    y la segunda que más mueve el costo: ~$22/mes de datos contra ~$1,80 en X.
 4. **Las decisiones abiertas de la Fase 1**, en [`REQUISITOS.md`](REQUISITOS.md). La primera es
